@@ -1,0 +1,180 @@
+----------------------------------------------------------------
+2025-06-08 19:03:19.935 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:03:20.065 GMT:
+Shutting down instance a816c00e-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 19:03:20.082 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 08264012-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:03:20.133 GMT:
+Shutting down instance 08264012-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+2025-06-08 19:03:20.135 GMT Thread[AWT-EventQueue-0,6,main] Cleanup action starting
+java.sql.SQLException: Database 'sparkleplayer/db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:252)
+	at com.sparkle.db.DBUtils.close(DBUtils.java:69)
+	at com.sparkle.db.BaseDataDB.<init>(BaseDataDB.java:94)
+	at com.sparkle.db.BaseDataDB.getBaseDataDB(BaseDataDB.java:141)
+	at com.sparkle.util.DataUtil.initBaseData(DataUtil.java:43)
+	at com.sparkle.util.DataUtil.init(DataUtil.java:25)
+	at com.sparkle.enterProgram.EnterProgram.init(EnterProgram.java:54)
+	at com.sparkle.enterProgram.EnterProgram$1.run(EnterProgram.java:43)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+Caused by: java.sql.SQLException: Database 'sparkleplayer/db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	... 34 more
+============= begin nested exception, level (1) ===========
+java.sql.SQLException: Database 'sparkleplayer/db/' not found.
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(Unknown Source)
+	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection30.<init>(Unknown Source)
+	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(Unknown Source)
+	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Unknown Source)
+	at org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	at org.apache.derby.jdbc.AutoloadedDriver.connect(Unknown Source)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:252)
+	at com.sparkle.db.DBUtils.close(DBUtils.java:69)
+	at com.sparkle.db.BaseDataDB.<init>(BaseDataDB.java:94)
+	at com.sparkle.db.BaseDataDB.getBaseDataDB(BaseDataDB.java:141)
+	at com.sparkle.util.DataUtil.initBaseData(DataUtil.java:43)
+	at com.sparkle.util.DataUtil.init(DataUtil.java:25)
+	at com.sparkle.enterProgram.EnterProgram.init(EnterProgram.java:54)
+	at com.sparkle.enterProgram.EnterProgram$1.run(EnterProgram.java:43)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:318)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:742)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+============= end nested exception, level (1) ===========
+Cleanup action completed
+----------------------------------------------------------------
+2025-06-08 19:03:20.150 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 40348015-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:03:20.175 GMT:
+Shutting down instance 40348015-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 19:03:20.188 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance b8450018-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:03:20.212 GMT:
+Shutting down instance b8450018-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 19:03:20.228 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 185e801c-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:03:20.257 GMT:
+Shutting down instance 185e801c-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 19:03:20.271 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 6074401f-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:03:20.299 GMT:
+Shutting down instance 6074401f-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 19:03:20.328 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a094c023-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:03:20.359 GMT:
+Shutting down instance a094c023-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 19:03:26.251 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance e8afc026-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:03:26.297 GMT:
+Shutting down instance e8afc026-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 19:07:05.143 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 00cd0029-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:07:05.177 GMT:
+Shutting down instance 00cd0029-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 19:07:05.189 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 98ec802c-0197-50ed-042a-00000739ca18
+on database directory /Users/begonia/Desktop/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 19:07:05.224 GMT:
+Shutting down instance 98ec802c-0197-50ed-042a-00000739ca18
+----------------------------------------------------------------
