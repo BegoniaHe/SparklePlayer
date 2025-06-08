@@ -1,0 +1,65 @@
+name: Clean Prereleases
+
+on:
+  workflow_dispatch:
+    inputs:
+      keep_latest:
+        description: 'Keep the latest N prereleases'
+        required: false
+        default: '1'
+        type: string
+
+jobs:
+  clean-prereleases:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Clean old prereleases
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        keep_count="${{ github.event.inputs.keep_latest }}"
+        if [ -z "$keep_count" ] || [ "$keep_count" -lt 0 ]; then
+          keep_count=1
+        fi
+        
+        echo "Cleaning prereleases, keeping latest $keep_count..."
+        
+        # 获取所有预发布版本，按创建时间排序
+        prereleases=$(gh release list --json tagName,isPrerelease,createdAt --jq '.[] | select(.isPrerelease == true) | .tagName' | head -n +100)
+        
+        if [ -z "$prereleases" ]; then
+          echo "No prereleases found"
+          exit 0
+        fi
+        
+        total_count=$(echo "$prereleases" | wc -l)
+        echo "Found $total_count prereleases"
+        
+        if [ "$total_count" -le "$keep_count" ]; then
+          echo "Number of prereleases ($total_count) is less than or equal to keep count ($keep_count), nothing to delete"
+          exit 0
+        fi
+        
+        # 跳过前N个（最新的），删除其余的
+        to_delete=$(echo "$prereleases" | tail -n +$((keep_count + 1)))
+        delete_count=$(echo "$to_delete" | wc -l)
+        
+        echo "Will delete $delete_count prereleases:"
+        echo "$to_delete"
+        
+        # 删除预发布版本
+        echo "$to_delete" | while read -r tag; do
+          if [ -n "$tag" ]; then
+            echo "Deleting prerelease: $tag"
+            gh release delete "$tag" --yes || echo "Failed to delete $tag"
+          fi
+        done
+        
+        echo "✅ Cleanup completed!"

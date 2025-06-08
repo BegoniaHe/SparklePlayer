@@ -1,0 +1,143 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
+        default: 'v1.0.0'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 8
+      uses: actions/setup-java@v4
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+        
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Delete all prereleases
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        echo "Deleting existing prereleases..."
+        # 获取所有的预发布版本
+        prereleases=$(gh release list --json tagName,isPrerelease --jq '.[] | select(.isPrerelease == true) | .tagName')
+        
+        if [ -n "$prereleases" ]; then
+          echo "Found prereleases to delete:"
+          echo "$prereleases"
+          
+          # 删除每个预发布版本
+          echo "$prereleases" | while read -r tag; do
+            if [ -n "$tag" ]; then
+              echo "Deleting prerelease: $tag"
+              gh release delete "$tag" --yes || echo "Failed to delete $tag"
+            fi
+          done
+        else
+          echo "No prereleases found to delete"
+        fi
+        
+    - name: Build JAR with Gradle
+      run: |
+        echo "Building JAR file..."
+        # 跳过代码质量检查，只进行编译和打包
+        ./gradlew clean compileJava jar -x checkstyleMain -x pmdMain -x spotbugsMain
+        
+    - name: Find JAR file
+      id: find-jar
+      run: |
+        # 查找生成的JAR文件
+        jar_file=$(find build/libs -name "*.jar" -type f | head -1)
+        if [ -z "$jar_file" ]; then
+          echo "No JAR file found in build/libs/"
+          exit 1
+        fi
+        echo "Found JAR: $jar_file"
+        echo "jar_path=$jar_file" >> $GITHUB_OUTPUT
+        echo "jar_name=$(basename $jar_file)" >> $GITHUB_OUTPUT
+        
+    - name: Prepare release assets
+      run: |
+        echo "Preparing release assets..."
+        mkdir -p release-assets
+        
+        # 复制JAR文件
+        cp "${{ steps.find-jar.outputs.jar_path }}" release-assets/
+        
+        # 复制sparkleplayer目录
+        cp -r sparkleplayer release-assets/
+        
+        # 创建压缩包
+        cd release-assets
+        zip -r ../SparklePlayer-Release.zip .
+        cd ..
+        
+        echo "Release assets prepared:"
+        ls -la release-assets/
+        ls -la SparklePlayer-Release.zip
+        
+    - name: Get version
+      id: get-version
+      run: |
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          version="${{ github.event.inputs.version }}"
+        else
+          version="${{ github.ref_name }}"
+        fi
+        echo "version=$version" >> $GITHUB_OUTPUT
+        echo "Using version: $version"
+        
+    - name: Create prerelease
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        version="${{ steps.get-version.outputs.version }}"
+        jar_name="${{ steps.find-jar.outputs.jar_name }}"
+        
+        echo "Creating prerelease $version..."
+        
+        # 创建预发布版本
+        gh release create "$version" \
+          --title "SparklePlayer $version (Pre-release)" \
+          --notes "🚀 **SparklePlayer Pre-release $version**
+
+        这是一个预发布版本，包含最新的功能和修复。
+
+        ## 📦 包含内容
+        - \`$jar_name\` - 主程序JAR文件
+        - \`SparklePlayer-Release.zip\` - 完整发布包（包含JAR文件和sparkleplayer目录）
+        - \`sparkleplayer/\` 目录 - 包含音频文件、字体、图标等资源
+
+        ## 🔧 运行方式
+        1. 下载 \`SparklePlayer-Release.zip\` 并解压
+        2. 确保已安装 Java 8 或更高版本
+        3. 运行: \`java -jar $jar_name\`
+
+        ## ⚠️ 注意
+        这是预发布版本，可能包含未完全测试的功能。请谨慎在生产环境中使用。
+
+        ---
+        构建时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+        提交: ${{ github.sha }}" \
+          --prerelease \
+          "${{ steps.find-jar.outputs.jar_path }}" \
+          "SparklePlayer-Release.zip"
+          
+        echo "✅ Prerelease $version created successfully!"

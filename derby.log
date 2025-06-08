@@ -1,24 +1,24 @@
 ----------------------------------------------------------------
-2025-06-08 20:17:51.155 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.218 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-0197-5132-c869-00000739e348
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 20:17:51.283 GMT:
-Shutting down instance a816c00e-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.370 GMT:
+Shutting down instance a816c00e-0197-5132-c869-00000739e348
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 20:17:51.300 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 08264012-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.386 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 08264012-0197-5132-c869-00000739e348
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 20:17:51.354 GMT:
-Shutting down instance 08264012-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.435 GMT:
+Shutting down instance 08264012-0197-5132-c869-00000739e348
 ----------------------------------------------------------------
-2025-06-08 20:17:51.357 GMT Thread[AWT-EventQueue-0,6,main] Cleanup action starting
+2025-06-08 20:19:32.437 GMT Thread[AWT-EventQueue-0,6,main] Cleanup action starting
 java.sql.SQLException: Database 'sparkleplayer/db/' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
@@ -99,52 +99,72 @@ java.sql.SQLException: Database 'sparkleplayer/db/' not found.
 ============= end nested exception, level (1) ===========
 Cleanup action completed
 ----------------------------------------------------------------
-2025-06-08 20:17:51.369 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 40348015-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.450 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 40348015-0197-5132-c869-00000739e348
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 20:17:51.396 GMT:
-Shutting down instance 40348015-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.474 GMT:
+Shutting down instance 40348015-0197-5132-c869-00000739e348
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 20:17:51.412 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance b8450018-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.487 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance b8450018-0197-5132-c869-00000739e348
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 20:17:51.436 GMT:
-Shutting down instance b8450018-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.509 GMT:
+Shutting down instance b8450018-0197-5132-c869-00000739e348
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 20:17:51.452 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 185e801c-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.522 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 185e801c-0197-5132-c869-00000739e348
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 20:17:51.478 GMT:
-Shutting down instance 185e801c-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.551 GMT:
+Shutting down instance 185e801c-0197-5132-c869-00000739e348
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 20:17:51.492 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 6074401f-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.568 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 6074401f-0197-5132-c869-00000739e348
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 20:17:51.514 GMT:
-Shutting down instance 6074401f-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.591 GMT:
+Shutting down instance 6074401f-0197-5132-c869-00000739e348
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 20:17:51.527 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a094c023-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.604 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a094c023-0197-5132-c869-00000739e348
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 20:17:51.551 GMT:
-Shutting down instance a094c023-0197-5131-3dc8-00000739ca18
+2025-06-08 20:19:32.629 GMT:
+Shutting down instance a094c023-0197-5132-c869-00000739e348
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 20:19:58.635 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance e8afc026-0197-5132-c869-00000739e348
+on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 20:19:58.664 GMT:
+Shutting down instance e8afc026-0197-5132-c869-00000739e348
+----------------------------------------------------------------
+----------------------------------------------------------------
+2025-06-08 20:19:58.678 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 00cd0029-0197-5132-c869-00000739e348
+on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
+
+Database Class Loader started - derby.database.classpath=''
+
+2025-06-08 20:19:58.718 GMT:
+Shutting down instance 00cd0029-0197-5132-c869-00000739e348
 ----------------------------------------------------------------
