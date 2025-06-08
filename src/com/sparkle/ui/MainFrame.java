@@ -5,6 +5,8 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -27,6 +29,11 @@ import com.sparkle.util.DataUtil;
 import com.sparkle.widget.panel.MainCenterPanel;
 import com.sparkle.widget.panel.MainMenuPanel;
 import com.sparkle.widget.panel.MainOperatePanel;
+import com.sparkle.widget.panel.lrc.ManyLineLyricsView;
+import com.sparkle.lyrics.model.LyricsLineInfo;
+import com.sparkle.util.LyricsUtil;
+
+import java.util.TreeMap;
 
 /**
  * 主界面
@@ -34,7 +41,7 @@ import com.sparkle.widget.panel.MainOperatePanel;
  * @author yuyi2003
  * 
  */
-public class MainFrame extends JFrame implements SparkleObserver {
+public class MainFrame extends JFrame implements SparkleObserver, KeyListener {
     private static LoggerManage logger = LoggerManage.getZhangLogger();
 
     /**
@@ -48,18 +55,27 @@ public class MainFrame extends JFrame implements SparkleObserver {
     /**
      * 窗口宽度
      */
-    private int mainFrameWidth;
-    /**
+    private int mainFrameWidth;    /**
      * 窗口高度
      */
-    private int mainFrameHeight;    /**
+    private int mainFrameHeight;
+    
+    /**
+     * 双击检测相关变量
+     */
+    private long lastLeftArrowPress = 0;
+    private long lastRightArrowPress = 0;
+    private static final long DOUBLE_PRESS_INTERVAL = 500; // 双击间隔时间（毫秒）
+    
+    /**
      * 
      */
     private MainOperatePanel mainOperatePanel;
-    private MainCenterPanel mainCenterPanel;    public MainFrame() {
+    private MainCenterPanel mainCenterPanel;public MainFrame() {
         init();// 初始化
         initComponent();// 初始化控件
         initSkin();// 初始化皮肤
+        initKeyboardControl(); // 初始化键盘控制
         //
         setVisible(true);
         ObserverManage.getObserver().addObserver(this);
@@ -259,5 +275,335 @@ public class MainFrame extends JFrame implements SparkleObserver {
                     setTitle(mSongInfo.getDisplayName());
                 }            }
         }
+    }    /**
+     * 初始化键盘控制
+     */
+    private void initKeyboardControl() {
+        // 设置窗口可获得焦点
+        this.setFocusable(true);
+        this.addKeyListener(this);
+        
+        // 确保窗口获得焦点时能响应键盘事件
+        this.requestFocus();
+        
+        // 添加窗口焦点监听器，确保窗口激活时能响应键盘
+        this.addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            @Override
+            public void windowGainedFocus(java.awt.event.WindowEvent e) {
+                requestFocus();
+            }
+            
+            @Override
+            public void windowLostFocus(java.awt.event.WindowEvent e) {
+                // 窗口失去焦点时不需要特殊处理
+            }
+        });
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
+
+    }    @Override    public void keyPressed(KeyEvent e) {
+        // 处理按键事件
+        int keyCode = e.getKeyCode();
+        switch (keyCode) {
+        case KeyEvent.VK_SPACE:
+            // 空格键控制播放/暂停
+            togglePlayPause();
+            break;        case KeyEvent.VK_LEFT:
+            // 左箭头键：检测双击
+            handleLeftArrow();
+            break;
+        case KeyEvent.VK_RIGHT:
+            // 右箭头键：检测双击
+            handleRightArrow();
+            break;
+        case KeyEvent.VK_UP:
+            // 上箭头键增加音量
+            adjustVolume(5);
+            break;
+        case KeyEvent.VK_DOWN:
+            // 下箭头键减少音量
+            adjustVolume(-5);
+            break;        case KeyEvent.VK_M:
+            // M键切换静音
+            toggleMute();
+            break;
+        case KeyEvent.VK_T:
+            // T键切换歌词翻译
+            toggleLyricsTranslation();
+            break;
+        case KeyEvent.VK_ESCAPE:
+            // ESC键退出播放器
+            exitPlayer();
+            break;
+        }
+    }@Override
+    public void keyReleased(KeyEvent e) {
+        // TODO Auto-generated method stub
+
+    }
+
+    /**
+     * 切换播放/暂停状态
+     */
+    private void togglePlayPause() {
+        if (MediaManage.getMediaManage().getPlayStatus() == MediaManage.PLAYING) {
+            // 当前正在播放，发送暂停消息
+            SongMessage songMessage = new SongMessage();
+            songMessage.setType(SongMessage.PAUSEMUSIC);
+            ObserverManage.getObserver().setMessage(songMessage);
+        } else {
+            // 当前暂停或停止，发送播放消息
+            SongMessage songMessage = new SongMessage();
+            songMessage.setType(SongMessage.PLAYMUSIC);
+            ObserverManage.getObserver().setMessage(songMessage);
+        }
+    }
+
+    /**
+     * 播放上一首
+     */
+    private void playPrevious() {
+        SongMessage songMessage = new SongMessage();
+        songMessage.setType(SongMessage.PREMUSIC);
+        ObserverManage.getObserver().setMessage(songMessage);
+    }
+
+    /**
+     * 播放下一首
+     */
+    private void playNext() {
+        SongMessage songMessage = new SongMessage();
+        songMessage.setType(SongMessage.NEXTMUSIC);
+        ObserverManage.getObserver().setMessage(songMessage);
+    }    /**
+     * 调整音量
+     * @param delta 音量变化量（正数增加，负数减少）
+     */
+    private void adjustVolume(int delta) {
+        int currentVolume = BaseData.volumeSize;
+        int newVolume = Math.max(0, Math.min(100, currentVolume + delta));
+        
+        if (newVolume != currentVolume) {
+            BaseData.volumeSize = newVolume;
+            
+            // 同步更新界面上的音量滑块
+            if (mainOperatePanel != null) {
+                mainOperatePanel.getVolumeSlider().setValue(newVolume);
+            }
+            
+            // 发送音量变化消息
+            MessageIntent messageIntent = new MessageIntent();
+            messageIntent.setAction(MessageIntent.PLAYERVOLUME);
+            ObserverManage.getObserver().setMessage(messageIntent);
+        }
+    }
+
+    /**
+     * 切换静音状态
+     */    private void toggleMute() {
+        if (BaseData.volumeSize == 0) {
+            // 当前静音，恢复到50%音量
+            BaseData.volumeSize = 50;
+        } else {
+            // 当前有声音，设为静音
+            BaseData.volumeSize = 0;
+        }
+        
+        // 同步更新界面上的音量滑块
+        if (mainOperatePanel != null) {
+            mainOperatePanel.getVolumeSlider().setValue(BaseData.volumeSize);
+        }
+        
+        // 发送音量变化消息
+        MessageIntent messageIntent = new MessageIntent();
+        messageIntent.setAction(MessageIntent.PLAYERVOLUME);
+        ObserverManage.getObserver().setMessage(messageIntent);
+    }
+      /**
+     * 跳转到上一句歌词
+     */
+    private void navigateToPreviousLyrics() {
+        try {
+            if (mainCenterPanel != null && mainCenterPanel.getLyricsPanel() != null) {
+                ManyLineLyricsView lyricsView = mainCenterPanel.getLyricsPanel().getManyLineLyricsView();
+                if (lyricsView != null && lyricsView.getLyricsLineTreeMap() != null) {
+                    TreeMap<Integer, LyricsLineInfo> lyricsTreeMap = lyricsView.getLyricsLineTreeMap();
+                    if (!lyricsTreeMap.isEmpty()) {
+                        int currentLine = 0;
+                        // 获取当前歌词行号（从当前播放进度计算）
+                        if (lyricsView.getLyricsUtil() != null) {
+                            currentLine = lyricsView.getLyricsUtil().getLineNumber(lyricsTreeMap, 
+                                (int) MediaManage.getMediaManage().getSongInfo().getPlayProgress());
+                        }
+                        
+                        // 跳转到上一行
+                        int previousLine = Math.max(0, currentLine - 1);
+                        if (previousLine < lyricsTreeMap.size()) {
+                            // 获取上一行歌词的开始时间
+                            int startTime = lyricsTreeMap.get(previousLine).getStartTime();
+                            
+                            // 发送跳转消息
+                            SongMessage songMessage = new SongMessage();
+                            songMessage.setType(SongMessage.SEEKTOMUSIC);
+                            songMessage.setProgress(startTime);
+                            ObserverManage.getObserver().setMessage(songMessage);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // 如果歌词导航失败，回退到原有的上一曲功能
+            playPrevious();
+        }
+    }
+      /**
+     * 跳转到下一句歌词
+     */
+    private void navigateToNextLyrics() {
+        try {
+            if (mainCenterPanel != null && mainCenterPanel.getLyricsPanel() != null) {
+                ManyLineLyricsView lyricsView = mainCenterPanel.getLyricsPanel().getManyLineLyricsView();
+                if (lyricsView != null && lyricsView.getLyricsLineTreeMap() != null) {
+                    TreeMap<Integer, LyricsLineInfo> lyricsTreeMap = lyricsView.getLyricsLineTreeMap();
+                    if (!lyricsTreeMap.isEmpty()) {
+                        int currentLine = 0;
+                        // 获取当前歌词行号（从当前播放进度计算）
+                        if (lyricsView.getLyricsUtil() != null) {
+                            currentLine = lyricsView.getLyricsUtil().getLineNumber(lyricsTreeMap, 
+                                (int) MediaManage.getMediaManage().getSongInfo().getPlayProgress());
+                        }
+                        
+                        // 跳转到下一行
+                        int nextLine = Math.min(lyricsTreeMap.size() - 1, currentLine + 1);
+                        if (nextLine >= 0 && nextLine < lyricsTreeMap.size()) {
+                            // 获取下一行歌词的开始时间
+                            int startTime = lyricsTreeMap.get(nextLine).getStartTime();
+                            
+                            // 发送跳转消息
+                            SongMessage songMessage = new SongMessage();
+                            songMessage.setType(SongMessage.SEEKTOMUSIC);
+                            songMessage.setProgress(startTime);
+                            ObserverManage.getObserver().setMessage(songMessage);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // 如果歌词导航失败，回退到原有的下一曲功能
+            playNext();
+        }
+    }
+    
+    /**
+     * 处理左箭头键按下事件（检测双击）
+     */
+    private void handleLeftArrow() {
+        long currentTime = System.currentTimeMillis();
+        
+        if (currentTime - lastLeftArrowPress < DOUBLE_PRESS_INTERVAL) {
+            // 双击检测到，播放上一首
+            playPrevious();
+            lastLeftArrowPress = 0; // 重置时间
+        } else {
+            // 单击，跳转到上一句歌词
+            navigateToPreviousLyrics();
+            lastLeftArrowPress = currentTime;
+        }
+    }
+    
+    /**
+     * 处理右箭头键按下事件（检测双击）
+     */
+    private void handleRightArrow() {
+        long currentTime = System.currentTimeMillis();
+        
+        if (currentTime - lastRightArrowPress < DOUBLE_PRESS_INTERVAL) {
+            // 双击检测到，播放下一首
+            playNext();
+            lastRightArrowPress = 0; // 重置时间
+        } else {
+            // 单击，跳转到下一句歌词
+            navigateToNextLyrics();
+            lastRightArrowPress = currentTime;
+        }
+    }    /**
+     * 获取当前歌词翻译显示状态
+     */
+    private boolean isTranslationCurrentlyShowing() {
+        try {
+            if (mainCenterPanel != null && mainCenterPanel.getLyricsPanel() != null) {
+                ManyLineLyricsView lyricsView = mainCenterPanel.getLyricsPanel().getManyLineLyricsView();
+                if (lyricsView != null) {
+                    // 通过反射或者其他方式获取当前状态，由于没有getter方法，我们通过检查翻译按钮状态
+                    if (mainOperatePanel != null) {
+                        // 检查控制栏的翻译按钮状态来判断当前是否显示翻译
+                        // 这里我们假设如果显示翻译按钮是可见的，则当前显示翻译
+                        return mainOperatePanel.isTranslationShowing();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.debug("Failed to check translation status: " + e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * 切换歌词翻译显示状态
+     */
+    private void toggleLyricsTranslation() {
+        try {
+            if (mainCenterPanel != null && mainCenterPanel.getLyricsPanel() != null) {
+                ManyLineLyricsView lyricsView = mainCenterPanel.getLyricsPanel().getManyLineLyricsView();
+                if (lyricsView != null && lyricsView.getLyricsUtil() != null) {
+                    // 检查是否有翻译歌词
+                    int extraLrcType = lyricsView.getLyricsUtil().getExtraLrcType();
+                    
+                    if (extraLrcType == LyricsUtil.TRANSLATE_LRC || 
+                        extraLrcType == LyricsUtil.TRANSLATE_AND_TRANSLITERATION_LRC) {
+                        
+                        // 获取当前翻译显示状态
+                        boolean currentlyShowing = isTranslationCurrentlyShowing();
+                        
+                        // 切换状态：如果当前显示翻译，则隐藏；如果当前隐藏，则显示
+                        if (currentlyShowing) {
+                            // 当前显示翻译，切换为隐藏
+                            lyricsView.setExtraLrcStatus(ManyLineLyricsView.NOSHOWEXTRALRC);
+                            // 更新控制栏按钮状态为隐藏翻译
+                            updateTranslationButtons(false);
+                        } else {
+                            // 当前隐藏翻译，切换为显示
+                            lyricsView.setExtraLrcStatus(ManyLineLyricsView.SHOWTRANSLATELRC);
+                            // 更新控制栏按钮状态为显示翻译
+                            updateTranslationButtons(true);
+                        }
+                        
+                        // 强制刷新歌词显示
+                        lyricsView.repaint();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // 如果切换失败，记录错误但不中断程序
+            logger.debug("Failed to toggle lyrics translation: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * 更新翻译按钮状态
+     * @param showingTranslation 是否正在显示翻译
+     */
+    private void updateTranslationButtons(boolean showingTranslation) {
+        try {
+            if (mainOperatePanel != null) {
+                mainOperatePanel.updateTranslationButtonState(showingTranslation);
+            }
+        } catch (Exception e) {
+            logger.debug("Failed to update translation buttons: " + e.getMessage());
+        }
+    }
+
 }

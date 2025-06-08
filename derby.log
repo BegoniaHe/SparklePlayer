@@ -1,24 +1,24 @@
 ----------------------------------------------------------------
-2025-06-08 21:49:14.364 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:28.965 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a816c00e-0197-519f-ae3c-00000739e350
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 21:49:14.490 GMT:
-Shutting down instance a816c00e-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.094 GMT:
+Shutting down instance a816c00e-0197-519f-ae3c-00000739e350
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 21:49:14.507 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 08264012-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.111 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 08264012-0197-519f-ae3c-00000739e350
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 21:49:14.554 GMT:
-Shutting down instance 08264012-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.160 GMT:
+Shutting down instance 08264012-0197-519f-ae3c-00000739e350
 ----------------------------------------------------------------
-2025-06-08 21:49:14.556 GMT Thread[AWT-EventQueue-0,6,main] Cleanup action starting
+2025-06-08 22:18:29.162 GMT Thread[AWT-EventQueue-0,6,main] Cleanup action starting
 java.sql.SQLException: Database 'sparkleplayer/db/' not found.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Unknown Source)
@@ -99,52 +99,52 @@ java.sql.SQLException: Database 'sparkleplayer/db/' not found.
 ============= end nested exception, level (1) ===========
 Cleanup action completed
 ----------------------------------------------------------------
-2025-06-08 21:49:14.567 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 40348015-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.175 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 40348015-0197-519f-ae3c-00000739e350
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 21:49:14.663 GMT:
-Shutting down instance 40348015-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.197 GMT:
+Shutting down instance 40348015-0197-519f-ae3c-00000739e350
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 21:49:14.677 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance b8450018-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.212 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance b8450018-0197-519f-ae3c-00000739e350
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 21:49:14.703 GMT:
-Shutting down instance b8450018-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.235 GMT:
+Shutting down instance b8450018-0197-519f-ae3c-00000739e350
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 21:49:14.719 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 185e801c-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.250 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 185e801c-0197-519f-ae3c-00000739e350
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 21:49:14.746 GMT:
-Shutting down instance 185e801c-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.275 GMT:
+Shutting down instance 185e801c-0197-519f-ae3c-00000739e350
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 21:49:14.759 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 6074401f-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.290 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance 6074401f-0197-519f-ae3c-00000739e350
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 21:49:14.785 GMT:
-Shutting down instance 6074401f-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.314 GMT:
+Shutting down instance 6074401f-0197-519f-ae3c-00000739e350
 ----------------------------------------------------------------
 ----------------------------------------------------------------
-2025-06-08 21:49:14.798 GMT:
- Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a094c023-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.328 GMT:
+ Booting Derby version The Apache Software Foundation - Apache Derby - 10.4.2.0 - (689064): instance a094c023-0197-519f-ae3c-00000739e350
 on database directory /Users/begonia/Github/SparklePlayer/sparkleplayer/db  
 
 Database Class Loader started - derby.database.classpath=''
 
-2025-06-08 21:49:14.823 GMT:
-Shutting down instance a094c023-0197-5184-e8a4-00000739e330
+2025-06-08 22:18:29.350 GMT:
+Shutting down instance a094c023-0197-519f-ae3c-00000739e350
 ----------------------------------------------------------------

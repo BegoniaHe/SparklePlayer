@@ -969,5 +969,37 @@ public class MainOperatePanel extends JPanel implements SparkleObserver {
     public ExtraLyricsListener getExtraLyricsListener() {
         return mExtraLyricsListener;
     }
+    
+    /**
+     * 检查当前是否正在显示翻译
+     * @return true 如果正在显示翻译, false 如果没有显示
+     */
+    public boolean isTranslationShowing() {
+        // 如果隐藏翻译按钮可见，说明当前正在显示翻译
+        if (mHideTranslateBtn != null) {
+            return mHideTranslateBtn.isVisible();
+        }
+        return false;
+    }
+    
+    /**
+     * 更新翻译按钮状态
+     * @param showingTranslation 是否正在显示翻译
+     */
+    public void updateTranslationButtonState(boolean showingTranslation) {
+        if (showingTranslation) {
+            // 显示翻译状态：显示隐藏按钮，隐藏显示按钮
+            mHideTranslateBtn.setVisible(true);
+            mShowTranslateBtn.setVisible(false);
+        } else {
+            // 隐藏翻译状态：隐藏隐藏按钮，显示显示按钮
+            mHideTranslateBtn.setVisible(false);
+            mShowTranslateBtn.setVisible(true);
+        }
+    }
+    
+    public BaseSlider getVolumeSlider() {
+        return volumeSlider;
+    }
 
 }
