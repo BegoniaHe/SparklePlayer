@@ -613,3 +613,33 @@
 2025-06-08 23:10:45 <@yuyi2003@ [com.sparkle.ui.MainFrame:233 exitPlayer] - 准备退出播放器>
 2025-06-08 23:10:45 <@yuyi2003@ [com.sparkle.util.DataUtil:72 saveData] - 保存数据>
 2025-06-08 23:10:45 <@yuyi2003@ [com.sparkle.ui.MainFrame:235 exitPlayer] - 退出成功>
+2025-06-08 23:12:08 <@yuyi2003@ [com.sparkle.util.DataUtil:24 init] - 开始加载初始数据.....>
+2025-06-08 23:12:09 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - baseDataTbl 表已经存在!不用创建!>
+2025-06-08 23:12:09 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - tabVersionTbl 表已经存在!不用创建!>
+2025-06-08 23:12:09 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - categoryTbl 表已经存在!不用创建!>
+2025-06-08 23:12:09 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - songTbl 表已经存在!不用创建!>
+2025-06-08 23:12:09 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
+2025-06-08 23:12:09 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:69 init] - 播放器服务启动>
+2025-06-08 23:12:10 <@yuyi2003@ [com.sparkle.enterProgram.EnterProgram:61 init] - 启动界面完成>
+2025-06-08 23:17:01 <@yuyi2003@ [com.sparkle.ui.MainFrame:233 exitPlayer] - 准备退出播放器>
+2025-06-08 23:17:01 <@yuyi2003@ [com.sparkle.util.DataUtil:72 saveData] - 保存数据>
+2025-06-08 23:17:01 <@yuyi2003@ [com.sparkle.ui.MainFrame:235 exitPlayer] - 退出成功>
+2025-06-08 23:17:18 <@yuyi2003@ [com.sparkle.util.DataUtil:24 init] - 开始加载初始数据.....>
+2025-06-08 23:17:19 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - baseDataTbl 表已经存在!不用创建!>
+2025-06-08 23:17:19 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - tabVersionTbl 表已经存在!不用创建!>
+2025-06-08 23:17:19 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - categoryTbl 表已经存在!不用创建!>
+2025-06-08 23:17:19 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - songTbl 表已经存在!不用创建!>
+2025-06-08 23:17:19 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
+2025-06-08 23:17:19 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:69 init] - 播放器服务启动>
+2025-06-08 23:17:20 <@yuyi2003@ [com.sparkle.enterProgram.EnterProgram:61 init] - 启动界面完成>
+2025-06-08 23:20:59 <@yuyi2003@ [com.sparkle.ui.MainFrame:233 exitPlayer] - 准备退出播放器>
+2025-06-08 23:20:59 <@yuyi2003@ [com.sparkle.util.DataUtil:72 saveData] - 保存数据>
+2025-06-08 23:20:59 <@yuyi2003@ [com.sparkle.ui.MainFrame:235 exitPlayer] - 退出成功>
+2025-06-08 23:24:49 <@yuyi2003@ [com.sparkle.util.DataUtil:24 init] - 开始加载初始数据.....>
+2025-06-08 23:24:49 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - baseDataTbl 表已经存在!不用创建!>
+2025-06-08 23:24:49 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - tabVersionTbl 表已经存在!不用创建!>
+2025-06-08 23:24:49 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - categoryTbl 表已经存在!不用创建!>
+2025-06-08 23:24:50 <@yuyi2003@ [com.sparkle.db.DBUtils:53 isTableExist] - songTbl 表已经存在!不用创建!>
+2025-06-08 23:24:50 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
+2025-06-08 23:24:50 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:69 init] - 播放器服务启动>
+2025-06-08 23:24:51 <@yuyi2003@ [com.sparkle.enterProgram.EnterProgram:61 init] - 启动界面完成>

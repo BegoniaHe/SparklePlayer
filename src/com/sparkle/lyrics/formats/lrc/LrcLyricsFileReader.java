@@ -171,11 +171,114 @@ public class LrcLyricsFileReader extends LyricsFileReader {
         
         reader.close();
         
+        optimizeWordsInterval(lyricsLineInfos);
+        
         // 设置歌词的标签和行信息
         lyricsInfo.setLyricsTags(lyricsTags);
         lyricsInfo.setLyricsLineInfoTreeMap(lyricsLineInfos);
         
         return lyricsInfo;
+    }
+    
+    /**
+     * 优化单词时间间隔，根据相邻歌词行的时间差动态分配
+     * 
+     * @param lyricsLineInfos 歌词行信息集合
+     */
+    private void optimizeWordsInterval(TreeMap<Integer, LyricsLineInfo> lyricsLineInfos) {
+        if (lyricsLineInfos == null || lyricsLineInfos.isEmpty()) {
+            return;
+        }
+        
+        Integer[] keys = lyricsLineInfos.keySet().toArray(new Integer[0]);
+        
+        for (int i = 0; i < keys.length; i++) {
+            LyricsLineInfo currentLine = lyricsLineInfos.get(keys[i]);
+            if (currentLine == null || currentLine.getLyricsWords().length == 0) {
+                continue;
+            }
+            
+            int startTime = currentLine.getStartTime();
+            int availableTime;
+            
+            // 计算可用时间：到下一行歌词的时间差，或使用默认值
+            if (i < keys.length - 1) {
+                LyricsLineInfo nextLine = lyricsLineInfos.get(keys[i + 1]);
+                availableTime = nextLine.getStartTime() - startTime;
+            } else {
+                // 最后一行，使用基于单词数量的估算
+                availableTime = currentLine.getLyricsWords().length * 200; // 每个单词200ms
+            }
+            
+            // 确保最小可用时间
+            availableTime = Math.max(availableTime, 500);
+            
+            String[] words = currentLine.getLyricsWords();
+            int[] wordsDisInterval = new int[words.length];
+            
+            if (words.length == 1) {
+                // 只有一个单词，使用全部可用时间
+                wordsDisInterval[0] = availableTime;
+            } else {
+                // 多个单词，根据单词类型分配时间
+                int totalWeight = 0;
+                int[] wordWeights = new int[words.length];
+                
+                // 计算每个单词的权重
+                for (int j = 0; j < words.length; j++) {
+                    String word = words[j];
+                    int weight;
+                    
+                    if (word.length() == 1) {
+                        char c = word.charAt(0);
+                        if (CharUtils.isChinese(c) || CharUtils.isHangulSyllables(c) || CharUtils.isHiragana(c)) {
+                            // 中文、韩文、日文单字符，权重较小
+                            weight = 1;
+                        } else if (Character.isLetter(c)) {
+                            // 英文单字符，权重很小
+                            weight = 1;
+                        } else {
+                            // 标点符号等，权重最小
+                            weight = 1;
+                        }
+                    } else {
+                        // 多字符单词，权重基于长度
+                        weight = Math.max(2, word.length());
+                    }
+                    
+                    wordWeights[j] = weight;
+                    totalWeight += weight;
+                }
+                
+                // 分配时间，保留10%作为缓冲
+                int distributionTime = (int)(availableTime * 0.9);
+                int remainingTime = availableTime - distributionTime;
+                
+                for (int j = 0; j < words.length; j++) {
+                    int allocatedTime = (distributionTime * wordWeights[j]) / totalWeight;
+                    
+                    // 确保最小时间间隔
+                    allocatedTime = Math.max(allocatedTime, 50);
+                    
+                    // 最后一个单词获得剩余时间
+                    if (j == words.length - 1) {
+                        allocatedTime += remainingTime;
+                    }
+                    
+                    wordsDisInterval[j] = allocatedTime;
+                }
+            }
+            
+            // 更新单词间隔和结束时间
+            currentLine.setWordsDisInterval(wordsDisInterval);
+            
+            // 计算实际结束时间
+            int totalInterval = 0;
+            for (int interval : wordsDisInterval) {
+                totalInterval += interval;
+            }
+            currentLine.setEndTime(startTime + totalInterval);
+        }
     }
     
     /**
@@ -217,22 +320,18 @@ public class LrcLyricsFileReader extends LyricsFileReader {
                 String[] lyricsWords = getLyricsWords(lyricsText);
                 lyricsLineInfo.setLyricsWords(lyricsWords);
                 
-                // 设置默认的单词时间间隔（LRC格式没有逐字时间信息）
+                // 先设置临时的间隔，后续会在optimizeWordsInterval中优化
                 int[] wordsDisInterval = new int[lyricsWords.length];
                 if (lyricsWords.length > 0) {
-                    int averageInterval = 1000; // 默认每个字1秒
+                    int averageInterval = 300; // 临时设置为300ms，将在后面优化
                     for (int i = 0; i < wordsDisInterval.length; i++) {
                         wordsDisInterval[i] = averageInterval;
                     }
                 }
                 lyricsLineInfo.setWordsDisInterval(wordsDisInterval);
                 
-                // 设置结束时间（默认为开始时间加上单词间隔总和）
-                int endTime = startTime;
-                for (int interval : wordsDisInterval) {
-                    endTime += interval;
-                }
-                lyricsLineInfo.setEndTime(endTime);
+                // 临时设置结束时间，将在后面优化
+                lyricsLineInfo.setEndTime(startTime + lyricsWords.length * 300);
                 
                 return lyricsLineInfo;
             } catch (Exception e) {
