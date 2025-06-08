@@ -14,6 +14,8 @@ import com.sparkle.lyrics.formats.hrcx.HrcxLyricsFileReader;
 import com.sparkle.lyrics.formats.hrcx.HrcxLyricsFileWriter;
 import com.sparkle.lyrics.formats.hrcs.HrcsLyricsFileReader;
 import com.sparkle.lyrics.formats.hrcs.HrcsLyricsFileWriter;
+import com.sparkle.lyrics.formats.lrc.LrcLyricsFileReader;
+import com.sparkle.lyrics.formats.lrc.LrcLyricsFileWriter;
 
 /**
  * 歌词IO操作工具类
@@ -30,12 +32,14 @@ public class LyricsIOUtils {
         readers.add(new KscLyricsFileReader());
         readers.add(new HrcxLyricsFileReader());
         readers.add(new HrcsLyricsFileReader());
+        readers.add(new LrcLyricsFileReader());
         
         writers = new ArrayList<LyricsFileWriter>();
         writers.add(new KrcLyricsFileWriter());
         writers.add(new KscLyricsFileWriter());
         writers.add(new HrcxLyricsFileWriter());
         writers.add(new HrcsLyricsFileWriter());
+        writers.add(new LrcLyricsFileWriter());
     }
 
     /**
