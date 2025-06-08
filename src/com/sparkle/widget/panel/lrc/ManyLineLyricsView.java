@@ -584,10 +584,8 @@ public class ManyLineLyricsView extends JPanel {
 		int dgTextY = getLineHeight(g2d);
 		g2d.setPaint(mPaint);
 		// 画当前歌词
-		drawStringWithFallback(g2d, text, dgTextX, dgTextY);
-
-		// 这里不知为何还要减去fm.getDescent() + fm.getLeading() 绘画时才能把全文字绘画完整
-		int clipY = (int) (dgTextY - getRealTextHeight(g2d))
+		drawStringWithFallback(g2d, text, dgTextX, dgTextY);		// 这里不知为何还要减去fm.getDescent() + fm.getLeading() 绘画时才能把全文字绘画完整
+		int clipY = (dgTextY - getRealTextHeight(g2d))
 				+ getAdjustLrcHeight(g2d);
 
 		g2d.setClip(dgTextX, clipY, (int) lineLyricsHLWidth,

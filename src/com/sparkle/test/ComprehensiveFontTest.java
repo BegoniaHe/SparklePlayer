@@ -15,6 +15,8 @@ import com.sparkle.util.DrawingUtil;
  */
 public class ComprehensiveFontTest extends JPanel {
     
+    private static final long serialVersionUID = 1L;
+    
     private static final String[] TEST_SONGS = {
         "蔡健雅 - Beautiful Love",    // 中英混合
         "행복하길 바래 - 林亨柱",       // 韩文+中文

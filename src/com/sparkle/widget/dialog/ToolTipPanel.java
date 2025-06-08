@@ -64,7 +64,7 @@ public class ToolTipPanel extends JPanel {
 		textWidth = (int) rc.getWidth();
 		int textHeight = fm.getHeight();
 
-		int X = (int) ((this.getWidth() - textWidth) / 2);
+		int X = (this.getWidth() - textWidth) / 2;
 		int Y = (this.getHeight() + textHeight) / 2;
 		g2d.setColor(Color.black);
 		g2d.drawString(tipString, X, Y - (fm.getDescent() + fm.getLeading()));
@@ -79,7 +79,7 @@ public class ToolTipPanel extends JPanel {
 		if (textWidth == 0) {
 			FontMetrics fm = getFontMetrics(FontsUtil
 					.getBaseFont(BaseData.appFontSize));
-			textWidth = (int) fm.stringWidth(tipString);
+			textWidth = fm.stringWidth(tipString);
 		}
 		return textWidth;
 	}

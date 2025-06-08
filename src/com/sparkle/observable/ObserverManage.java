@@ -21,21 +21,19 @@ public class ObserverManage extends SparkleObservable {
 	public void setMessage(Object data) {
 		myobserver.setChanged();
 		myobserver.notifyObservers(data);
-	}
-		/**
+	}		/**
 	 * 兼容性方法：添加旧式 Observer
 	 * @param observer 旧式 Observer
 	 */
-	public void addObserver(java.util.Observer observer) {
+	public void addLegacyObserver(java.util.Observer observer) {
 		if (observer != null) {
 			super.addObserver(new ObserverAdapter(observer));
 		}
-	}
-		/**
+	}		/**
 	 * 兼容性方法：删除旧式 Observer
 	 * @param observer 旧式 Observer
 	 */
-	public void deleteObserver(java.util.Observer observer) {
+	public void deleteLegacyObserver(java.util.Observer observer) {
 		if (observer != null) {
 			// 找到对应的适配器并删除
 			SparkleObserver[] observerArray = getObservers();

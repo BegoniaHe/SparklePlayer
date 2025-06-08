@@ -192,10 +192,10 @@ public class StringUtils {
 	 * @see java.lang.String#trim()
 	 * @param str
 	 *            the String to clean, may be null
-	 * @return the trimmed text, never <code>null</code>
-	 * @deprecated Use the clearer named {@link #trimToEmpty(String)}. Method
+	 * @return the trimmed text, never <code>null</code>	 * @deprecated Use the clearer named {@link #trimToEmpty(String)}. Method
 	 *             will be removed in Commons Lang 3.0.
 	 */
+	@Deprecated
 	public static String clean(String str) {
 		return str == null ? EMPTY : str.trim();
 	}

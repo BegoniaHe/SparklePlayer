@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        严格的PMD规则集合，包含所有最佳实践检查
+    </description>
+
+    <!-- 最佳实践 -->
+    <rule ref="category/java/bestpractices.xml"/>
+    
+    <!-- 代码风格 -->
+    <rule ref="category/java/codestyle.xml"/>
+    
+    <!-- 设计 -->
+    <rule ref="category/java/design.xml"/>
+    
+    <!-- 文档 -->
+    <rule ref="category/java/documentation.xml"/>
+    
+    <!-- 错误倾向 -->
+    <rule ref="category/java/errorprone.xml"/>
+    
+    <!-- 多线程 -->
+    <rule ref="category/java/multithreading.xml"/>
+    
+    <!-- 性能 -->
+    <rule ref="category/java/performance.xml"/>
+    
+    <!-- 安全 -->
+    <rule ref="category/java/security.xml"/>
+
+    <!-- 自定义规则配置 -->
+    <rule ref="category/java/design.xml/TooManyMethods">
+        <properties>
+            <property name="maxmethods" value="15"/>
+        </properties>
+    </rule>
+    
+    <rule ref="category/java/design.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="15"/>
+        </properties>
+    </rule>
+    
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="classReportLevel" value="80"/>
+            <property name="methodReportLevel" value="10"/>
+            <property name="cycloOptions" value=""/>
+        </properties>
+    </rule>
+    
+    <rule ref="category/java/design.xml/NPathComplexity">
+        <properties>
+            <property name="reportLevel" value="200"/>
+        </properties>
+    </rule>
+    
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="30"/>
+        </properties>
+    </rule>
+    
+    <rule ref="category/java/codestyle.xml/ShortVariable">
+        <properties>
+            <property name="minimum" value="3"/>
+        </properties>
+    </rule>
+    
+    <rule ref="category/java/codestyle.xml/ShortMethodName">
+        <properties>
+            <property name="minimum" value="3"/>
+        </properties>
+    </rule>
+
+    <!-- 排除一些对老代码可能过于严格的规则 -->
+    <rule ref="category/java/codestyle.xml/AtLeastOneConstructor">
+        <properties>
+            <property name="ignoredAnnotations" value="lombok.Data|lombok.Value|lombok.Builder|lombok.NoArgsConstructor|lombok.RequiredArgsConstructor|lombok.AllArgsConstructor"/>
+        </properties>
+    </rule>
+    
+    <!-- 可以根据需要调整或排除特定规则 -->
+    <!-- 例如：
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="JUnitTestsShouldIncludeAssert"/>
+    </rule>
+    -->
+
+</ruleset>

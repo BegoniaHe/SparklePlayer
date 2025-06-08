@@ -69,14 +69,13 @@ public class LoggerManage {
 			rollingFileAppender = new RollingFileAppender(layout, path, true);
 			rollingFileAppender.setEncoding("utf-8");
 			// 只有一个文件
-			rollingFileAppender.setMaxBackupIndex(0);
-			// 500kb
+			rollingFileAppender.setMaxBackupIndex(0);			// 500kb
 			rollingFileAppender.setMaximumFileSize(1024 * 500);
 			// 控件台输出
 			ConsoleAppender consoleAppender = new ConsoleAppender(layout);
 			logger.addAppender(consoleAppender);
 			logger.addAppender(rollingFileAppender);
-			logger.setLevel((Level) Level.ALL);
+			logger.setLevel(Level.ALL);
 			cleanOldLogFile();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -121,9 +120,8 @@ public class LoggerManage {
 	 * @param userName
 	 *            用戶名
 	 * @return
-	 */
-	public static LoggerManage getLogger(String userName) {
-		LoggerManage userLogger = (LoggerManage) sLoggerTable.get(userName);
+	 */	public static LoggerManage getLogger(String userName) {
+		LoggerManage userLogger = sLoggerTable.get(userName);
 		if (userLogger == null) {
 			userLogger = new LoggerManage(userName);
 			sLoggerTable.put(userName, userLogger);
@@ -135,10 +133,9 @@ public class LoggerManage {
 	 * 创建yuyi2003用法
 	 * 
 	 * @return
-	 */
-	public static LoggerManage getZhangLogger() {
+	 */	public static LoggerManage getZhangLogger() {
 		String name = "yuyi2003";
-		LoggerManage userLogger = (LoggerManage) sLoggerTable.get(name);
+		LoggerManage userLogger = sLoggerTable.get(name);
 		if (userLogger == null) {
 			userLogger = new LoggerManage(name);
 			sLoggerTable.put(name, userLogger);

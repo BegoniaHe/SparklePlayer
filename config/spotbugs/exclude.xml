@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- 
+    这是SpotBugs的排除配置文件
+    可以在这里添加需要排除的特定规则或文件
+    
+    示例排除规则：
+    
+    <Match>
+        <Class name="~.*\.Test.*"/>
+    </Match>
+    
+    <Match>
+        <Bug pattern="DM_EXIT"/>
+    </Match>
+    
+    <Match>
+        <Class name="com.example.SomeClass"/>
+        <Method name="someMethod"/>
+        <Bug pattern="NP_NULL_ON_SOME_PATH"/>
+    </Match>
+    -->
+</FindBugsFilter>

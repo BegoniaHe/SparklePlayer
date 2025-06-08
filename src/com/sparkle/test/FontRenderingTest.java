@@ -13,6 +13,8 @@ import com.sparkle.util.FontsUtil;
  */
 public class FontRenderingTest extends JPanel {
     
+    private static final long serialVersionUID = 1L;
+    
     private static final String[] TEST_TEXTS = {
         "蔡健雅",      // 中文
         "행복하길",     // 韩文 

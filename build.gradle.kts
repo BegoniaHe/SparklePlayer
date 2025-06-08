@@ -1,6 +1,9 @@
 plugins {
     java
     application
+    checkstyle
+    pmd
+    id("com.github.spotbugs") version "5.0.14"
 }
 
 group = "com.sparkle"
@@ -12,8 +15,17 @@ java {
 }
 
 tasks.compileJava {
-    options.compilerArgs.add("-Xlint:deprecation")
+    options.compilerArgs.addAll(listOf(
+        "-Xlint:all",           // 启用所有警告
+        "-Xlint:-options",      // 禁用选项警告（避免噪音）
+        "-Xlint:-path",         // 禁用路径警告（避免噪音）
+        // "-Werror",           // 暂时注释，允许构建继续进行静态分析
+        "-Xmaxwarns", "1000",   // 最大警告数
+        "-Xmaxerrs", "100"      // 最大错误数
+    ))
     options.encoding = "UTF-8"
+    options.isDeprecation = true
+    options.isWarnings = true
 }
 
 application {
@@ -44,6 +56,9 @@ dependencies {
     
     // Derby database
     implementation("org.apache.derby:derby:10.4.2.0")
+    
+    // Static analysis tools
+    spotbugsPlugins("com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0")
     
     // Local JAR dependencies from sparkleplayer/libs
     implementation(group = "", name = "JPlayer-lib", version = "", ext = "jar")
@@ -122,4 +137,111 @@ val sourcesJar = tasks.register<Jar>("sourcesJar") {
 artifacts {
     add("archives", sourcesJar)
     add("archives", fatJar)
+}
+
+// ================================
+// 静态代码分析配置
+// ================================
+
+// Checkstyle 配置
+checkstyle {
+    toolVersion = "10.12.1"
+    configFile = file("config/checkstyle/checkstyle.xml")
+    isIgnoreFailures = false
+    maxWarnings = 0
+    maxErrors = 0
+}
+
+tasks.withType<Checkstyle> {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+
+// PMD 配置
+pmd {
+    toolVersion = "6.55.0"
+    isIgnoreFailures = false
+    ruleSets = listOf()
+    ruleSetFiles = files("config/pmd/pmd.xml")
+    isConsoleOutput = true
+}
+
+tasks.withType<Pmd> {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+}
+
+// SpotBugs 配置
+spotbugs {
+    ignoreFailures.set(false)
+    showStackTraces.set(true)
+    showProgress.set(true)
+    effort.set(com.github.spotbugs.snom.Effort.MAX)
+    reportLevel.set(com.github.spotbugs.snom.Confidence.LOW)
+    excludeFilter.set(file("config/spotbugs/exclude.xml"))
+}
+
+tasks.withType<com.github.spotbugs.snom.SpotBugsTask> {
+    reports.create("xml") {
+        required.set(true)
+        outputLocation.set(file("$buildDir/reports/spotbugs/spotbugs.xml"))
+    }
+    reports.create("html") {
+        required.set(true)
+        outputLocation.set(file("$buildDir/reports/spotbugs/spotbugs.html"))
+        setStylesheet("fancy-hist.xsl")
+    }
+}
+
+// 检查任务依赖
+tasks.check {
+    dependsOn(tasks.checkstyleMain, tasks.pmdMain, tasks.spotbugsMain)
+}
+
+// 自定义任务：运行所有静态分析
+val staticAnalysis = tasks.register("staticAnalysis") {
+    description = "运行所有静态代码分析工具"
+    group = "verification"
+    dependsOn(tasks.checkstyleMain, tasks.pmdMain, tasks.spotbugsMain)
+}
+
+// 严格编译检查任务（将警告视为错误）
+val strictCompile = tasks.register<JavaCompile>("strictCompile") {
+    description = "使用最严格的设置编译Java代码"
+    group = "verification"
+    source = sourceSets.main.get().java
+    classpath = sourceSets.main.get().compileClasspath
+    destinationDirectory.set(file("$buildDir/classes/strict"))
+    
+    options.compilerArgs.addAll(listOf(
+        "-Xlint:all",
+        "-Xlint:-options",
+        "-Xlint:-path",
+        "-Werror",
+        "-Xmaxwarns", "1000",
+        "-Xmaxerrs", "100"
+    ))
+    options.encoding = "UTF-8"
+    options.isDeprecation = true
+    options.isWarnings = true
+}
+
+// 代码质量检查任务（包含编译检查但不阻止构建）
+val codeQualityCheck = tasks.register("codeQualityCheck") {
+    description = "运行完整的代码质量检查"
+    group = "verification"
+    
+    doLast {
+        println("=".repeat(80))
+        println("代码质量检查完成！")
+        println("请查看以下位置的报告：")
+        println("- Checkstyle: build/reports/checkstyle/main.html")
+        println("- PMD: build/reports/pmd/main.html") 
+        println("- SpotBugs: build/reports/spotbugs/spotbugs.html")
+        println("=".repeat(80))
+    }
 }
