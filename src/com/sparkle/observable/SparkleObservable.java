@@ -4,58 +4,65 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.List;
 
 /**
- * 现代化的被观察者类，替代已过时的 java.util.Observable
- * 使用线程安全的 CopyOnWriteArrayList 来管理观察者
+ * 现代化的被观察者类，替代已过时的 java.util.Observable.
+ * 使用线程安全的 CopyOnWriteArrayList 来管理观察者.
  * 
  * @author yuyi2003
  */
 public class SparkleObservable {
+    /**
+     * 观察者列表.
+     */
     private final List<SparkleObserver> observers = new CopyOnWriteArrayList<>();
-    private boolean changed = false;
     
     /**
-     * 添加观察者
+     * 变化标志.
+     */
+    private boolean changed;
+    
+    /**
+     * 添加观察者.
      * 
      * @param observer 要添加的观察者
      */
-    public synchronized void addObserver(SparkleObserver observer) {
+    public synchronized void addObserver(final SparkleObserver observer) {
         if (observer != null && !observers.contains(observer)) {
             observers.add(observer);
         }
     }
     
     /**
-     * 删除观察者
+     * 删除观察者.
      * 
      * @param observer 要删除的观察者
      */
-    public synchronized void deleteObserver(SparkleObserver observer) {
+    public synchronized void deleteObserver(final SparkleObserver observer) {
         observers.remove(observer);
     }
     
     /**
-     * 删除所有观察者
+     * 删除所有观察者.
      */
     public synchronized void deleteObservers() {
         observers.clear();
     }
     
     /**
-     * 标记对象已改变
+     * 标记对象已改变.
      */
     protected synchronized void setChanged() {
         changed = true;
     }
     
     /**
-     * 清除改变标记
+     * 清除改变标记.
      */
     protected synchronized void clearChanged() {
         changed = false;
     }
     
     /**
-     * 检查对象是否已改变
+     * 检查对象是否已改变.
      * 
      * @return 如果对象已改变返回 true
      */
@@ -64,12 +71,12 @@ public class SparkleObservable {
     }
     
     /**
-     * 通知所有观察者（如果对象已改变）
+     * 通知所有观察者（如果对象已改变）.
      * 
      * @param arg 传递给观察者的参数
      */
-    public void notifyObservers(Object arg) {
-        SparkleObserver[] arrLocal;
+    public void notifyObservers(final Object arg) {
+        final SparkleObserver[] arrLocal;
         
         synchronized (this) {
             if (!changed) {
@@ -79,10 +86,10 @@ public class SparkleObservable {
             clearChanged();
         }
         
-        for (SparkleObserver observer : arrLocal) {
+        for (final SparkleObserver observer : arrLocal) {
             try {
                 observer.update(this, arg);
-            } catch (Exception e) {
+            } catch (final Exception e) {
                 // 记录错误但不影响其他观察者
                 e.printStackTrace();
             }
@@ -90,14 +97,14 @@ public class SparkleObservable {
     }
     
     /**
-     * 通知所有观察者（如果对象已改变）
+     * 通知所有观察者（如果对象已改变）.
      */
     public void notifyObservers() {
         notifyObservers(null);
     }
     
     /**
-     * 获取观察者数量
+     * 获取观察者数量.
      * 
      * @return 观察者数量
      */
@@ -106,7 +113,7 @@ public class SparkleObservable {
     }
     
     /**
-     * 获取所有观察者的副本（用于遍历）
+     * 获取所有观察者的副本（用于遍历）.
      * 
      * @return 观察者数组的副本
      */

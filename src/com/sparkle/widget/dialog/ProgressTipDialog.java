@@ -12,30 +12,30 @@ import javax.swing.JDialog;
  */
 public class ProgressTipDialog extends JDialog {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 背景
-	 */
-	private ToolTipPanel tipPanel = new ToolTipPanel();
+    /**
+     * 背景
+     */
+    private ToolTipPanel tipPanel = new ToolTipPanel();
 
-	public ProgressTipDialog() {
-		// 设定禁用窗体装饰，这样就取消了默认的窗体结构
-		this.setUndecorated(true);
-		this.setAlwaysOnTop(true);
-		initComponent();
-	}
+    public ProgressTipDialog() {
+        // 设定禁用窗体装饰，这样就取消了默认的窗体结构
+        this.setUndecorated(true);
+        this.setAlwaysOnTop(true);
+        initComponent();
+    }
 
-	private void initComponent() {
-		this.getContentPane().setLayout(new BorderLayout());
-		this.getContentPane().add(tipPanel, BorderLayout.CENTER);
-	}
+    private void initComponent() {
+        this.getContentPane().setLayout(new BorderLayout());
+        this.getContentPane().add(tipPanel, BorderLayout.CENTER);
+    }
 
-	public ToolTipPanel getTipPanel() {
-		return tipPanel;
-	}
+    public ToolTipPanel getTipPanel() {
+        return tipPanel;
+    }
 
 }

@@ -41,434 +41,434 @@ import com.sparkle.widget.scrollbar.BaseScrollBarUI;
  */
 public class SongListPanel extends JPanel implements SparkleObserver {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 高度和宽度
-	 */
-	private int mWidth, mHeight;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    /**
+     * 高度和宽度
+     */
+    private int mWidth, mHeight;
 
-	/**
-	 * 滚动面板
-	 */
-	private JScrollPane jScrollPane;
-	/**
-	 * listview面板
-	 */
-	private JPanel listViewPanel;
+    /**
+     * 滚动面板
+     */
+    private JScrollPane jScrollPane;
+    /**
+     * listview面板
+     */
+    private JPanel listViewPanel;
 
-	/**
-	 * 播放列表
-	 */
-	private List<Category> categorys;
+    /**
+     * 播放列表
+     */
+    private List<Category> categorys;
 
-	private MainFrame mainFrame;
+    private MainFrame mainFrame;
 
-	private MainCenterPanel mainCenterPanel;
+    private MainCenterPanel mainCenterPanel;
 
-	public SongListPanel( MainFrame mainFrame,
-			MainCenterPanel mainCenterPanel, int width, int height) {
-		this.mainCenterPanel = mainCenterPanel;
-		this.mainFrame = mainFrame;
-		this.mWidth = width;
-		this.mHeight = height;
+    public SongListPanel( MainFrame mainFrame,
+            MainCenterPanel mainCenterPanel, int width, int height) {
+        this.mainCenterPanel = mainCenterPanel;
+        this.mainFrame = mainFrame;
+        this.mWidth = width;
+        this.mHeight = height;
 
-		initComponent();
+        initComponent();
 
-		// this.setBackground(Color.BLUE);
-		this.setOpaque(false);// 设置透明
-		ObserverManage.getObserver().addObserver(this);
-	}
+        // this.setBackground(Color.BLUE);
+        this.setOpaque(false);// 设置透明
+        ObserverManage.getObserver().addObserver(this);
+    }
 
-	/**
-	 * 初始化组件
-	 */
-	private void initComponent() {
-		this.setPreferredSize(new Dimension(mWidth, mHeight));
-		this.setMaximumSize(new Dimension(mWidth, mHeight));
-		this.setMinimumSize(new Dimension(mWidth, mHeight));
-		//
-		listViewPanel = new JPanel();
-		listViewPanel.setOpaque(false);
+    /**
+     * 初始化组件
+     */
+    private void initComponent() {
+        this.setPreferredSize(new Dimension(mWidth, mHeight));
+        this.setMaximumSize(new Dimension(mWidth, mHeight));
+        this.setMinimumSize(new Dimension(mWidth, mHeight));
+        //
+        listViewPanel = new JPanel();
+        listViewPanel.setOpaque(false);
 
-		jScrollPane = new JScrollPane(listViewPanel);
-		jScrollPane.setBorder(null);
+        jScrollPane = new JScrollPane(listViewPanel);
+        jScrollPane.setBorder(null);
 
-		jScrollPane.getVerticalScrollBar().setUI(
-				new BaseScrollBarUI(BaseData.listViewAlpha));
-		jScrollPane.getVerticalScrollBar().setOpaque(false);
-		jScrollPane.getVerticalScrollBar().setUnitIncrement(30);
-		// 不显示水平的滚动条
-		jScrollPane
-				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		jScrollPane.setOpaque(false);
-		jScrollPane.getViewport().setOpaque(false);
-		// jScrollPane.getViewport().setBackground(new Color(255, 255, 255, 0));
+        jScrollPane.getVerticalScrollBar().setUI(
+                new BaseScrollBarUI(BaseData.listViewAlpha));
+        jScrollPane.getVerticalScrollBar().setOpaque(false);
+        jScrollPane.getVerticalScrollBar().setUnitIncrement(30);
+        // 不显示水平的滚动条
+        jScrollPane
+                .setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane.setOpaque(false);
+        jScrollPane.getViewport().setOpaque(false);
+        // jScrollPane.getViewport().setBackground(new Color(255, 255, 255, 0));
 
-		//
-		this.setLayout(new BorderLayout());
-		this.add(jScrollPane, "Center");
+        //
+        this.setLayout(new BorderLayout());
+        this.add(jScrollPane, "Center");
 
-		//
-		listViewPanel.setLayout(new BoxLayout(listViewPanel, BoxLayout.Y_AXIS));
-		loadData();
-	}
+        //
+        listViewPanel.setLayout(new BoxLayout(listViewPanel, BoxLayout.Y_AXIS));
+        loadData();
+    }
 
-	/**
-	 * 
-	 */
-	public void paintBorder(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
-		// 消除线条锯齿
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		// 设定渐变 -滑过区域的颜色设置
-		g2d.setPaint(new Color(255, 255, 255, BaseData.listViewAlpha));
-		g2d.fillRect(0, 0, mWidth, mHeight);
-	}
+    /**
+     * 
+     */
+    public void paintBorder(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        // 消除线条锯齿
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        // 设定渐变 -滑过区域的颜色设置
+        g2d.setPaint(new Color(255, 255, 255, BaseData.listViewAlpha));
+        g2d.fillRect(0, 0, mWidth, mHeight);
+    }
 
-	/**
-	 * 加载歌曲列表数据
-	 */
-	private void loadData() {
-		new SwingWorker<Void, Void>() {
-			@Override
-			protected Void doInBackground() {
-				// 遍历数据，生成界面
-				categorys = MediaManage.getMediaManage().getCategorys();
-				return null;
+    /**
+     * 加载歌曲列表数据
+     */
+    private void loadData() {
+        new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() {
+                // 遍历数据，生成界面
+                categorys = MediaManage.getMediaManage().getCategorys();
+                return null;
 
-			}
+            }
 
-			@Override
-			protected void done() {
-				initComponentData();
-			}
-		}.execute();
-	}
+            @Override
+            protected void done() {
+                initComponentData();
+            }
+        }.execute();
+    }
 
-	/**
-	 * 初始化控件数据
-	 */
-	protected void initComponentData() {
-		for (int i = 0; i < categorys.size(); i++) {
-			Category category = categorys.get(i);
-			String titleName = category.getCategoryName();
-			// 获取该列表下的歌曲数据
-			List<SongInfo> songInfos = category.getSongInfos();
-			// 列表内容
-			ListViewComPanel listViewComPanel = new ListViewComPanel();
-			listViewComPanel.setVisible(false);
-			// 列表头
-			ListViewHeadPanel listViewHeadPanel = new ListViewHeadPanel(
-					listViewPanel, this, listViewComPanel, songInfos, mWidth,
-					titleName, category.getCid(), i);
+    /**
+     * 初始化控件数据
+     */
+    protected void initComponentData() {
+        for (int i = 0; i < categorys.size(); i++) {
+            Category category = categorys.get(i);
+            String titleName = category.getCategoryName();
+            // 获取该列表下的歌曲数据
+            List<SongInfo> songInfos = category.getSongInfos();
+            // 列表内容
+            ListViewComPanel listViewComPanel = new ListViewComPanel();
+            listViewComPanel.setVisible(false);
+            // 列表头
+            ListViewHeadPanel listViewHeadPanel = new ListViewHeadPanel(
+                    listViewPanel, this, listViewComPanel, songInfos, mWidth,
+                    titleName, category.getCid(), i);
 
-			// 遍历列表下的歌曲
-			for (int j = 0; j < songInfos.size(); j++) {
-				SongInfo songInfo = songInfos.get(j);
+            // 遍历列表下的歌曲
+            for (int j = 0; j < songInfos.size(); j++) {
+                SongInfo songInfo = songInfos.get(j);
 
-				refreshLVComPanelUI(category.getCid(), listViewComPanel,
-						songInfo);
-			}
+                refreshLVComPanelUI(category.getCid(), listViewComPanel,
+                        songInfo);
+            }
 
-			// listviewitem面板
-			ListViewItemPanel itemPanel = new ListViewItemPanel();
-			itemPanel.add(listViewHeadPanel, 0);
-			itemPanel.add(listViewComPanel, 1);
+            // listviewitem面板
+            ListViewItemPanel itemPanel = new ListViewItemPanel();
+            itemPanel.add(listViewHeadPanel, 0);
+            itemPanel.add(listViewComPanel, 1);
 
-			listViewPanel.add(itemPanel);
-		}
-	}
+            listViewPanel.add(itemPanel);
+        }
+    }
 
-	/**
-	 * 显示或者隐藏列表
-	 * 
-	 * @param eventIntent
-	 */
-	private void showORHidePlayList(EventIntent eventIntent) {
+    /**
+     * 显示或者隐藏列表
+     * 
+     * @param eventIntent
+     */
+    private void showORHidePlayList(EventIntent eventIntent) {
 
-		// 获取点击的列表id
-		String clickPlId = eventIntent.getpLId();
+        // 获取点击的列表id
+        String clickPlId = eventIntent.getpLId();
 
-		for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
-			ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
-					.getComponent(i);
-			ListViewHeadPanel listViewItemHeadPanel = (ListViewHeadPanel) itemPanel
-					.getComponent(0);
-			String pLId = listViewItemHeadPanel.getpLId();
-			if (pLId.equals(clickPlId)) {
-				// 获取点击面板的展开状态
-				boolean isShow = listViewItemHeadPanel.getShow();
-				if (isShow) {
-					listViewItemHeadPanel.setShow(false);
-				} else {
-					listViewItemHeadPanel.setShow(true);
-				}
-			} else {
-				listViewItemHeadPanel.setShow(false);
-			}
-		}
-		// 设置当前已展开的索引
-		BaseData.pLId = clickPlId;
-	}
+        for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
+            ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
+                    .getComponent(i);
+            ListViewHeadPanel listViewItemHeadPanel = (ListViewHeadPanel) itemPanel
+                    .getComponent(0);
+            String pLId = listViewItemHeadPanel.getpLId();
+            if (pLId.equals(clickPlId)) {
+                // 获取点击面板的展开状态
+                boolean isShow = listViewItemHeadPanel.getShow();
+                if (isShow) {
+                    listViewItemHeadPanel.setShow(false);
+                } else {
+                    listViewItemHeadPanel.setShow(true);
+                }
+            } else {
+                listViewItemHeadPanel.setShow(false);
+            }
+        }
+        // 设置当前已展开的索引
+        BaseData.pLId = clickPlId;
+    }
 
-	/**
-	 * 刷新播放列表下的歌曲
-	 * 
-	 * @param playListId
-	 *            播放列表索引
-	 * @param listViewComPanel
-	 *            歌曲内容列表面板
-	 * @param songInfo
-	 *            歌曲数据
-	 */
-	private void refreshLVComPanelUI(String playListId,
-			ListViewComPanel listViewComPanel, SongInfo songInfo) {
-		ListViewComItemPanel listViewItemComItemPanel = new ListViewComItemPanel(
-				this, listViewPanel, playListId, songInfo, mWidth);
-		listViewComPanel.add(listViewItemComItemPanel);
-	}
+    /**
+     * 刷新播放列表下的歌曲
+     * 
+     * @param playListId
+     *            播放列表索引
+     * @param listViewComPanel
+     *            歌曲内容列表面板
+     * @param songInfo
+     *            歌曲数据
+     */
+    private void refreshLVComPanelUI(String playListId,
+            ListViewComPanel listViewComPanel, SongInfo songInfo) {
+        ListViewComItemPanel listViewItemComItemPanel = new ListViewComItemPanel(
+                this, listViewPanel, playListId, songInfo, mWidth);
+        listViewComPanel.add(listViewItemComItemPanel);
+    }
 
-	@Override
-	public void update(Object source, Object data) {
-		if (data instanceof EventIntent) {
-			EventIntent eventIntent = (EventIntent) data;
-			// 播放列表点击
-			if (eventIntent.getEventType() == EventIntent.PLAYLIST) {
-				showORHidePlayList(eventIntent);
-			} else if (eventIntent.getEventType() == EventIntent.SONGLIST) {
-				refreshListViewComItemPanelUI(eventIntent);
-			}
-		} else if (data instanceof SongMessage) {
-			udateListViewComItemPanelUI(data);
-		}
-	}
+    @Override
+    public void update(Object source, Object data) {
+        if (data instanceof EventIntent) {
+            EventIntent eventIntent = (EventIntent) data;
+            // 播放列表点击
+            if (eventIntent.getEventType() == EventIntent.PLAYLIST) {
+                showORHidePlayList(eventIntent);
+            } else if (eventIntent.getEventType() == EventIntent.SONGLIST) {
+                refreshListViewComItemPanelUI(eventIntent);
+            }
+        } else if (data instanceof SongMessage) {
+            udateListViewComItemPanelUI(data);
+        }
+    }
 
-	/**
-	 * 更新进度条
-	 * 
-	 * @param data
-	 */
-	private void udateListViewComItemPanelUI(Object data) {
-		// 获取双击的列表下的歌曲id
+    /**
+     * 更新进度条
+     * 
+     * @param data
+     */
+    private void udateListViewComItemPanelUI(Object data) {
+        // 获取双击的列表下的歌曲id
 
-		for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
-			ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
-					.getComponent(i);
-			ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
-					.getComponent(1);
-			for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
-				ListViewComItemPanel listViewComItemPanel = (ListViewComItemPanel) listViewComPanel
-						.getComponent(j);
-				String sId = listViewComItemPanel.getsId();
-				if (sId.equals(BaseData.playInfoID)) {
-					if (listViewComItemPanel.getSongProgress() != null) {
-						SongMessage songMessage = (SongMessage) data;
-						if (songMessage.getType() == SongMessage.INITMUSIC
-								|| songMessage.getType() == SongMessage.SERVICEPLAYINGMUSIC
-								|| songMessage.getType() == SongMessage.SERVICEPAUSEEDMUSIC
-								|| songMessage.getType() == SongMessage.SERVICESTOPEDMUSIC
-								|| songMessage.getType() == SongMessage.ERRORMUSIC
-								|| songMessage.getType() == SongMessage.SERVICEERRORMUSIC) {
-							SongInfo mSongInfo = songMessage.getSongInfo();
-							if (mSongInfo != null) {
-								listViewComItemPanel.getSongProgress().setText(
-										TimeUtils.parseString((int) mSongInfo
-												.getPlayProgress())
-												+ "/"
-												+ mSongInfo.getDurationStr());
-								listViewComItemPanel.updateUI();
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+        for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
+            ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
+                    .getComponent(i);
+            ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
+                    .getComponent(1);
+            for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
+                ListViewComItemPanel listViewComItemPanel = (ListViewComItemPanel) listViewComPanel
+                        .getComponent(j);
+                String sId = listViewComItemPanel.getsId();
+                if (sId.equals(BaseData.playInfoID)) {
+                    if (listViewComItemPanel.getSongProgress() != null) {
+                        SongMessage songMessage = (SongMessage) data;
+                        if (songMessage.getType() == SongMessage.INITMUSIC
+                                || songMessage.getType() == SongMessage.SERVICEPLAYINGMUSIC
+                                || songMessage.getType() == SongMessage.SERVICEPAUSEEDMUSIC
+                                || songMessage.getType() == SongMessage.SERVICESTOPEDMUSIC
+                                || songMessage.getType() == SongMessage.ERRORMUSIC
+                                || songMessage.getType() == SongMessage.SERVICEERRORMUSIC) {
+                            SongInfo mSongInfo = songMessage.getSongInfo();
+                            if (mSongInfo != null) {
+                                listViewComItemPanel.getSongProgress().setText(
+                                        TimeUtils.parseString((int) mSongInfo
+                                                .getPlayProgress())
+                                                + "/"
+                                                + mSongInfo.getDurationStr());
+                                listViewComItemPanel.updateUI();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-	/**
-	 * 刷新列表内容
-	 * 
-	 * @param eventIntent
-	 */
-	private void refreshListViewComItemPanelUI(EventIntent eventIntent) {
-		if (eventIntent.getMouseType() == EventIntent.SINGLECLICK) {
-			// 单击
-			refreshListViewComItemSingleClickPanelUI(eventIntent);
-		} else if (eventIntent.getMouseType() == EventIntent.DOUBLECLICK) {
-			// 双击
-			refreshListViewComItemDoubleClickPanelUI(eventIntent);
-		} else if (eventIntent.getMouseType() == EventIntent.ENTERED) {
-			// 鼠标进入
-			showSongInfoTipDialog(eventIntent);
-		} else if (eventIntent.getMouseType() == EventIntent.EXITED) {
-			// 鼠标退出
-			hideSongInfoTipDialog();
-		} else if (eventIntent.getMouseType() == EventIntent.RESET) {
-			// 还原
-			refreshListViewComItemResetPanelUI(eventIntent);
-		}
-	}
+    /**
+     * 刷新列表内容
+     * 
+     * @param eventIntent
+     */
+    private void refreshListViewComItemPanelUI(EventIntent eventIntent) {
+        if (eventIntent.getMouseType() == EventIntent.SINGLECLICK) {
+            // 单击
+            refreshListViewComItemSingleClickPanelUI(eventIntent);
+        } else if (eventIntent.getMouseType() == EventIntent.DOUBLECLICK) {
+            // 双击
+            refreshListViewComItemDoubleClickPanelUI(eventIntent);
+        } else if (eventIntent.getMouseType() == EventIntent.ENTERED) {
+            // 鼠标进入
+            showSongInfoTipDialog(eventIntent);
+        } else if (eventIntent.getMouseType() == EventIntent.EXITED) {
+            // 鼠标退出
+            hideSongInfoTipDialog();
+        } else if (eventIntent.getMouseType() == EventIntent.RESET) {
+            // 还原
+            refreshListViewComItemResetPanelUI(eventIntent);
+        }
+    }
 
-	/**
-	 * 双击还原
-	 * 
-	 * @param eventIntent
-	 */
-	private void refreshListViewComItemResetPanelUI(EventIntent eventIntent) {
-		// 获取双击的列表下的歌曲id
-		String doubleClickSId = eventIntent.getsId();
+    /**
+     * 双击还原
+     * 
+     * @param eventIntent
+     */
+    private void refreshListViewComItemResetPanelUI(EventIntent eventIntent) {
+        // 获取双击的列表下的歌曲id
+        String doubleClickSId = eventIntent.getsId();
 
-		for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
-			ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
-					.getComponent(i);
-			ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
-					.getComponent(1);
-			for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
-				ListViewComItemPanel listViewComItemPanel = (ListViewComItemPanel) listViewComPanel
-						.getComponent(j);
-				String sId = listViewComItemPanel.getsId();
-				if (sId.equals(doubleClickSId)) {
-					listViewComItemPanel.setDoubSelect(false);
-				}
-			}
-		}
-	}
+        for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
+            ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
+                    .getComponent(i);
+            ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
+                    .getComponent(1);
+            for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
+                ListViewComItemPanel listViewComItemPanel = (ListViewComItemPanel) listViewComPanel
+                        .getComponent(j);
+                String sId = listViewComItemPanel.getsId();
+                if (sId.equals(doubleClickSId)) {
+                    listViewComItemPanel.setDoubSelect(false);
+                }
+            }
+        }
+    }
 
-	/**
-	 * 隐藏歌曲信息窗口
-	 */
-	private void hideSongInfoTipDialog() {
-		SongInfoTipManage.hideSongInfoTipDialog();
-	}
+    /**
+     * 隐藏歌曲信息窗口
+     */
+    private void hideSongInfoTipDialog() {
+        SongInfoTipManage.hideSongInfoTipDialog();
+    }
 
-	/**
-	 * 显示歌曲信息窗口
-	 * 
-	 * @param eventIntent
-	 */
-	private void showSongInfoTipDialog(EventIntent eventIntent) {
-		ListViewComItemPanel listViewComItemPanel = null;
-		String enterClickSId = eventIntent.getsId();
-		for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
-			ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
-					.getComponent(i);
-			ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
-					.getComponent(1);
-			for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
-				ListViewComItemPanel temp = (ListViewComItemPanel) listViewComPanel
-						.getComponent(j);
-				String sId = temp.getsId();
-				if (sId.equals(enterClickSId)) {
-					listViewComItemPanel = temp;
-					break;
-				}
-			}
-		}
-		if (listViewComItemPanel == null) {
-			SongInfoTipManage.hideSongInfoTipDialog();
-			return;
-		}
-		SongInfo songInfo = listViewComItemPanel.getSongInfo();
-		if (songInfo == null) {
-			SongInfoTipManage.hideSongInfoTipDialog();
-			return;
-		}
-		SongInfoDialog songInfoDialog = SongInfoTipManage.getSongInfoTipManage(
-				56 * 5, 26 * 3).getSongInfoDialog();
-		songInfoDialog.updateUI(songInfo);
+    /**
+     * 显示歌曲信息窗口
+     * 
+     * @param eventIntent
+     */
+    private void showSongInfoTipDialog(EventIntent eventIntent) {
+        ListViewComItemPanel listViewComItemPanel = null;
+        String enterClickSId = eventIntent.getsId();
+        for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
+            ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
+                    .getComponent(i);
+            ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
+                    .getComponent(1);
+            for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
+                ListViewComItemPanel temp = (ListViewComItemPanel) listViewComPanel
+                        .getComponent(j);
+                String sId = temp.getsId();
+                if (sId.equals(enterClickSId)) {
+                    listViewComItemPanel = temp;
+                    break;
+                }
+            }
+        }
+        if (listViewComItemPanel == null) {
+            SongInfoTipManage.hideSongInfoTipDialog();
+            return;
+        }
+        SongInfo songInfo = listViewComItemPanel.getSongInfo();
+        if (songInfo == null) {
+            SongInfoTipManage.hideSongInfoTipDialog();
+            return;
+        }
+        SongInfoDialog songInfoDialog = SongInfoTipManage.getSongInfoTipManage(
+                56 * 5, 26 * 3).getSongInfoDialog();
+        songInfoDialog.updateUI(songInfo);
 
-		//
-		Point thisPoint = mainCenterPanel.getSongListPanel()
-				.getLocationOnScreen();
+        //
+        Point thisPoint = mainCenterPanel.getSongListPanel()
+                .getLocationOnScreen();
 
-		// 当前控件的位置
-		Point componentPoint = listViewComItemPanel.getLocationOnScreen();
-		int componentY = componentPoint.y;
-		int dialogH = songInfoDialog.getHeight();
+        // 当前控件的位置
+        Point componentPoint = listViewComItemPanel.getLocationOnScreen();
+        int componentY = componentPoint.y;
+        int dialogH = songInfoDialog.getHeight();
 
-		Point framePoint = mainFrame.getLocationOnScreen();
-		int frameY = framePoint.y;
-		int frameH = mainFrame.getHeight();
+        Point framePoint = mainFrame.getLocationOnScreen();
+        int frameY = framePoint.y;
+        int frameH = mainFrame.getHeight();
 
-		int y = componentY;
-		if (y < thisPoint.y) {
-			y = thisPoint.y;
-		} else if (componentY + dialogH > frameY + frameH
-				- mainFrame.getMainOperatePanel().getHeight()) {
-			// 歌曲提示信息窗口位置不够，往上移动
-			y = frameY + frameH - dialogH
-					- mainFrame.getMainOperatePanel().getHeight() - 5;
-		}
-		songInfoDialog.setLocation(mainFrame.getX() + mWidth + 5, y);
-		SongInfoTipManage.showSongInfoTipDialog();
+        int y = componentY;
+        if (y < thisPoint.y) {
+            y = thisPoint.y;
+        } else if (componentY + dialogH > frameY + frameH
+                - mainFrame.getMainOperatePanel().getHeight()) {
+            // 歌曲提示信息窗口位置不够，往上移动
+            y = frameY + frameH - dialogH
+                    - mainFrame.getMainOperatePanel().getHeight() - 5;
+        }
+        songInfoDialog.setLocation(mainFrame.getX() + mWidth + 5, y);
+        SongInfoTipManage.showSongInfoTipDialog();
 
-	}
+    }
 
-	/**
-	 * 歌曲item列表双击样式
-	 * 
-	 * @param eventIntent
-	 */
-	private void refreshListViewComItemDoubleClickPanelUI(
-			EventIntent eventIntent) {
-		// 获取双击的列表下的歌曲id
-		String doubleClickSId = eventIntent.getsId();
+    /**
+     * 歌曲item列表双击样式
+     * 
+     * @param eventIntent
+     */
+    private void refreshListViewComItemDoubleClickPanelUI(
+            EventIntent eventIntent) {
+        // 获取双击的列表下的歌曲id
+        String doubleClickSId = eventIntent.getsId();
 
-		for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
-			ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
-					.getComponent(i);
-			ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
-					.getComponent(1);
-			for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
-				ListViewComItemPanel listViewComItemPanel = (ListViewComItemPanel) listViewComPanel
-						.getComponent(j);
-				String sId = listViewComItemPanel.getsId();
-				if (sId.equals(doubleClickSId)) {
-					listViewComItemPanel.setDoubSelect(true);
-				} else {
-					if (sId.equals(BaseData.playInfoID)) {
-						listViewComItemPanel.setDoubSelect(false);
-					}
-				}
-			}
-		}
-		BaseData.playInfoID = doubleClickSId;
-		BaseData.playInfoPID = eventIntent.getpLId();
-	}
+        for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
+            ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
+                    .getComponent(i);
+            ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
+                    .getComponent(1);
+            for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
+                ListViewComItemPanel listViewComItemPanel = (ListViewComItemPanel) listViewComPanel
+                        .getComponent(j);
+                String sId = listViewComItemPanel.getsId();
+                if (sId.equals(doubleClickSId)) {
+                    listViewComItemPanel.setDoubSelect(true);
+                } else {
+                    if (sId.equals(BaseData.playInfoID)) {
+                        listViewComItemPanel.setDoubSelect(false);
+                    }
+                }
+            }
+        }
+        BaseData.playInfoID = doubleClickSId;
+        BaseData.playInfoPID = eventIntent.getpLId();
+    }
 
-	/**
-	 * 歌曲item列表单击样式
-	 * 
-	 * @param eventIntent
-	 */
-	private void refreshListViewComItemSingleClickPanelUI(
-			EventIntent eventIntent) {
+    /**
+     * 歌曲item列表单击样式
+     * 
+     * @param eventIntent
+     */
+    private void refreshListViewComItemSingleClickPanelUI(
+            EventIntent eventIntent) {
 
-		// 获取点击的列表下的歌曲id
-		String clickSId = eventIntent.getsId();
+        // 获取点击的列表下的歌曲id
+        String clickSId = eventIntent.getsId();
 
-		for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
-			ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
-					.getComponent(i);
-			ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
-					.getComponent(1);
-			for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
-				ListViewComItemPanel listViewComItemPanel = (ListViewComItemPanel) listViewComPanel
-						.getComponent(j);
-				String sId = listViewComItemPanel.getsId();
-				if (sId.equals(clickSId)) {
-					listViewComItemPanel.setSingleSelect(true);
-				} else {
-					if (sId.equals(BaseData.sId)) {
-						listViewComItemPanel.setSingleSelect(false);
-					}
-				}
-			}
-		}
-		BaseData.sId = clickSId;
-	}
+        for (int i = 0; i < listViewPanel.getComponentCount(); i++) {
+            ListViewItemPanel itemPanel = (ListViewItemPanel) listViewPanel
+                    .getComponent(i);
+            ListViewComPanel listViewComPanel = (ListViewComPanel) itemPanel
+                    .getComponent(1);
+            for (int j = 0; j < listViewComPanel.getComponentCount(); j++) {
+                ListViewComItemPanel listViewComItemPanel = (ListViewComItemPanel) listViewComPanel
+                        .getComponent(j);
+                String sId = listViewComItemPanel.getsId();
+                if (sId.equals(clickSId)) {
+                    listViewComItemPanel.setSingleSelect(true);
+                } else {
+                    if (sId.equals(BaseData.sId)) {
+                        listViewComItemPanel.setSingleSelect(false);
+                    }
+                }
+            }
+        }
+        BaseData.sId = clickSId;
+    }
 }

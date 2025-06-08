@@ -7,17 +7,17 @@ package com.sparkle.model;
  * 
  */
 public class LrcEventIntent {
-	/**
-	 * 歌词索引
-	 */
-	private int lrcIndex;
+    /**
+     * 歌词索引
+     */
+    private int lrcIndex;
 
-	public int getLrcIndex() {
-		return lrcIndex;
-	}
+    public int getLrcIndex() {
+        return lrcIndex;
+    }
 
-	public void setLrcIndex(int lrcIndex) {
-		this.lrcIndex = lrcIndex;
-	}
+    public void setLrcIndex(int lrcIndex) {
+        this.lrcIndex = lrcIndex;
+    }
 
 }

@@ -28,71 +28,127 @@ import com.sparkle.lyrics.model.TransliterationLyricsInfo;
 import com.sparkle.lyrics.utils.StringCompressUtils;
 
 /**
- * HRCS歌词解析器
+ * HRCS歌词解析器.
  * 
  * @author yuyi2003
  */
 public class HrcsLyricsFileReader extends LyricsFileReader {
-    /**
-     * 歌曲名 字符串
-     */
-    private final static String LEGAL_TITLE_PREFIX = "[ti:";
-    /**
-     * 歌手名 字符串
-     */
-    private final static String LEGAL_ARTIST_PREFIX = "[ar:";
-    /**
-     * 时间补偿值 字符串
-     */
-    private final static String LEGAL_OFFSET_PREFIX = "[offset:";
-    /**
-     * 歌曲长度
-     */
-    private final static String LEGAL_TOTAL_PREFIX = "[total:";
-    /**
-     * 上传者
-     */
-    private final static String LEGAL_BY_PREFIX = "[by:";
-    /**
-     * Tag标签
-     */
-    private final static String LEGAL_TAG_PREFIX = "haplayer.tag[";
+    
+    /** 歌词 字符串. */
+    public static final String LEGAL_LYRICS_LINE_PREFIX = "haplayer.lrc";
+    
+    /** 歌曲名 字符串. */
+    private static final String LEGAL_TITLE_PREFIX = "[ti:";
+    
+    /** 歌手名 字符串. */
+    private static final String LEGAL_ARTIST_PREFIX = "[ar:";
+    
+    /** 时间补偿值 字符串. */
+    private static final String LEGAL_OFFSET_PREFIX = "[offset:";
+    
+    /** 歌曲长度. */
+    private static final String LEGAL_TOTAL_PREFIX = "[total:";
+    
+    /** 上传者. */
+    private static final String LEGAL_BY_PREFIX = "[by:";
+    
+    /** Tag标签. */
+    private static final String LEGAL_TAG_PREFIX = "haplayer.tag[";
+
+    /** 额外歌词. */
+    private static final String LEGAL_EXTRA_LYRICS_PREFIX = "haplayer.extra.lrc";
+    
+    /** 分隔符字符串. */
+    private static final String SEPARATOR_STRING = "','";
+    
+    /** 左括号字符串. */
+    private static final String LEFT_BRACKET_STRING = "('";
+    
+    /** 右括号字符串. */
+    private static final String RIGHT_BRACKET_STRING = "')";
+    
+    /** 左尖括号字符串. */
+    private static final String LEFT_ANGLE_STRING = "<";
+    
+    /** 右尖括号字符串. */
+    private static final String RIGHT_ANGLE_STRING = ">";
+    
+    /** 逗号字符串. */
+    private static final String COMMA_STRING = ",";
+    
+    /** 空格字符串. */
+    private static final String SPACE_STRING = " ";
+    
+    /** 冒号字符串. */
+    private static final String COLON_STRING = ":";
+    
+    /** 换行符字符串. */
+    private static final String NEWLINE_STRING = "\n";
+    
+    /** 内容字段名. */
+    private static final String CONTENT_FIELD = "content";
+    
+    /** 歌词类型字段名. */
+    private static final String LYRIC_TYPE_FIELD = "lyricType";
+    
+    /** 歌词内容字段名. */
+    private static final String LYRIC_CONTENT_FIELD = "lyricContent";
+    
+    /** 翻译歌词类型. */
+    private static final int TRANSLATE_LYRICS_TYPE = 1;
+    
+    /** 音译歌词类型. */
+    private static final int TRANSLITERATION_LYRICS_TYPE = 0;
+    
+    /** 右方括号字符串. */
+    private static final String RIGHT_SQUARE_BRACKET = "]";
+    
+    /** 最小解析部分数量. */
+    private static final int MIN_PARSE_PARTS = 3;
 
     /**
-     * 歌词 字符串
+     * 默认构造函数.
      */
-    public final static String LEGAL_LYRICS_LINE_PREFIX = "haplayer.lrc";
-
-    /**
-     * 额外歌词
-     */
-    private final static String LEGAL_EXTRA_LYRICS_PREFIX = "haplayer.extra.lrc";
-
     public HrcsLyricsFileReader() {
     }
 
+    /**
+     * 读取歌词文件.
+     *
+     * @param file 歌词文件
+     * @return 歌词信息对象
+     * @throws Exception 读取异常
+     */
     @Override
-    public LyricsInfo readFile(File file) throws Exception {
+    public LyricsInfo readFile(final File file) throws Exception {
         if (file != null && file.exists()) {
-            FileInputStream fis = new FileInputStream(file);
-            LyricsInfo lyricsInfo = readInputStream(fis);
+            final FileInputStream fis = new FileInputStream(file);
+            final LyricsInfo lyricsInfo = readInputStream(fis);
             fis.close();
             return lyricsInfo;
         }
         return null;
     }
 
+    /**
+     * 读取Base64编码的歌词文本.
+     *
+     * @param base64FileContentString Base64编码的歌词内容
+     * @param saveLrcFile 保存的歌词文件
+     * @return 歌词信息对象
+     * @throws Exception 读取异常
+     */
     @Override
-    public LyricsInfo readLrcText(String base64FileContentString, File saveLrcFile) throws Exception {
-        byte[] data = Base64.decodeBase64(base64FileContentString);
-        ByteArrayInputStream stream = new ByteArrayInputStream(data);
-        LyricsInfo lyricsInfo = readInputStream(stream);
+    public LyricsInfo readLrcText(final String base64FileContentString, final File saveLrcFile) throws Exception {
+        final byte[] data = Base64.decodeBase64(base64FileContentString);
+        final ByteArrayInputStream stream = new ByteArrayInputStream(data);
+        final LyricsInfo lyricsInfo = readInputStream(stream);
         
         if (saveLrcFile != null && lyricsInfo != null) {
             if (!saveLrcFile.getParentFile().exists()) {
                 saveLrcFile.getParentFile().mkdirs();
             }
-            FileOutputStream out = new FileOutputStream(saveLrcFile);
+            final FileOutputStream out = new FileOutputStream(saveLrcFile);
             out.write(data);
             out.close();
         }
@@ -100,11 +156,19 @@ public class HrcsLyricsFileReader extends LyricsFileReader {
         return lyricsInfo;
     }
 
+    /**
+     * 读取字节数组的歌词内容.
+     *
+     * @param base64ByteArray Base64字节数组
+     * @param saveLrcFile 保存的歌词文件
+     * @return 歌词信息对象
+     * @throws Exception 读取异常
+     */
     @Override
-    public LyricsInfo readLrcText(byte[] base64ByteArray, File saveLrcFile) throws Exception {
+    public LyricsInfo readLrcText(final byte[] base64ByteArray, final File saveLrcFile) throws Exception {
         if (saveLrcFile != null) {
             // 生成歌词文件
-            FileOutputStream os = new FileOutputStream(saveLrcFile);
+            final FileOutputStream os = new FileOutputStream(saveLrcFile);
             os.write(base64ByteArray);
             os.close();
         }
@@ -112,68 +176,62 @@ public class HrcsLyricsFileReader extends LyricsFileReader {
         return readInputStream(new ByteArrayInputStream(base64ByteArray));
     }
 
+    /**
+     * 读取输入流的歌词内容.
+     *
+     * @param in 输入流
+     * @return 歌词信息对象
+     * @throws Exception 读取异常
+     */
     @Override
-    public LyricsInfo readInputStream(InputStream in) throws Exception {
-        LyricsInfo lyricsInfo = new LyricsInfo();
+    public LyricsInfo readInputStream(final InputStream in) throws Exception {
+        final LyricsInfo lyricsInfo = new LyricsInfo();
         lyricsInfo.setLyricsFileExt(getSupportFileExt());
         
         if (in != null) {
-            byte[] buffer = new byte[in.available()];
+            final byte[] buffer = new byte[in.available()];
             in.read(buffer);
             in.close();
             
-            String content = StringCompressUtils.decompress(buffer, getDefaultCharset());
-            String[] lines = content.split("\n");
+            final String content = StringCompressUtils.decompress(buffer, getDefaultCharset());
+            final String[] lines = content.split(NEWLINE_STRING);
             
-            TreeMap<Integer, LyricsLineInfo> lyricsLineInfosTemp = new TreeMap<Integer, LyricsLineInfo>();
-            TreeMap<Integer, LyricsLineInfo> lyricsLineInfos = new TreeMap<Integer, LyricsLineInfo>();
-            Map<String, Object> lyricsTags = new HashMap<String, Object>();
+            final TreeMap<Integer, LyricsLineInfo> lyricsLineInfosTemp = new TreeMap<Integer, LyricsLineInfo>();
+            final TreeMap<Integer, LyricsLineInfo> lyricsLineInfos = new TreeMap<Integer, LyricsLineInfo>();
+            final Map<String, Object> lyricsTags = new HashMap<String, Object>();
 
-            for (String line : lines) {
+            for (final String line : lines) {
                 try {
                     if (line.startsWith(LEGAL_TITLE_PREFIX)) {
-                        String title = line.substring(LEGAL_TITLE_PREFIX.length(), line.lastIndexOf("]"));
+                        final String title = line.substring(LEGAL_TITLE_PREFIX.length(), 
+                                line.lastIndexOf(RIGHT_SQUARE_BRACKET));
                         lyricsTags.put(LyricsTag.TAG_TITLE, title);
                     } else if (line.startsWith(LEGAL_ARTIST_PREFIX)) {
-                        String artist = line.substring(LEGAL_ARTIST_PREFIX.length(), line.lastIndexOf("]"));
+                        final String artist = line.substring(LEGAL_ARTIST_PREFIX.length(), 
+                                line.lastIndexOf(RIGHT_SQUARE_BRACKET));
                         lyricsTags.put(LyricsTag.TAG_ARTIST, artist);
                     } else if (line.startsWith(LEGAL_OFFSET_PREFIX)) {
-                        String offset = line.substring(LEGAL_OFFSET_PREFIX.length(), line.lastIndexOf("]"));
+                        final String offset = line.substring(LEGAL_OFFSET_PREFIX.length(), 
+                                line.lastIndexOf(RIGHT_SQUARE_BRACKET));
                         lyricsTags.put(LyricsTag.TAG_OFFSET, Integer.parseInt(offset));
                     } else if (line.startsWith(LEGAL_BY_PREFIX)) {
-                        String by = line.substring(LEGAL_BY_PREFIX.length(), line.lastIndexOf("]"));
+                        final String by = line.substring(LEGAL_BY_PREFIX.length(), 
+                                line.lastIndexOf(RIGHT_SQUARE_BRACKET));
                         lyricsTags.put(LyricsTag.TAG_BY, by);
                     } else if (line.startsWith(LEGAL_TOTAL_PREFIX)) {
-                        String total = line.substring(LEGAL_TOTAL_PREFIX.length(), line.lastIndexOf("]"));
+                        final String total = line.substring(LEGAL_TOTAL_PREFIX.length(), 
+                                line.lastIndexOf(RIGHT_SQUARE_BRACKET));
                         lyricsTags.put(LyricsTag.TAG_TOTAL, Integer.parseInt(total));
-                    } else if (line.startsWith(LEGAL_TAG_PREFIX)) {
-                        // Parse custom tags
-                        String tagContent = line.substring(LEGAL_TAG_PREFIX.length(), line.lastIndexOf("]"));
-                        if (tagContent.contains(":")) {
-                            String[] parts = tagContent.split(":", 2);
-                            lyricsTags.put(parts[0], parts[1]);
-                        }
-                    } else if (line.startsWith(LEGAL_EXTRA_LYRICS_PREFIX)) {
-                        // Parse extra lyrics (translations/transliterations)
-                        parseExtraLyrics(line, lyricsInfo);
-                    } else if (line.startsWith(LEGAL_LYRICS_LINE_PREFIX)) {
-                        // Parse lyrics line
-                        LyricsLineInfo lyricsLineInfo = parseLyricsLine(line);
-                        if (lyricsLineInfo != null) {
-                            lyricsLineInfosTemp.put(lyricsLineInfo.getStartTime(), lyricsLineInfo);
-                        }
+                    } else {
+                        processSpecialLines(line, lyricsTags, lyricsInfo, lyricsLineInfosTemp);
                     }
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     e.printStackTrace();
                 }
             }
 
             // Sort by start time
-            int index = 0;
-            Iterator<Integer> it = lyricsLineInfosTemp.keySet().iterator();
-            while (it.hasNext()) {
-                lyricsLineInfos.put(index++, lyricsLineInfosTemp.get(it.next()));
-            }
+            sortLyricsLines(lyricsLineInfosTemp, lyricsLineInfos);
 
             // 设置歌词的标签类
             lyricsInfo.setLyricsTags(lyricsTags);
@@ -181,41 +239,112 @@ public class HrcsLyricsFileReader extends LyricsFileReader {
         }
         return lyricsInfo;
     }
+    
+    /**
+     * 处理特殊的歌词行.
+     *
+     * @param line 歌词行
+     * @param lyricsTags 歌词标签映射
+     * @param lyricsInfo 歌词信息对象
+     * @param lyricsLineInfosTemp 临时歌词行信息映射
+     * @throws Exception 处理异常
+     */
+    private void processSpecialLines(final String line, final Map<String, Object> lyricsTags, 
+            final LyricsInfo lyricsInfo, 
+            final TreeMap<Integer, LyricsLineInfo> lyricsLineInfosTemp) throws Exception {
+        if (line.startsWith(LEGAL_TAG_PREFIX)) {
+            // Parse custom tags
+            parseCustomTags(line, lyricsTags);
+        } else if (line.startsWith(LEGAL_EXTRA_LYRICS_PREFIX)) {
+            // Parse extra lyrics (translations/transliterations)
+            parseExtraLyrics(line, lyricsInfo);
+        } else if (line.startsWith(LEGAL_LYRICS_LINE_PREFIX)) {
+            // Parse lyrics line
+            final LyricsLineInfo lyricsLineInfo = parseLyricsLine(line);
+            if (lyricsLineInfo != null) {
+                lyricsLineInfosTemp.put(lyricsLineInfo.getStartTime(), lyricsLineInfo);
+            }
+        }
+    }
+    
+    /**
+     * 排序歌词行.
+     *
+     * @param lyricsLineInfosTemp 临时歌词行信息映射
+     * @param lyricsLineInfos 最终歌词行信息映射
+     */
+    private void sortLyricsLines(final TreeMap<Integer, LyricsLineInfo> lyricsLineInfosTemp, 
+            final TreeMap<Integer, LyricsLineInfo> lyricsLineInfos) {
+        int index = 0;
+        final Iterator<Integer> it = lyricsLineInfosTemp.keySet().iterator();
+        while (it.hasNext()) {
+            lyricsLineInfos.put(index++, lyricsLineInfosTemp.get(it.next()));
+        }
+    }
+    
+    /**
+     * 解析自定义标签.
+     *
+     * @param line 歌词行
+     * @param lyricsTags 歌词标签映射
+     */
+    private void parseCustomTags(final String line, final Map<String, Object> lyricsTags) {
+        final String tagContent = line.substring(LEGAL_TAG_PREFIX.length(), 
+                line.lastIndexOf(RIGHT_SQUARE_BRACKET));
+        if (tagContent.contains(COLON_STRING)) {
+            final String[] parts = tagContent.split(COLON_STRING, 2);
+            lyricsTags.put(parts[0], parts[1]);
+        }
+    }
 
-    private void parseExtraLyrics(String line, LyricsInfo lyricsInfo) throws Exception {
-        String base64Content = line.substring(line.indexOf("('") + 2, line.lastIndexOf("')"));
-        String jsonContent = new String(Base64.decodeBase64(base64Content));
+    /**
+     * 解析额外歌词信息.
+     *
+     * @param line 歌词行
+     * @param lyricsInfo 歌词信息对象
+     * @throws Exception 解析异常
+     */
+    private void parseExtraLyrics(final String line, final LyricsInfo lyricsInfo) throws Exception {
+        final String base64Content = line.substring(line.indexOf(LEFT_BRACKET_STRING) + 2, 
+                line.lastIndexOf(RIGHT_BRACKET_STRING));
+        final String jsonContent = new String(Base64.decodeBase64(base64Content));
         
         try {
-            JSONObject extraObj = JSONObject.fromObject(jsonContent);
-            JSONArray contentArray = extraObj.getJSONArray("content");
+            final JSONObject extraObj = JSONObject.fromObject(jsonContent);
+            final JSONArray contentArray = extraObj.getJSONArray(CONTENT_FIELD);
             
             for (int i = 0; i < contentArray.size(); i++) {
-                JSONObject lyricsObj = contentArray.getJSONObject(i);
-                int lyricType = lyricsObj.getInt("lyricType");
-                JSONArray lyricContentArray = lyricsObj.getJSONArray("lyricContent");
+                final JSONObject lyricsObj = contentArray.getJSONObject(i);
+                final int lyricType = lyricsObj.getInt(LYRIC_TYPE_FIELD);
+                final JSONArray lyricContentArray = lyricsObj.getJSONArray(LYRIC_CONTENT_FIELD);
                 
-                if (lyricType == 1) {
+                if (lyricType == TRANSLATE_LYRICS_TYPE) {
                     // Translation lyrics
                     parseTranslateLyrics(lyricsInfo, lyricContentArray);
-                } else if (lyricType == 0) {
+                } else if (lyricType == TRANSLITERATION_LYRICS_TYPE) {
                     // Transliteration lyrics
                     parseTransliterationLyrics(lyricsInfo, lyricContentArray);
                 }
             }
-        } catch (JSONException e) {
+        } catch (final JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void parseTranslateLyrics(LyricsInfo lyricsInfo, JSONArray lyricContentArray) {
-        TranslateLyricsInfo translateLyricsInfo = new TranslateLyricsInfo();
-        List<TranslateLrcLineInfo> translateLrcLineInfos = new ArrayList<TranslateLrcLineInfo>();
+    /**
+     * 解析翻译歌词.
+     *
+     * @param lyricsInfo 歌词信息对象
+     * @param lyricContentArray 歌词内容数组
+     */
+    private void parseTranslateLyrics(final LyricsInfo lyricsInfo, final JSONArray lyricContentArray) {
+        final TranslateLyricsInfo translateLyricsInfo = new TranslateLyricsInfo();
+        final List<TranslateLrcLineInfo> translateLrcLineInfos = new ArrayList<TranslateLrcLineInfo>();
         
         for (int i = 0; i < lyricContentArray.size(); i++) {
-            JSONArray lyricArray = lyricContentArray.getJSONArray(i);
+            final JSONArray lyricArray = lyricContentArray.getJSONArray(i);
             if (lyricArray.size() > 0) {
-                TranslateLrcLineInfo translateLrcLineInfo = new TranslateLrcLineInfo();
+                final TranslateLrcLineInfo translateLrcLineInfo = new TranslateLrcLineInfo();
                 translateLrcLineInfo.setLineLyrics(lyricArray.getString(0));
                 translateLrcLineInfos.add(translateLrcLineInfo);
             }
@@ -227,22 +356,28 @@ public class HrcsLyricsFileReader extends LyricsFileReader {
         }
     }
 
-    private void parseTransliterationLyrics(LyricsInfo lyricsInfo, JSONArray lyricContentArray) {
-        TransliterationLyricsInfo transliterationLyricsInfo = new TransliterationLyricsInfo();
-        List<LyricsLineInfo> transliterationLrcLineInfos = new ArrayList<LyricsLineInfo>();
+    /**
+     * 解析音译歌词.
+     *
+     * @param lyricsInfo 歌词信息对象
+     * @param lyricContentArray 歌词内容数组
+     */
+    private void parseTransliterationLyrics(final LyricsInfo lyricsInfo, final JSONArray lyricContentArray) {
+        final TransliterationLyricsInfo transliterationLyricsInfo = new TransliterationLyricsInfo();
+        final List<LyricsLineInfo> transliterationLrcLineInfos = new ArrayList<LyricsLineInfo>();
         
         for (int i = 0; i < lyricContentArray.size(); i++) {
-            JSONArray lyricArray = lyricContentArray.getJSONArray(i);
+            final JSONArray lyricArray = lyricContentArray.getJSONArray(i);
             if (lyricArray.size() > 0) {
-                LyricsLineInfo lyricsLineInfo = new LyricsLineInfo();
-                String[] lyricsWords = new String[lyricArray.size()];
+                final LyricsLineInfo lyricsLineInfo = new LyricsLineInfo();
+                final String[] lyricsWords = new String[lyricArray.size()];
                 String lineLyrics = "";
                 
                 for (int j = 0; j < lyricArray.size(); j++) {
                     lyricsWords[j] = lyricArray.getString(j);
                     lineLyrics += lyricsWords[j];
                     if (j < lyricArray.size() - 1) {
-                        lineLyrics += " ";
+                        lineLyrics += SPACE_STRING;
                     }
                 }
                 
@@ -258,71 +393,136 @@ public class HrcsLyricsFileReader extends LyricsFileReader {
         }
     }
 
-    private LyricsLineInfo parseLyricsLine(String line) {
+    /**
+     * 解析歌词行.
+     *
+     * @param line 歌词行文本
+     * @return 歌词行信息对象
+     */
+    private LyricsLineInfo parseLyricsLine(final String line) {
         try {
             // Extract content between parentheses
-            String content = line.substring(line.indexOf("('") + 2, line.lastIndexOf("')"));
-            String[] parts = content.split("','");
+            final String content = line.substring(line.indexOf(LEFT_BRACKET_STRING) + 2, 
+                    line.lastIndexOf(RIGHT_BRACKET_STRING));
+            final String[] parts = content.split(SEPARATOR_STRING);
             
-            if (parts.length >= 3) {
-                String timeText = parts[0];
-                String lyricsText = parts[1];
-                String wordsDisIntervalText = parts[2];
-                
-                LyricsLineInfo lyricsLineInfo = new LyricsLineInfo();
-                
-                // Parse time - for HRCS, time is typically a single start time
-                int startTime = Integer.parseInt(timeText.trim());
-                lyricsLineInfo.setStartTime(startTime);
-                
-                // Set lyrics text
-                lyricsLineInfo.setLineLyrics(lyricsText);
-                
-                // Parse word intervals
-                String[] wordsDisIntervalArray = wordsDisIntervalText.split(">");
-                List<Integer> intervals = new ArrayList<Integer>();
-                for (String intervalText : wordsDisIntervalArray) {
-                    if (intervalText.contains("<")) {
-                        String[] intervalParts = intervalText.substring(intervalText.indexOf("<") + 1).split(",");
-                        if (intervalParts.length >= 2) {
-                            intervals.add(Integer.parseInt(intervalParts[1].trim()));
-                        }
-                    }
-                }
-                
-                int[] wordsDisInterval = new int[intervals.size()];
-                for (int i = 0; i < intervals.size(); i++) {
-                    wordsDisInterval[i] = intervals.get(i);
-                }
-                lyricsLineInfo.setWordsDisInterval(wordsDisInterval);
-                
-                // Parse words - for HRCS, we split by characters
-                String[] lyricsWords = new String[lyricsText.length()];
-                for (int i = 0; i < lyricsText.length(); i++) {
-                    lyricsWords[i] = String.valueOf(lyricsText.charAt(i));
-                }
-                lyricsLineInfo.setLyricsWords(lyricsWords);
-                
-                // Calculate end time
-                int endTime = startTime;
-                for (int interval : wordsDisInterval) {
-                    endTime += interval;
-                }
-                lyricsLineInfo.setEndTime(endTime);
-                
-                return lyricsLineInfo;
+            if (parts.length >= MIN_PARSE_PARTS) {
+                return buildLyricsLineInfo(parts);
             }
-        } catch (Exception e) {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+    
+    /**
+     * 构建歌词行信息对象.
+     *
+     * @param parts 解析后的部分数组
+     * @return 歌词行信息对象
+     */
+    private LyricsLineInfo buildLyricsLineInfo(final String[] parts) {
+        final String timeText = parts[0];
+        final String lyricsText = parts[1];
+        final String wordsDisIntervalText = parts[2];
+        
+        final LyricsLineInfo lyricsLineInfo = new LyricsLineInfo();
+        
+        // Parse time - for HRCS, time is typically a single start time
+        final int startTime = Integer.parseInt(timeText.trim());
+        lyricsLineInfo.setStartTime(startTime);
+        
+        // Set lyrics text
+        lyricsLineInfo.setLineLyrics(lyricsText);
+        
+        // Parse word intervals
+        final int[] wordsDisInterval = parseWordsDisInterval(wordsDisIntervalText);
+        lyricsLineInfo.setWordsDisInterval(wordsDisInterval);
+        
+        // Parse words - for HRCS, we split by characters
+        final String[] lyricsWords = parseLyricsWords(lyricsText);
+        lyricsLineInfo.setLyricsWords(lyricsWords);
+        
+        // Calculate end time
+        final int endTime = calculateEndTime(startTime, wordsDisInterval);
+        lyricsLineInfo.setEndTime(endTime);
+        
+        return lyricsLineInfo;
+    }
+    
+    /**
+     * 解析单词间隔时间数组.
+     *
+     * @param wordsDisIntervalText 单词间隔文本
+     * @return 单词间隔时间数组
+     */
+    private int[] parseWordsDisInterval(final String wordsDisIntervalText) {
+        final String[] wordsDisIntervalArray = wordsDisIntervalText.split(RIGHT_ANGLE_STRING);
+        final List<Integer> intervals = new ArrayList<Integer>();
+        
+        for (final String intervalText : wordsDisIntervalArray) {
+            if (intervalText.contains(LEFT_ANGLE_STRING)) {
+                final String[] intervalParts = intervalText.substring(
+                        intervalText.indexOf(LEFT_ANGLE_STRING) + 1).split(COMMA_STRING);
+                if (intervalParts.length >= 2) {
+                    intervals.add(Integer.parseInt(intervalParts[1].trim()));
+                }
+            }
+        }
+        
+        final int[] wordsDisInterval = new int[intervals.size()];
+        for (int i = 0; i < intervals.size(); i++) {
+            wordsDisInterval[i] = intervals.get(i);
+        }
+        
+        return wordsDisInterval;
+    }
+    
+    /**
+     * 解析歌词单词数组.
+     *
+     * @param lyricsText 歌词文本
+     * @return 歌词单词数组
+     */
+    private String[] parseLyricsWords(final String lyricsText) {
+        final String[] lyricsWords = new String[lyricsText.length()];
+        for (int i = 0; i < lyricsText.length(); i++) {
+            lyricsWords[i] = String.valueOf(lyricsText.charAt(i));
+        }
+        return lyricsWords;
+    }
+    
+    /**
+     * 计算结束时间.
+     *
+     * @param startTime 开始时间
+     * @param wordsDisInterval 单词间隔时间数组
+     * @return 结束时间
+     */
+    private int calculateEndTime(final int startTime, final int[] wordsDisInterval) {
+        int endTime = startTime;
+        for (final int interval : wordsDisInterval) {
+            endTime += interval;
+        }
+        return endTime;
+    }
 
+    /**
+     * 检查文件扩展名是否被支持.
+     *
+     * @param ext 文件扩展名
+     * @return 是否支持
+     */
     @Override
-    public boolean isFileSupported(String ext) {
+    public boolean isFileSupported(final String ext) {
         return getSupportFileExt().equals(ext);
     }
 
+    /**
+     * 获取支持的文件扩展名.
+     *
+     * @return 支持的文件扩展名
+     */
     @Override
     public String getSupportFileExt() {
         return ".hrcs";

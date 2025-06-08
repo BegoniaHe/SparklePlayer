@@ -11,12 +11,12 @@ import javax.swing.JPanel;
  */
 public class ListViewComPanel extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	public ListViewComPanel(){
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setOpaque(false);
-	}
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    public ListViewComPanel(){
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setOpaque(false);
+    }
 }
