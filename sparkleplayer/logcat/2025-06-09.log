@@ -152,3 +152,25 @@
 2025-06-09 10:02:51 <@yuyi2003@ [com.sparkle.db.BaseDataDB:296 isExist] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
 2025-06-09 10:02:51 <@yuyi2003@ [com.sparkle.db.BaseDataDB:229 addTab] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
 2025-06-09 10:02:51 <@yuyi2003@ [com.sparkle.ui.MainFrame:251 exitPlayer] - 退出成功>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.util.DataUtil:24 init] - 开始加载初始数据.....>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.BaseDataDB:92 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.BaseDataDB:193 init] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.CategoryDB:58 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.CategoryDB:143 getAllCategory] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.SongInfoDB:56 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.db.CategoryDB:91 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
+2025-06-09 10:15:06 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:69 init] - 播放器服务启动>
+2025-06-09 10:15:07 <@yuyi2003@ [com.sparkle.enterProgram.EnterProgram:61 init] - 启动界面完成>
+2025-06-09 10:15:10 <@yuyi2003@ [com.sparkle.ui.MainFrame:249 exitPlayer] - 准备退出播放器>
+2025-06-09 10:15:10 <@yuyi2003@ [com.sparkle.util.DataUtil:72 saveData] - 保存数据>
+2025-06-09 10:15:10 <@yuyi2003@ [com.sparkle.db.BaseDataDB:296 isExist] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:10 <@yuyi2003@ [com.sparkle.db.BaseDataDB:229 addTab] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-09 10:15:10 <@yuyi2003@ [com.sparkle.ui.MainFrame:251 exitPlayer] - 退出成功>
