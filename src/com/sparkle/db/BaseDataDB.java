@@ -18,10 +18,9 @@ import com.sparkle.util.ResultSetUtils;
  * 基本数据
  * 
  * @author yuyi2003
- * 
- */
+ *  */
 public class BaseDataDB {
-    private static LoggerManage logger = LoggerManage.getZhangLogger();
+    private static LoggerManage logger = LoggerManage.getYuyiLogger();
     /**
      * 固定id
      */

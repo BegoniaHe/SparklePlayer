@@ -17,7 +17,7 @@ import com.sparkle.logger.LoggerManage;
  * 
  */
 public class DBUtils {
-    private static LoggerManage logger = LoggerManage.getZhangLogger();
+    private static LoggerManage logger = LoggerManage.getYuyiLogger();
 
     /**
      * 获取数据库连接

@@ -65,7 +65,7 @@ public class MediaPlayerService implements SparkleObserver {
     }
 
     public void init() {
-        logger = LoggerManage.getZhangLogger();
+        logger = LoggerManage.getYuyiLogger();
         logger.info("播放器服务启动");
     }
 

@@ -128,12 +128,11 @@ public class LoggerManage {
         }
         return userLogger;
 
-    }
-    /**
+    }    /**
      * 创建yuyi2003用法
      * 
      * @return
-     */    public static LoggerManage getZhangLogger() {
+     */    public static LoggerManage getYuyiLogger() {
         String name = "yuyi2003";
         LoggerManage userLogger = sLoggerTable.get(name);
         if (userLogger == null) {

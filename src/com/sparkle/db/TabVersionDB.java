@@ -18,7 +18,7 @@ public final class TabVersionDB {
     /**
      * 日志管理器实例.
      */
-    private static final LoggerManage LOGGER = LoggerManage.getZhangLogger();
+    private static final LoggerManage LOGGER = LoggerManage.getYuyiLogger();
 
     /**
      * 表名常量.

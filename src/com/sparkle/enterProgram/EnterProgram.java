@@ -21,7 +21,7 @@ import com.sparkle.util.FontsUtil;
  * 
  */
 public class EnterProgram {
-    private static LoggerManage logger = LoggerManage.getZhangLogger();
+    private static LoggerManage logger = LoggerManage.getYuyiLogger();
 
     /**
      * 程序入口

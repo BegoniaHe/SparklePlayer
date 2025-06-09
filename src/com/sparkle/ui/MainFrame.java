@@ -42,7 +42,7 @@ import java.util.TreeMap;
  * 
  */
 public class MainFrame extends JFrame implements SparkleObserver, KeyListener {
-    private static LoggerManage logger = LoggerManage.getZhangLogger();
+    private static LoggerManage logger = LoggerManage.getYuyiLogger();
 
     /**
      * 

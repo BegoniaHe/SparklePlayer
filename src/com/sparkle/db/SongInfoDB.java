@@ -13,7 +13,7 @@ import com.sparkle.model.TabVersion;
 import com.sparkle.util.IDGenerate;
 
 public class SongInfoDB {
-    private static LoggerManage logger = LoggerManage.getZhangLogger();
+    private static LoggerManage logger = LoggerManage.getYuyiLogger();
     /**
      * 表名
      */
