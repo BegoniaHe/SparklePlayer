@@ -1,8 +1,8 @@
 package com.sparkle.manage;
 
-import java.io.File;
-
 import com.sparkle.util.LyricsUtil;
+
+import java.io.File;
 
 /**
  * 歌词处理类.

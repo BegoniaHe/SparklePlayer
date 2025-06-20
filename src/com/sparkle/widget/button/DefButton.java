@@ -1,8 +1,7 @@
 package com.sparkle.widget.button;
 
-import java.awt.Cursor;
-
-import javax.swing.JButton;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * 

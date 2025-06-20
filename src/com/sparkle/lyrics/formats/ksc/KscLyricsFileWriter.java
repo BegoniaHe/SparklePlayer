@@ -1,16 +1,16 @@
 package com.sparkle.lyrics.formats.ksc;
 
+import com.sparkle.lyrics.LyricsFileWriter;
+import com.sparkle.lyrics.model.LyricsInfo;
+import com.sparkle.lyrics.model.LyricsLineInfo;
+import com.sparkle.lyrics.model.LyricsTag;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Map;
 import java.util.TreeMap;
-
-import com.sparkle.lyrics.LyricsFileWriter;
-import com.sparkle.lyrics.model.LyricsInfo;
-import com.sparkle.lyrics.model.LyricsLineInfo;
-import com.sparkle.lyrics.model.LyricsTag;
 
 /**
  * KSC歌词保存器
@@ -79,7 +79,7 @@ public class KscLyricsFileWriter extends LyricsFileWriter {
                 if (j == 0) {
                     wordsDisIntervalText += wordsDisInterval[j] + "";
                 } else {
-                    wordsDisIntervalText += "," + wordsDisInterval[j] + "";
+                    wordsDisIntervalText += "," + wordsDisInterval[j];
                 }
             }
             lyricsCom += wordsDisIntervalText + "');\n";

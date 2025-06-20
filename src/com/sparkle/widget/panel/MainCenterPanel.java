@@ -1,14 +1,12 @@
 package com.sparkle.widget.panel;
 
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-
 import com.sparkle.ui.MainFrame;
 import com.sparkle.widget.button.ImageButton;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * 主界面中部面板
@@ -25,20 +23,21 @@ public class MainCenterPanel extends JPanel {
     /**
      * 高度和宽度
      */
-    private int mWidth, mHeight;
+    private final int mWidth;
+    private final int mHeight;
     /**
      * 显示和隐藏窗口
      */
     private ImageButton showButton, hideButton;
 
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
 
     private SongListPanel songListPanel;
 
     private LyricsPanel lyricsPanel;
 
 
-    private MainOperatePanel mainOperatePanel;
+    private final MainOperatePanel mainOperatePanel;
     public MainCenterPanel(MainOperatePanel mainOperatePanel,
             MainFrame mainFrame, int width,
             int height) {

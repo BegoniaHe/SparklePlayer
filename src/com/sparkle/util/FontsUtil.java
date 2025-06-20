@@ -1,10 +1,10 @@
 package com.sparkle.util;
 
-import java.awt.Font;
+import com.sparkle.common.Constants;
+
+import java.awt.*;
 import java.io.File;
 import java.text.AttributedString;
-
-import com.sparkle.common.Constants;
 
 /**
  * 字体处理类

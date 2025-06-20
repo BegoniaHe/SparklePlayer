@@ -1,7 +1,6 @@
 package com.sparkle.util;
 
-import java.awt.Graphics2D;
-import java.awt.Paint;
+import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.text.AttributedString;
 

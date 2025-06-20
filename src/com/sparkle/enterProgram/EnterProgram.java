@@ -1,13 +1,5 @@
 package com.sparkle.enterProgram;
 
-import java.awt.Font;
-import java.util.Enumeration;
-
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.plaf.FontUIResource;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.logger.LoggerManage;
 import com.sparkle.service.MediaPlayerService;
@@ -15,13 +7,18 @@ import com.sparkle.ui.MainFrame;
 import com.sparkle.util.DataUtil;
 import com.sparkle.util.FontsUtil;
 
+import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+import java.awt.*;
+import java.util.Enumeration;
+
 /**
  * 
  * @author yuyi2003
  * 
  */
 public class EnterProgram {
-    private static LoggerManage logger = LoggerManage.getYuyiLogger();
+    private static final LoggerManage logger = LoggerManage.getYuyiLogger();
 
     /**
      * 程序入口

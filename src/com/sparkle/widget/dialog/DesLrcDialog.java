@@ -1,22 +1,16 @@
 package com.sparkle.widget.dialog;
 
-import java.awt.Cursor;
-import java.awt.Color;
-import java.awt.Dimension;
-// import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JDialog;
-import javax.swing.SwingUtilities;
-import javax.swing.event.MouseInputListener;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.model.MessageIntent;
 import com.sparkle.observable.ObserverManage;
 import com.sparkle.observable.SparkleObserver;
 import com.sparkle.widget.panel.des.DesOperatePanel;
 import com.sparkle.widget.panel.lrc.FloatLyricsView;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * 桌面歌词窗口
@@ -49,7 +43,7 @@ public class DesLrcDialog extends JDialog implements SparkleObserver {
      */
     private DesOperatePanel desOperatePanel;
 
-    private DesLrcDialogMouseListener desLrcDialogMouseListener = new DesLrcDialogMouseListener();
+    private final DesLrcDialogMouseListener desLrcDialogMouseListener = new DesLrcDialogMouseListener();
 
     /**
      * 歌词面板
@@ -200,7 +194,7 @@ public class DesLrcDialog extends JDialog implements SparkleObserver {
                 // desOperatePanel.setVisible(false);
                 // floatLyricsView.setEnter(false);
                 // desOperatePanel.setEnter(false);
-                if (floatLyricsView.getEnter() == false) {
+                if (!floatLyricsView.getEnter()) {
                     if (desOperatePanel.getEnter()) {
                         desOperatePanel.setVisible(true);
                         floatLyricsView.setShow(true);
@@ -208,7 +202,7 @@ public class DesLrcDialog extends JDialog implements SparkleObserver {
                         desOperatePanel.setVisible(false);
                         floatLyricsView.setShow(false);
                     }
-                } else if (desOperatePanel.getEnter() == false) {
+                } else if (!desOperatePanel.getEnter()) {
                     if (floatLyricsView.getEnter()) {
                         desOperatePanel.setVisible(true);
                         floatLyricsView.setShow(true);

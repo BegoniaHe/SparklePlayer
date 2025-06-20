@@ -1,12 +1,12 @@
 package com.sparkle.util;
 
-import java.io.File;
-
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.datatype.Artwork;
+
+import java.io.File;
 
 /**
  * 音频标签工具类

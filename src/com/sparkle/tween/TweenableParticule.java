@@ -18,7 +18,7 @@ public class TweenableParticule implements Tweenable {
 
     // Composition pattern
 
-    private Particule target;
+    private final Particule target;
 
     // Constructor
 

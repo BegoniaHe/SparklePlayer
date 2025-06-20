@@ -1,14 +1,10 @@
 package com.sparkle.db;
 
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.sparkle.common.Constants;
 import com.sparkle.logger.LoggerManage;
+
+import java.io.File;
+import java.sql.*;
 
 /**
  * 本地数据库处理
@@ -17,7 +13,7 @@ import com.sparkle.logger.LoggerManage;
  * 
  */
 public class DBUtils {
-    private static LoggerManage logger = LoggerManage.getYuyiLogger();
+    private static final LoggerManage logger = LoggerManage.getYuyiLogger();
 
     /**
      * 获取数据库连接

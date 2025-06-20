@@ -1,23 +1,7 @@
 package com.sparkle.widget.panel;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.util.List;
-import com.sparkle.observable.SparkleObserver;
-
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingWorker;
-
-import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.common.BaseData;
+import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.manage.MediaManage;
 import com.sparkle.manage.SongInfoTipManage;
 import com.sparkle.model.Category;
@@ -25,6 +9,7 @@ import com.sparkle.model.EventIntent;
 import com.sparkle.model.SongInfo;
 import com.sparkle.model.SongMessage;
 import com.sparkle.observable.ObserverManage;
+import com.sparkle.observable.SparkleObserver;
 import com.sparkle.ui.MainFrame;
 import com.sparkle.widget.dialog.SongInfoDialog;
 import com.sparkle.widget.panel.songlist.ListViewComItemPanel;
@@ -32,6 +17,10 @@ import com.sparkle.widget.panel.songlist.ListViewComPanel;
 import com.sparkle.widget.panel.songlist.ListViewHeadPanel;
 import com.sparkle.widget.panel.songlist.ListViewItemPanel;
 import com.sparkle.widget.scrollbar.BaseScrollBarUI;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
 
 /**
  * 歌曲列表面板
@@ -48,7 +37,8 @@ public class SongListPanel extends JPanel implements SparkleObserver {
     /**
      * 高度和宽度
      */
-    private int mWidth, mHeight;
+    private final int mWidth;
+    private final int mHeight;
 
     /**
      * 滚动面板
@@ -64,9 +54,9 @@ public class SongListPanel extends JPanel implements SparkleObserver {
      */
     private List<Category> categorys;
 
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
 
-    private MainCenterPanel mainCenterPanel;
+    private final MainCenterPanel mainCenterPanel;
 
     public SongListPanel( MainFrame mainFrame,
             MainCenterPanel mainCenterPanel, int width, int height) {
@@ -202,11 +192,7 @@ public class SongListPanel extends JPanel implements SparkleObserver {
             if (pLId.equals(clickPlId)) {
                 // 获取点击面板的展开状态
                 boolean isShow = listViewItemHeadPanel.getShow();
-                if (isShow) {
-                    listViewItemHeadPanel.setShow(false);
-                } else {
-                    listViewItemHeadPanel.setShow(true);
-                }
+                listViewItemHeadPanel.setShow(!isShow);
             } else {
                 listViewItemHeadPanel.setShow(false);
             }

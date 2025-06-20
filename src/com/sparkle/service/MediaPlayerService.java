@@ -1,8 +1,5 @@
 package com.sparkle.service;
 
-import java.io.File;
-import com.sparkle.observable.SparkleObserver;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.logger.LoggerManage;
 import com.sparkle.manage.MediaManage;
@@ -10,6 +7,7 @@ import com.sparkle.model.MessageIntent;
 import com.sparkle.model.SongInfo;
 import com.sparkle.model.SongMessage;
 import com.sparkle.observable.ObserverManage;
+import com.sparkle.observable.SparkleObserver;
 import com.tulskiy.musique.audio.AudioFileReader;
 import com.tulskiy.musique.audio.player.Player;
 import com.tulskiy.musique.audio.player.PlayerEvent;
@@ -18,6 +16,8 @@ import com.tulskiy.musique.audio.player.PlayerListener;
 import com.tulskiy.musique.model.Track;
 import com.tulskiy.musique.system.TrackIO;
 import com.tulskiy.musique.util.AudioMath;
+
+import java.io.File;
 
 /**
  * 播放服务

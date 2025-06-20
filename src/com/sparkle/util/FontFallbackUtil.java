@@ -1,11 +1,11 @@
 package com.sparkle.util;
 
-import java.awt.Font;
+import com.sparkle.common.Constants;
+
+import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.File;
 import java.text.AttributedString;
-
-import com.sparkle.common.Constants;
 
 /**
  * 字体回退工具类

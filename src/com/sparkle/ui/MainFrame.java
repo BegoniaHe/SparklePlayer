@@ -1,23 +1,10 @@
 package com.sparkle.ui;
 
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.File;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.common.Constants;
 import com.sparkle.event.PanelMoveFrame;
 import com.sparkle.logger.LoggerManage;
-
+import com.sparkle.lyrics.model.LyricsLineInfo;
 import com.sparkle.manage.MediaManage;
 import com.sparkle.model.MessageIntent;
 import com.sparkle.model.SongInfo;
@@ -25,14 +12,17 @@ import com.sparkle.model.SongMessage;
 import com.sparkle.observable.ObserverManage;
 import com.sparkle.observable.SparkleObserver;
 import com.sparkle.util.DataUtil;
-
+import com.sparkle.util.LyricsUtil;
 import com.sparkle.widget.panel.MainCenterPanel;
 import com.sparkle.widget.panel.MainMenuPanel;
 import com.sparkle.widget.panel.MainOperatePanel;
 import com.sparkle.widget.panel.lrc.ManyLineLyricsView;
-import com.sparkle.lyrics.model.LyricsLineInfo;
-import com.sparkle.util.LyricsUtil;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
 import java.util.TreeMap;
 
 /**
@@ -42,7 +32,7 @@ import java.util.TreeMap;
  * 
  */
 public class MainFrame extends JFrame implements SparkleObserver, KeyListener {
-    private static LoggerManage logger = LoggerManage.getYuyiLogger();
+    private static final LoggerManage logger = LoggerManage.getYuyiLogger();
 
     /**
      * 
@@ -189,7 +179,7 @@ public class MainFrame extends JFrame implements SparkleObserver, KeyListener {
         int mcPanelHeight = mainFrameHeight - mainMenuPanel.getHeight()
                 - mainOperatePanel.getHeight();
         int mcPanelX = 0;
-        int mcPanelY = mainMenuPanel.getHeight() - 0;        mainCenterPanel = new MainCenterPanel(mainOperatePanel, this,
+        int mcPanelY = mainMenuPanel.getHeight();        mainCenterPanel = new MainCenterPanel(mainOperatePanel, this,
                 mcPanelWidth, mcPanelHeight);
         mainCenterPanel.setBounds(mcPanelX, mcPanelY, mcPanelWidth,
                 mcPanelHeight);

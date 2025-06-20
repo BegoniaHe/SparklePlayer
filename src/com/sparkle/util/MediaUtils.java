@@ -1,8 +1,5 @@
 package com.sparkle.util;
 
-import java.io.File;
-import java.util.Date;
-
 import com.sparkle.lyrics.utils.FileUtils;
 import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.model.SongInfo;
@@ -10,6 +7,9 @@ import com.tulskiy.musique.audio.AudioFileReader;
 import com.tulskiy.musique.model.Track;
 import com.tulskiy.musique.system.TrackIO;
 import com.tulskiy.musique.util.AudioMath;
+
+import java.io.File;
+import java.util.Date;
 
 public class MediaUtils {
     /**

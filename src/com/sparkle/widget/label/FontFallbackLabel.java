@@ -1,14 +1,11 @@
 package com.sparkle.widget.label;
 
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import com.sparkle.util.FontFallbackUtil;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.text.AttributedString;
-import javax.swing.JLabel;
-import com.sparkle.util.FontFallbackUtil;
 
 /**
  * 支持字体回退的自定义JLabel

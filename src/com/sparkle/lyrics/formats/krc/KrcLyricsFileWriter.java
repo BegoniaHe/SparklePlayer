@@ -1,22 +1,20 @@
 package com.sparkle.lyrics.formats.krc;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import org.apache.commons.codec.binary.Base64;
-
 import com.sparkle.lyrics.LyricsFileWriter;
 import com.sparkle.lyrics.model.LyricsInfo;
 import com.sparkle.lyrics.model.LyricsLineInfo;
 import com.sparkle.lyrics.model.LyricsTag;
 import com.sparkle.lyrics.model.TranslateLrcLineInfo;
 import com.sparkle.lyrics.utils.StringCompressUtils;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * KRC歌词生成器
@@ -138,7 +136,7 @@ public class KrcLyricsFileWriter extends LyricsFileWriter {
             lyricsCom += "[" + startTime + "," + (endTime - startTime) + "]";
             //
             String[] lyricsWords = lyricsLineInfo.getLyricsWords();
-            int wordsDisInterval[] = lyricsLineInfo.getWordsDisInterval();
+            int[] wordsDisInterval = lyricsLineInfo.getWordsDisInterval();
             int lastTime = 0;
             for (int j = 0; j < wordsDisInterval.length; j++) {
                 if (j == 0) {

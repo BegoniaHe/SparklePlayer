@@ -1,10 +1,11 @@
 package com.sparkle.lyrics;
 
+import com.sparkle.lyrics.model.LyricsInfo;
+
 import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-
-import com.sparkle.lyrics.model.LyricsInfo;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 歌词文件读取器抽象类
@@ -15,7 +16,7 @@ public abstract class LyricsFileReader {
     /**
      * 默认编码
      */
-    protected Charset defaultCharset = Charset.forName("utf-8");
+    protected Charset defaultCharset = StandardCharsets.UTF_8;
 
     /**
      * 读取歌词文件

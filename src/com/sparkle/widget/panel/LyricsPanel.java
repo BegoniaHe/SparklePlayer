@@ -1,29 +1,23 @@
 package com.sparkle.widget.panel;
 
-import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import com.sparkle.observable.SparkleObserver;
-import java.util.TreeMap;
-
-import javax.swing.ButtonGroup;
-import javax.swing.JMenu;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.SwingWorker;
-
-import com.sparkle.lyrics.model.LyricsLineInfo;
 import com.sparkle.common.BaseData;
+import com.sparkle.lyrics.model.LyricsLineInfo;
 import com.sparkle.manage.LyricsManage;
 import com.sparkle.model.SongInfo;
 import com.sparkle.model.SongMessage;
 import com.sparkle.observable.ObserverManage;
+import com.sparkle.observable.SparkleObserver;
 import com.sparkle.util.LyricsUtil;
 import com.sparkle.widget.panel.lrc.ManyLineLyricsView;
 import com.sparkle.widget.panel.lrc.ManyLineLyricsView.MetaDownListener;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.util.TreeMap;
 
 /**
  * 歌词面板
@@ -82,11 +76,11 @@ public class LyricsPanel extends JPanel implements SparkleObserver {
     /**
      * 歌词选项
      */
-    private JRadioButtonMenuItem colorItem[] = new JRadioButtonMenuItem[BaseData.lrcColorStr.length];
+    private final JRadioButtonMenuItem[] colorItem = new JRadioButtonMenuItem[BaseData.lrcColorStr.length];
     /**
      * 
      */
-    private JRadioButtonMenuItem lrcSizeItem[] = new JRadioButtonMenuItem[BaseData.lrcSizeTip.length];
+    private final JRadioButtonMenuItem[] lrcSizeItem = new JRadioButtonMenuItem[BaseData.lrcSizeTip.length];
     public LyricsPanel(MainOperatePanel mainOperatePanel,
             int width, int height) {
         initComponent(width, height);

@@ -1,17 +1,13 @@
 package com.sparkle.widget.panel.des;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.event.MouseEvent;
-import java.io.File;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.common.Constants;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
 /**
  * 桌面歌词颜色面板
@@ -32,14 +28,14 @@ public class DesLrcColorParentPanel extends JPanel {
     /**
      * 桌面窗口事件
      */
-    private MouseInputListener desLrcDialogMouseListener;
-    private MouseListener mouseListener = new MouseListener();
+    private final MouseInputListener desLrcDialogMouseListener;
+    private final MouseListener mouseListener = new MouseListener();
 
-    private DesOperatePanel desOperatePanel;
+    private final DesOperatePanel desOperatePanel;
 
-    private DesLrcColorPanel desLrcColorPanel;
+    private final DesLrcColorPanel desLrcColorPanel;
 
-    private JLabel jstatusLabel;
+    private final JLabel jstatusLabel;
 
     /**
      * 
@@ -148,15 +144,11 @@ public class DesLrcColorParentPanel extends JPanel {
     }
 
     public void setSelect(boolean isSelect) {
-        if (isSelect) {
-            jstatusLabel.setVisible(true);
-        } else {
-            jstatusLabel.setVisible(false);
-        }
+        jstatusLabel.setVisible(isSelect);
     }
 
     interface DesLrcEvent {
-        public void select(int index);
+        void select(int index);
     }
 
     /**

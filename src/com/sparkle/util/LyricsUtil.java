@@ -1,17 +1,6 @@
 package com.sparkle.util;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
-import java.util.TreeMap;
-
-import javax.swing.SwingWorker;
-
-import org.apache.commons.codec.binary.Base64;
-
+import com.sparkle.common.Constants;
 import com.sparkle.lyrics.LyricsFileReader;
 import com.sparkle.lyrics.model.LyricsInfo;
 import com.sparkle.lyrics.model.LyricsLineInfo;
@@ -19,9 +8,13 @@ import com.sparkle.lyrics.model.LyricsTag;
 import com.sparkle.lyrics.model.TranslateLrcLineInfo;
 import com.sparkle.lyrics.utils.CharUtils;
 import com.sparkle.lyrics.utils.LyricsIOUtils;
-import com.sparkle.common.Constants;
 import com.sparkle.model.SongMessage;
 import com.sparkle.observable.ObserverManage;
+import org.apache.commons.codec.binary.Base64;
+
+import javax.swing.*;
+import java.io.File;
+import java.util.*;
 
 /**
  * 歌词处理类 Created by yuyi2003 on 2017/9/11.
@@ -550,7 +543,7 @@ public class LyricsUtil {
                     }
                     String tw = lrcStack.pop();
                     if (tw != null) {
-                        lrcStack.push("" + tw + " " + "");
+                        lrcStack.push(tw + " ");
                     }
                 } else {
                     temp += String.valueOf(c);
@@ -558,7 +551,7 @@ public class LyricsUtil {
             }
             //
             if (!temp.equals("")) {
-                lrcStack.push("" + temp + "");
+                lrcStack.push(temp);
                 temp = "";
             }
         }

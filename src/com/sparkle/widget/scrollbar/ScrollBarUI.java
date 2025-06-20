@@ -1,21 +1,15 @@
 package com.sparkle.widget.scrollbar;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.plaf.basic.BasicScrollBarUI;
-
 import com.sparkle.widget.button.ImageButton;
+
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import java.awt.*;
 
 public class ScrollBarUI extends BasicScrollBarUI {
 
-    private ImageButton decreaseButton;
-    private ImageButton increaseButton;
+    private final ImageButton decreaseButton;
+    private final ImageButton increaseButton;
 
     private int alpha = 255;
 

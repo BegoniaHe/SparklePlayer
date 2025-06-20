@@ -1,12 +1,12 @@
 package com.sparkle.util;
 
-import java.io.InputStream;
-import java.util.Properties;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.db.BaseDataDB;
 import com.sparkle.logger.LoggerManage;
 import com.sparkle.manage.MediaManage;
+
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * 数据处理
@@ -15,7 +15,7 @@ import com.sparkle.manage.MediaManage;
  * 
  */
 public class DataUtil {
-    private static LoggerManage logger = LoggerManage.getYuyiLogger();
+    private static final LoggerManage logger = LoggerManage.getYuyiLogger();
 
     /**
      * 初始化

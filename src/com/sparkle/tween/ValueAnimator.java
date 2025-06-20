@@ -69,7 +69,7 @@ public class ValueAnimator {
 
                     public void run() {
 
-                        while (true && !isFinish) {
+                        while (!isFinish) {
                             try {
                                 Thread.sleep(50);
                                 if (animatorUpdateListener != null) {
@@ -85,7 +85,7 @@ public class ValueAnimator {
                             }
                         }
 
-                    };
+                    }
 
                 }.start();
             }
@@ -132,7 +132,7 @@ public class ValueAnimator {
      * 
      */
     public interface AnimatorUpdateListener {
-        public void onAnimationUpdate(float curValue);
+        void onAnimationUpdate(float curValue);
     }
 
     public void setAnimationListener(AnimationListener animationListener) {
@@ -146,9 +146,9 @@ public class ValueAnimator {
      * 
      */
     public interface AnimationListener {
-        public void onAnimationStart(float curValue);
+        void onAnimationStart(float curValue);
 
-        public void onAnimationEnd(float curValue);
+        void onAnimationEnd(float curValue);
     }
 
 }

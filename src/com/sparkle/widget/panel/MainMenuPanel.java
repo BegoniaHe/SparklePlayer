@@ -1,18 +1,14 @@
 package com.sparkle.widget.panel;
 
-import java.awt.Color;
-// import java.awt.Font;
-import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import com.sparkle.common.Constants;
 import com.sparkle.ui.MainFrame;
 import com.sparkle.util.FontsUtil;
 import com.sparkle.widget.button.ImageButton;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * 主界面的标题菜单面板
@@ -29,11 +25,12 @@ public class MainMenuPanel extends JPanel {
     /**
      * 高度和宽度
      */
-    private int mWidth, mHeight;
+    private final int mWidth;
+    private final int mHeight;
     /**
      * 主界面窗口
      */
-    private MainFrame mMainFrame;
+    private final MainFrame mMainFrame;
 
     public MainMenuPanel(int width, int height, MainFrame mainFrame) {
         this.mWidth = width;

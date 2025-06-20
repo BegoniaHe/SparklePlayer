@@ -1,13 +1,15 @@
 package com.sparkle.widget.panel.lrc;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Transparency;
+import com.sparkle.common.BaseData;
+import com.sparkle.common.Constants;
+import com.sparkle.lyrics.model.LyricsLineInfo;
+import com.sparkle.util.DrawingUtil;
+import com.sparkle.util.FontsUtil;
+import com.sparkle.util.LyricsUtil;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -15,17 +17,6 @@ import java.io.File;
 import java.text.AttributedString;
 import java.util.List;
 import java.util.TreeMap;
-
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.event.MouseInputListener;
-
-import com.sparkle.lyrics.model.LyricsLineInfo;
-import com.sparkle.common.BaseData;
-import com.sparkle.common.Constants;
-import com.sparkle.util.DrawingUtil;
-import com.sparkle.util.FontsUtil;
-import com.sparkle.util.LyricsUtil;
 
 /**
  * 桌面双行歌词:支持翻译歌词和音译歌词。因为之前一直都是用Graphics2D和clip来实现动感歌词效果，
@@ -150,7 +141,7 @@ public class FloatLyricsView extends JPanel {
     private int mWidth = 0;
     private int mHeight = 0;
 
-    private MouseListener mMouseListener = new MouseListener();
+    private final MouseListener mMouseListener = new MouseListener();
     /**
      * 判断是否进入
      */
@@ -162,7 +153,7 @@ public class FloatLyricsView extends JPanel {
     /**
      * 桌面窗口事件
      */
-    private MouseInputListener desLrcDialogMouseListener;
+    private final MouseInputListener desLrcDialogMouseListener;
 
     public FloatLyricsView(int width, int height,
             MouseInputListener desLrcDialogMouseListener) {
@@ -317,8 +308,8 @@ public class FloatLyricsView extends JPanel {
         int currentTextWidth = getTextWidth(g2d, currentLyrics);
         float lineLyricsHLWidth = 0;
         if (mLyricsWordIndex != -1) {
-            String lyricsWords[] = lyricsLineInfo.getLyricsWords();
-            int wordsDisInterval[] = lyricsLineInfo.getWordsDisInterval();
+            String[] lyricsWords = lyricsLineInfo.getLyricsWords();
+            int[] wordsDisInterval = lyricsLineInfo.getWordsDisInterval();
             // 当前歌词之前的歌词
             String lyricsBeforeWord = "";
             for (int i = 0; i < mLyricsWordIndex; i++) {
@@ -384,8 +375,8 @@ public class FloatLyricsView extends JPanel {
 
         if (mLyricsWordIndex != -1) {
 
-            String lyricsWords[] = lyricsLineInfo.getLyricsWords();
-            int wordsDisInterval[] = lyricsLineInfo.getWordsDisInterval();
+            String[] lyricsWords = lyricsLineInfo.getLyricsWords();
+            int[] wordsDisInterval = lyricsLineInfo.getWordsDisInterval();
             // 当前歌词之前的歌词
             String lyricsBeforeWord = "";
             for (int i = 0; i < mLyricsWordIndex; i++) {

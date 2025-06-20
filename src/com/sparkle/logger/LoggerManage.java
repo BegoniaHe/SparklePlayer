@@ -1,19 +1,14 @@
 package com.sparkle.logger;
 
+import com.sparkle.common.Constants;
+import org.apache.log4j.*;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
-import org.apache.log4j.RollingFileAppender;
-
-import com.sparkle.common.Constants;
 
 /**
  * 日志处理类
@@ -35,10 +30,10 @@ public class LoggerManage {
     /**
      * 保存用户对应的Logger
      */
-    private static Map<String, LoggerManage> sLoggerTable = new HashMap<String, LoggerManage>();
+    private static final Map<String, LoggerManage> sLoggerTable = new HashMap<String, LoggerManage>();
 
-    private static int SDCARD_LOG_FILE_SAVE_DAYS = 3;// 日志文件的最多保存天数
-    private static SimpleDateFormat logfile = new SimpleDateFormat("yyyy-MM-dd");// 日志文件格式
+    private static final int SDCARD_LOG_FILE_SAVE_DAYS = 3;// 日志文件的最多保存天数
+    private static final SimpleDateFormat logfile = new SimpleDateFormat("yyyy-MM-dd");// 日志文件格式
     private static Logger logger;
 
     public LoggerManage(String userName) {
@@ -174,7 +169,7 @@ public class LoggerManage {
             if (name != null) {
                 logger.info(name + " - " + str);
             } else {
-                logger.info(str.toString());
+                logger.info(str);
             }
         }
     }
@@ -185,7 +180,7 @@ public class LoggerManage {
             if (name != null) {
                 logger.debug(name + " - " + str);
             } else {
-                logger.debug(str.toString());
+                logger.debug(str);
             }
         }
     }
@@ -196,7 +191,7 @@ public class LoggerManage {
             if (name != null) {
                 logger.fatal(name + " - " + str);
             } else {
-                logger.fatal(str.toString());
+                logger.fatal(str);
             }
         }
     }
@@ -207,7 +202,7 @@ public class LoggerManage {
             if (name != null) {
                 logger.warn(name + " - " + str);
             } else {
-                logger.warn(str.toString());
+                logger.warn(str);
             }
         }
     }
@@ -218,7 +213,7 @@ public class LoggerManage {
             if (name != null) {
                 logger.error(name + " - " + str);
             } else {
-                logger.error(str.toString());
+                logger.error(str);
             }
         }
     }

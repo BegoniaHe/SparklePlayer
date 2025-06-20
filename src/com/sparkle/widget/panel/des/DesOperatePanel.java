@@ -1,13 +1,5 @@
 package com.sparkle.widget.panel.des;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.io.File;
-
-import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.common.Constants;
 import com.sparkle.model.MessageIntent;
@@ -19,6 +11,13 @@ import com.sparkle.widget.label.DesOperateLabel;
 import com.sparkle.widget.panel.des.DesLrcColorParentPanel.DesLrcEvent;
 import com.sparkle.widget.panel.lrc.FloatLyricsView;
 import com.sparkle.widget.panel.lrc.FloatLyricsView.ExtraLyricsListener;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
 /**
  * 桌面操作面板
@@ -39,7 +38,7 @@ public class DesOperatePanel extends JPanel {
     /**
      * 
      */
-    private int padding = 10;
+    private final int padding = 10;
 
     /**
      * 播放按钮
@@ -65,7 +64,7 @@ public class DesOperatePanel extends JPanel {
     /**
      * 基本图标路径
      */
-    private String iconPath = Constants.PATH_ICON + File.separator;
+    private final String iconPath = Constants.PATH_ICON + File.separator;
     /**
      * 判断是否进入
      */
@@ -73,10 +72,10 @@ public class DesOperatePanel extends JPanel {
     /**
      * 桌面窗口事件
      */
-    private MouseInputListener desLrcDialogMouseListener;
-    private DesLrcDialog mDesLrcDialog;
+    private final MouseInputListener desLrcDialogMouseListener;
+    private final DesLrcDialog mDesLrcDialog;
 
-    private MouseListener mouseListener = new MouseListener();
+    private final MouseListener mouseListener = new MouseListener();
 
     /**
      * 歌词颜色索引
@@ -93,7 +92,7 @@ public class DesOperatePanel extends JPanel {
     private DesOperateButton mShowTransliterationBtn;
 
     //
-    private ExtraLyricsListener mExtraLyricsListener;
+    private final ExtraLyricsListener mExtraLyricsListener;
 
     public DesOperatePanel(int width, int height,
             MouseInputListener desLrcDialogMouseListener,
@@ -554,7 +553,7 @@ public class DesOperatePanel extends JPanel {
         return mExtraLyricsListener;
     }
 
-    private DesLrcEvent lrcEvent = new DesLrcEvent() {
+    private final DesLrcEvent lrcEvent = new DesLrcEvent() {
 
         @Override
         public void select(int index) {

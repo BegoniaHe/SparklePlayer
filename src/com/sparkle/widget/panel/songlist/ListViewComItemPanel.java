@@ -1,26 +1,8 @@
 package com.sparkle.widget.panel.songlist;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.List;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.common.BaseData;
 import com.sparkle.db.SongInfoDB;
+import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.manage.MediaManage;
 import com.sparkle.model.EventIntent;
 import com.sparkle.model.SongInfo;
@@ -31,6 +13,16 @@ import com.sparkle.util.MediaUtils;
 import com.sparkle.widget.button.ImageButton;
 import com.sparkle.widget.label.FontFallbackLabel;
 import com.sparkle.widget.panel.SongListPanel;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.List;
 
 /**
  * 歌曲列表内容Item面板
@@ -48,16 +40,16 @@ public class ListViewComItemPanel extends JPanel {
     /**
      * 歌曲信息
      */
-    private SongInfo songInfo;
+    private final SongInfo songInfo;
 
     /**
      * 默认高度
      */
-    private int defHeight = 50;
+    private final int defHeight = 50;
     /**
      * 点击高度
      */
-    private int selectHeight = 70;
+    private final int selectHeight = 70;
     /**
      * 高度
      */
@@ -71,7 +63,7 @@ public class ListViewComItemPanel extends JPanel {
     /**
      * 播放列表面板
      */
-    private SongListPanel songListPanel;
+    private final SongListPanel songListPanel;
 
     /**
      * 鼠标经过
@@ -90,15 +82,15 @@ public class ListViewComItemPanel extends JPanel {
     /**
      * 面板鼠标事件
      */
-    private PanelMouseListener panelMouseListener = new PanelMouseListener();
+    private final PanelMouseListener panelMouseListener = new PanelMouseListener();
     /**
      * 播放列表索引
      */
-    private String playListId;
+    private final String playListId;
     /**
      * 歌曲列表索引
      */
-    private String sId;    /**
+    private final String sId;    /**
      * 歌曲名称
      */
     private FontFallbackLabel songName;
@@ -122,7 +114,7 @@ public class ListViewComItemPanel extends JPanel {
     /**
      * 
      */
-    private JPanel listViewPanel;
+    private final JPanel listViewPanel;
     /**
      * 是否进入控件
      */

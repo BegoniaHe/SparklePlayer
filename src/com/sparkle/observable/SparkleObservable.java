@@ -1,7 +1,7 @@
 package com.sparkle.observable;
 
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * 现代化的被观察者类，替代已过时的 java.util.Observable.

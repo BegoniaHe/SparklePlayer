@@ -1,12 +1,10 @@
 package com.sparkle.event;
 
-import java.awt.Cursor;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-
-import javax.swing.JDialog;
-import javax.swing.JPanel;
 
 /**
  * 面板移动窗口事件
@@ -20,14 +18,14 @@ public class PanelMoveDialog {
     /**
      * 要移动的窗口
      */
-    private JDialog MoveFrame;
+    private final JDialog MoveFrame;
     /**
      * 操作面板
      * 
      * @param moveframe
      * @param panel
      */
-    private JPanel linePanel;
+    private final JPanel linePanel;
 
     public PanelMoveDialog(JDialog moveframe, JPanel listOpePanel) {
         this.MoveFrame = moveframe;

@@ -1,21 +1,21 @@
 package com.sparkle.lyrics.utils;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sparkle.lyrics.LyricsFileReader;
 import com.sparkle.lyrics.LyricsFileWriter;
+import com.sparkle.lyrics.formats.hrcs.HrcsLyricsFileReader;
+import com.sparkle.lyrics.formats.hrcs.HrcsLyricsFileWriter;
+import com.sparkle.lyrics.formats.hrcx.HrcxLyricsFileReader;
+import com.sparkle.lyrics.formats.hrcx.HrcxLyricsFileWriter;
 import com.sparkle.lyrics.formats.krc.KrcLyricsFileReader;
 import com.sparkle.lyrics.formats.krc.KrcLyricsFileWriter;
 import com.sparkle.lyrics.formats.ksc.KscLyricsFileReader;
 import com.sparkle.lyrics.formats.ksc.KscLyricsFileWriter;
-import com.sparkle.lyrics.formats.hrcx.HrcxLyricsFileReader;
-import com.sparkle.lyrics.formats.hrcx.HrcxLyricsFileWriter;
-import com.sparkle.lyrics.formats.hrcs.HrcsLyricsFileReader;
-import com.sparkle.lyrics.formats.hrcs.HrcsLyricsFileWriter;
 import com.sparkle.lyrics.formats.lrc.LrcLyricsFileReader;
 import com.sparkle.lyrics.formats.lrc.LrcLyricsFileWriter;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 歌词IO操作工具类
@@ -23,8 +23,8 @@ import com.sparkle.lyrics.formats.lrc.LrcLyricsFileWriter;
  * @author yuyi2003
  */
 public class LyricsIOUtils {
-    private static ArrayList<LyricsFileReader> readers;
-    private static ArrayList<LyricsFileWriter> writers;
+    private static final ArrayList<LyricsFileReader> readers;
+    private static final ArrayList<LyricsFileWriter> writers;
 
     static {
         readers = new ArrayList<LyricsFileReader>();

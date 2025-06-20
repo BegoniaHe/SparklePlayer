@@ -1,32 +1,17 @@
 package com.sparkle.lyrics.formats.krc;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.sparkle.lyrics.LyricsFileReader;
+import com.sparkle.lyrics.model.*;
+import com.sparkle.lyrics.utils.StringCompressUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
-
 import org.apache.commons.codec.binary.Base64;
 
-import com.sparkle.lyrics.LyricsFileReader;
-import com.sparkle.lyrics.model.LyricsInfo;
-import com.sparkle.lyrics.model.LyricsLineInfo;
-import com.sparkle.lyrics.model.LyricsTag;
-import com.sparkle.lyrics.model.TranslateLrcLineInfo;
-import com.sparkle.lyrics.model.TranslateLyricsInfo;
-import com.sparkle.lyrics.model.TransliterationLyricsInfo;
-import com.sparkle.lyrics.utils.StringCompressUtils;
+import java.io.*;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * KRC歌词读取器
@@ -185,13 +170,13 @@ public class KrcLyricsFileReader extends LyricsFileReader {
 
             int startIndex = lineInfo.indexOf("[") + 1;
             int endIndex = lineInfo.lastIndexOf("]");
-            String temp[] = lineInfo.substring(startIndex, endIndex).split(":");
+            String[] temp = lineInfo.substring(startIndex, endIndex).split(":");
             lyricsTags.put(temp[0], temp.length == 1 ? "" : temp[1]);
 
         } else if (lineInfo.startsWith(LEGAL_LANGUAGE_PREFIX)) {
             int startIndex = lineInfo.indexOf("[") + 1;
             int endIndex = lineInfo.lastIndexOf("]");
-            String temp[] = lineInfo.substring(startIndex, endIndex).split(":");
+            String[] temp = lineInfo.substring(startIndex, endIndex).split(":");
             // 解析翻译歌词
             // 获取json base64字符串
             String translateJsonBase64String = temp.length == 1 ? "" : temp[1];
@@ -216,7 +201,7 @@ public class KrcLyricsFileReader extends LyricsFileReader {
                 // 获取行的出现时间和结束时间
                 int mStartIndex = matcher.start();
                 int mEndIndex = matcher.end();
-                String lineTime[] = lineInfo.substring(mStartIndex + 1,
+                String[] lineTime = lineInfo.substring(mStartIndex + 1,
                         mEndIndex - 1).split(",");
                 //
 
@@ -225,8 +210,8 @@ public class KrcLyricsFileReader extends LyricsFileReader {
                 lyricsLineInfo.setEndTime(endTime);
                 lyricsLineInfo.setStartTime(startTime);
                 // 获取歌词信息
-                String lineContent = lineInfo.substring(mEndIndex,
-                        lineInfo.length());
+                String lineContent = lineInfo.substring(mEndIndex
+                );
 
                 // 歌词匹配的正则表达式
                 String regex = "\\<\\d+,\\d+,\\d+\\>";
@@ -235,19 +220,19 @@ public class KrcLyricsFileReader extends LyricsFileReader {
                         .matcher(lineContent);
 
                 // 歌词分隔
-                String lineLyricsTemp[] = lineContent.split(regex);
+                String[] lineLyricsTemp = lineContent.split(regex);
                 String[] lyricsWords = getLyricsWords(lineLyricsTemp);
                 lyricsLineInfo.setLyricsWords(lyricsWords);
 
                 // 获取每个歌词的时间
-                int wordsDisInterval[] = new int[lyricsWords.length];
+                int[] wordsDisInterval = new int[lyricsWords.length];
                 int index = 0;
                 while (lyricsWordsMatcher.find()) {
                     //
                     String wordsDisIntervalStr = lyricsWordsMatcher.group();
                     String wordsDisIntervalStrTemp = wordsDisIntervalStr
                             .substring(1, wordsDisIntervalStr.length() - 1);
-                    String wordsDisIntervalTemp[] = wordsDisIntervalStrTemp
+                    String[] wordsDisIntervalTemp = wordsDisIntervalStrTemp
                             .split(",");
                     wordsDisInterval[index++] = Integer
                             .parseInt(wordsDisIntervalTemp[1]);
@@ -377,15 +362,13 @@ public class KrcLyricsFileReader extends LyricsFileReader {
      * @return 歌词词组数组
      */
     private String[] getLyricsWords(String[] lineLyricsTemp) {
-        String temp[] = null;
+        String[] temp = null;
         if (lineLyricsTemp.length < 2) {
             return new String[lineLyricsTemp.length];
         }
         //
         temp = new String[lineLyricsTemp.length - 1];
-        for (int i = 1; i < lineLyricsTemp.length; i++) {
-            temp[i - 1] = lineLyricsTemp[i];
-        }
+        System.arraycopy(lineLyricsTemp, 1, temp, 0, lineLyricsTemp.length - 1);
         return temp;
     }
 

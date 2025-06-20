@@ -1,17 +1,14 @@
 package com.sparkle.widget.label;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.MouseEvent;
-import java.io.File;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.event.MouseInputListener;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.common.Constants;
 import com.sparkle.widget.panel.des.DesOperatePanel;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
 /**
  * 歌词操作面板背景图片
@@ -28,10 +25,10 @@ public class DesOperateLabel extends JLabel {
     /**
      * 桌面窗口事件
      */
-    private MouseInputListener desLrcDialogMouseListener;
-    private MouseListener mouseListener = new MouseListener();
+    private final MouseInputListener desLrcDialogMouseListener;
+    private final MouseListener mouseListener = new MouseListener();
 
-    private DesOperatePanel desOperatePanel;
+    private final DesOperatePanel desOperatePanel;
 
     private String backgroundPath;
 

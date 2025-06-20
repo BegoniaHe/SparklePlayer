@@ -1,15 +1,8 @@
 package com.sparkle.widget.slider;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicSliderUI;
+import java.awt.*;
 
 /**
  * 

@@ -1,18 +1,14 @@
 package com.sparkle.widget.dialog;
 
-import java.awt.Image;
-import java.io.File;
-
-import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
-
 import com.sparkle.common.Constants;
 import com.sparkle.model.SongInfo;
 import com.sparkle.util.ImageUtils;
 import com.sparkle.util.MediaUtils;
 import com.sparkle.widget.label.FontFallbackLabel;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
 
 /***
  * 歌曲信息窗口
@@ -62,7 +58,7 @@ public class SongInfoDialog extends JDialog {
     private int height = 0;    /**
      * 间隔
      */
-    private int padding = 5;
+    private final int padding = 5;
     
     /**
      * 图标大小
@@ -190,7 +186,7 @@ public class SongInfoDialog extends JDialog {
 
         String filePath = songInfo.getFilePath();
         int beginIndex = filePath.lastIndexOf(".");
-        String fileType = filePath.substring(beginIndex + 1, filePath.length());
+        String fileType = filePath.substring(beginIndex + 1);
         fileTypeJLabel.setText(fileType);
 
         String fileTypeText = "普通";

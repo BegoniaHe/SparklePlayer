@@ -1,12 +1,5 @@
 package com.sparkle.db;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.logger.LoggerManage;
 import com.sparkle.manage.MediaManage;
@@ -14,13 +7,20 @@ import com.sparkle.model.TabVersion;
 import com.sparkle.util.IDGenerate;
 import com.sparkle.util.ResultSetUtils;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 基本数据
  * 
  * @author yuyi2003
  *  */
 public class BaseDataDB {
-    private static LoggerManage logger = LoggerManage.getYuyiLogger();
+    private static final LoggerManage logger = LoggerManage.getYuyiLogger();
     /**
      * 固定id
      */
@@ -30,7 +30,7 @@ public class BaseDataDB {
      */
     public static String TBL_NAME = "baseDataTbl";
     // 当前版本
-    private int version = 1;
+    private final int version = 1;
     /**
      * 建表,不支持long型等
      */

@@ -1,29 +1,5 @@
 package com.sparkle.widget.panel.songlist;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.common.Constants;
 import com.sparkle.db.CategoryDB;
@@ -40,6 +16,17 @@ import com.sparkle.util.MediaUtils;
 import com.sparkle.widget.button.ImageButton;
 import com.sparkle.widget.panel.SongListPanel;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * 歌曲列表头面板
  * 
@@ -55,7 +42,7 @@ public class ListViewHeadPanel extends JPanel {
     /**
      * 高度
      */
-    private int height = 40;
+    private final int height = 40;
 
     /**
      * 宽度
@@ -64,7 +51,7 @@ public class ListViewHeadPanel extends JPanel {
     /**
      * 标题
      */
-    private String titleName;
+    private final String titleName;
 
     /**
      * 歌曲数目
@@ -130,17 +117,17 @@ public class ListViewHeadPanel extends JPanel {
     /**
      * 播放列表索引
      */
-    private String pLId;
+    private final String pLId;
     /**
      * 列表内容面板
      */
-    private ListViewComPanel listViewComPanel;
+    private final ListViewComPanel listViewComPanel;
     /**
      * 该列表下的所有歌曲列表
      */
-    private SongListPanel songListPanel;
+    private final SongListPanel songListPanel;
 
-    private JPanel listViewPanel;
+    private final JPanel listViewPanel;
 
     public ListViewHeadPanel(JPanel listViewPanel, SongListPanel songListPanel,
             ListViewComPanel listViewComPanel, List<SongInfo> songInfos,

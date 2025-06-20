@@ -1,14 +1,12 @@
 package com.sparkle.widget.panel.des;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.widget.panel.des.DesLrcColorParentPanel.DesLrcEvent;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * 歌词颜色面板
@@ -39,14 +37,14 @@ public class DesLrcColorPanel extends JPanel {
     /**
      * 桌面窗口事件
      */
-    private MouseInputListener desLrcDialogMouseListener;
-    private MouseListener mouseListener = new MouseListener();
+    private final MouseInputListener desLrcDialogMouseListener;
+    private final MouseListener mouseListener = new MouseListener();
 
-    private DesOperatePanel desOperatePanel;
+    private final DesOperatePanel desOperatePanel;
 
     private int colorIndex = 0;
 
-    private DesLrcEvent desLrcEvent;
+    private final DesLrcEvent desLrcEvent;
 
     /**
      * 

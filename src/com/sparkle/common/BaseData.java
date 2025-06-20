@@ -1,6 +1,6 @@
 package com.sparkle.common;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * 基本数据
@@ -111,21 +111,21 @@ public class BaseData {
     /**
      * 未读歌词颜色
      */
-    public static Color DESLRCNOREADCOLORFRIST[] = { new Color(0, 52, 138),
+    public static Color[] DESLRCNOREADCOLORFRIST = { new Color(0, 52, 138),
             new Color(255, 255, 255), new Color(255, 172, 0),
             new Color(225, 225, 225), new Color(64, 0, 128) };
 
-    public static Color DESLRCNOREADCOLORSECOND[] = { new Color(3, 202, 252),
+    public static Color[] DESLRCNOREADCOLORSECOND = { new Color(3, 202, 252),
             new Color(76, 166, 244), new Color(170, 0, 0), new Color(0, 0, 0),
             new Color(255, 128, 255) };
     /**
      * 已读歌词颜色
      */
-    public static Color DESLRCREADEDCOLORFRIST[] = { new Color(130, 247, 253),
+    public static Color[] DESLRCREADEDCOLORFRIST = { new Color(130, 247, 253),
             new Color(255, 100, 26), new Color(255, 255, 0),
             new Color(0, 255, 255), new Color(255, 243, 146) };
 
-    public static Color DESLRCREADEDCOLORSECOND[] = { new Color(255, 255, 255),
+    public static Color[] DESLRCREADEDCOLORSECOND = { new Color(255, 255, 255),
             new Color(255, 255, 255), new Color(255, 100, 26),
             new Color(255, 255, 255), new Color(255, 243, 134) };
 

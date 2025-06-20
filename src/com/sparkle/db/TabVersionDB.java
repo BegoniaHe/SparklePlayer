@@ -1,12 +1,12 @@
 package com.sparkle.db;
 
+import com.sparkle.logger.LoggerManage;
+import com.sparkle.model.TabVersion;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import com.sparkle.logger.LoggerManage;
-import com.sparkle.model.TabVersion;
 
 /**
  * 数据库表版本信息表.

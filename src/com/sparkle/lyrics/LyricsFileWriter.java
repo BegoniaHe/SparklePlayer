@@ -1,8 +1,9 @@
 package com.sparkle.lyrics;
 
-import java.nio.charset.Charset;
-
 import com.sparkle.lyrics.model.LyricsInfo;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 歌词文件写入器抽象类
@@ -13,7 +14,7 @@ public abstract class LyricsFileWriter {
     /**
      * 默认编码
      */
-    protected Charset defaultCharset = Charset.forName("utf-8");
+    protected Charset defaultCharset = StandardCharsets.UTF_8;
 
     /**
      * 是否支持该文件格式

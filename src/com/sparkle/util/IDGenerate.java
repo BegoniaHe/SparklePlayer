@@ -63,7 +63,7 @@ public class IDGenerate {
             str.append("0");
         }
         str.append(intValue);
-        return key + str.toString();
+        return key + str;
     }
 
     public static String getId(String key, int length) {
@@ -82,7 +82,7 @@ public class IDGenerate {
             str.append("0");
         }
         str.append(intValue);
-        return key + str.toString();
+        return key + str;
     }
 
     // public static void main(String[] args) {

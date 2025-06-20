@@ -15,7 +15,7 @@ public class TimeUtils {
     public static int parseInteger(String timeString) {
         timeString = timeString.replace(":", ".");
         timeString = timeString.replace(".", "@");
-        String timedata[] = timeString.split("@");
+        String[] timedata = timeString.split("@");
         if (timedata.length == 3) {
             int m = Integer.parseInt(timedata[0]);
             int s = Integer.parseInt(timedata[1]);

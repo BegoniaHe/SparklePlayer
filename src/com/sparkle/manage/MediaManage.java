@@ -1,13 +1,5 @@
 package com.sparkle.manage;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import com.sparkle.observable.SparkleObserver;
-import java.util.Random;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.common.Constants;
 import com.sparkle.db.CategoryDB;
@@ -17,11 +9,19 @@ import com.sparkle.model.EventIntent;
 import com.sparkle.model.SongInfo;
 import com.sparkle.model.SongMessage;
 import com.sparkle.observable.ObserverManage;
+import com.sparkle.observable.SparkleObserver;
 import com.sparkle.service.MediaPlayerService;
 import com.sparkle.util.AudioFilter;
 import com.sparkle.util.DateUtil;
 import com.sparkle.util.IDGenerate;
 import com.sparkle.util.MediaUtils;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 /**
  * 播放器管理

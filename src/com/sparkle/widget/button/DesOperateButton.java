@@ -1,15 +1,12 @@
 package com.sparkle.widget.button;
 
-import java.awt.Cursor;
-import java.awt.Image;
-import java.awt.event.MouseEvent;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.event.MouseInputListener;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.widget.panel.des.DesOperatePanel;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * 桌面操作面板按钮
@@ -27,10 +24,10 @@ public class DesOperateButton extends JButton {
     /**
      * 桌面窗口事件
      */
-    private MouseInputListener desLrcDialogMouseListener;
-    private MouseListener mouseListener = new MouseListener();
+    private final MouseInputListener desLrcDialogMouseListener;
+    private final MouseListener mouseListener = new MouseListener();
 
-    private DesOperatePanel desOperatePanel;
+    private final DesOperatePanel desOperatePanel;
 
     private boolean isHide = false;
 

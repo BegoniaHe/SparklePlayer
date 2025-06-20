@@ -1,5 +1,10 @@
 package com.sparkle.db;
 
+import com.sparkle.logger.LoggerManage;
+import com.sparkle.model.SongInfo;
+import com.sparkle.model.TabVersion;
+import com.sparkle.util.IDGenerate;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,19 +12,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sparkle.logger.LoggerManage;
-import com.sparkle.model.SongInfo;
-import com.sparkle.model.TabVersion;
-import com.sparkle.util.IDGenerate;
-
 public class SongInfoDB {
-    private static LoggerManage logger = LoggerManage.getYuyiLogger();
+    private static final LoggerManage logger = LoggerManage.getYuyiLogger();
     /**
      * 表名
      */
     public static final String TBL_NAME = "songTbl";
 
-    private int version = 0;
+    private final int version = 0;
     /**
      * 建表语句,不支持long型等
      */

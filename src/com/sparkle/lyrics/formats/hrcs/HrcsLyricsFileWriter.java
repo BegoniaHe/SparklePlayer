@@ -1,22 +1,20 @@
 package com.sparkle.lyrics.formats.hrcs;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
-import org.apache.commons.codec.binary.Base64;
-
 import com.sparkle.lyrics.LyricsFileWriter;
 import com.sparkle.lyrics.model.LyricsInfo;
 import com.sparkle.lyrics.model.LyricsLineInfo;
 import com.sparkle.lyrics.model.LyricsTag;
 import com.sparkle.lyrics.model.TranslateLrcLineInfo;
 import com.sparkle.lyrics.utils.StringCompressUtils;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import org.apache.commons.codec.binary.Base64;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * HRCS歌词写入器.

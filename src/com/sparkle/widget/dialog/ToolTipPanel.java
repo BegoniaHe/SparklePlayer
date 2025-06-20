@@ -1,17 +1,11 @@
 package com.sparkle.widget.dialog;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.Rectangle2D;
-
-import javax.swing.JPanel;
-
 import com.sparkle.common.BaseData;
 import com.sparkle.util.FontsUtil;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 /**
  * 提示文本面板

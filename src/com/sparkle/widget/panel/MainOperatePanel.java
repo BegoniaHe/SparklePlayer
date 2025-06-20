@@ -1,26 +1,8 @@
 package com.sparkle.widget.panel;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelEvent;
-import java.io.File;
-
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.common.BaseData;
 import com.sparkle.common.Constants;
+import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.manage.MediaManage;
 import com.sparkle.manage.SongProgressTipManage;
 import com.sparkle.model.MessageIntent;
@@ -35,6 +17,13 @@ import com.sparkle.widget.label.FontFallbackLabel;
 import com.sparkle.widget.panel.lrc.ManyLineLyricsView;
 import com.sparkle.widget.panel.lrc.ManyLineLyricsView.ExtraLyricsListener;
 import com.sparkle.widget.slider.BaseSlider;
+
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
 
 /**
  * 主界面底部面板
@@ -51,7 +40,8 @@ public class MainOperatePanel extends JPanel implements SparkleObserver {
     /**
      * 高度和宽度
      */
-    private int mWidth, mHeight;
+    private final int mWidth;
+    private final int mHeight;
     /**
      * 播放按钮
      */
@@ -71,7 +61,7 @@ public class MainOperatePanel extends JPanel implements SparkleObserver {
     /**
      * 间隔
      */
-    private int padding = 15;
+    private final int padding = 15;
     /**
      * 歌名Label
      * 
@@ -87,7 +77,7 @@ public class MainOperatePanel extends JPanel implements SparkleObserver {
     private ImageButton mHideTransliterationBtn;
     private ImageButton mShowTransliterationBtn;
     //
-    private ExtraLyricsListener mExtraLyricsListener;
+    private final ExtraLyricsListener mExtraLyricsListener;
 
     // makeLyricsButton 已移除
     /**
@@ -143,7 +133,7 @@ public class MainOperatePanel extends JPanel implements SparkleObserver {
      * 判断其是否是正在拖动
      */    private boolean isStartTrackingTouch = false;
 
-    private MainFrame mainFrame;
+    private final MainFrame mainFrame;
     public MainOperatePanel(int width,
             int height, MainFrame mainFrame) {
         this.mainFrame = mainFrame;

@@ -1,8 +1,7 @@
 package com.sparkle.util;
 
-import java.io.File;
-
 import javax.swing.filechooser.FileFilter;
+import java.io.File;
 
 /**
  * 音乐文件的过滤

@@ -1,36 +1,9 @@
 package com.sparkle.widget.panel.lrc;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Paint;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.Toolkit;
-import java.awt.Transparency;
-import java.awt.event.MouseEvent;
-import java.awt.geom.GeneralPath;
-import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.text.AttributedString;
-import java.util.List;
-import java.util.TreeMap;
-
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.event.MouseInputListener;
-
-import com.sparkle.lyrics.model.LyricsLineInfo;
-import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.common.BaseData;
 import com.sparkle.common.Constants;
+import com.sparkle.lyrics.model.LyricsLineInfo;
+import com.sparkle.lyrics.utils.TimeUtils;
 import com.sparkle.manage.MediaManage;
 import com.sparkle.model.SongMessage;
 import com.sparkle.observable.ObserverManage;
@@ -40,6 +13,18 @@ import com.sparkle.tween.ValueAnimator.AnimatorUpdateListener;
 import com.sparkle.util.DrawingUtil;
 import com.sparkle.util.FontsUtil;
 import com.sparkle.util.LyricsUtil;
+
+import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.text.AttributedString;
+import java.util.List;
+import java.util.TreeMap;
 
 /**
  * 多行歌词面板:支持翻译歌词和音译歌词。因为之前一直都是用Graphics2D和clip来实现动感歌词效果，
@@ -60,7 +45,7 @@ public class ManyLineLyricsView extends JPanel {
     /**
      * 默认提示文本
      */
-    private String mDefText;
+    private final String mDefText;
 
     private int mWidth = 0;
 
@@ -123,7 +108,7 @@ public class ManyLineLyricsView extends JPanel {
     /**
      * 空行高度
      */
-    private int mSpaceLineHeight = 30;
+    private final int mSpaceLineHeight = 30;
 
     /***
      * 播放进度
@@ -164,7 +149,7 @@ public class ManyLineLyricsView extends JPanel {
     /**
      * 额外歌词行空行高度
      */
-    private int mExtraLrcSpaceLineHeight = 20;
+    private final int mExtraLrcSpaceLineHeight = 20;
 
     /**
      * 判断歌词集合是否在重构
@@ -491,8 +476,8 @@ public class ManyLineLyricsView extends JPanel {
         int lineLyricsWidth = getTextWidth(g2d, currentLyrics);
         float lineLyricsHLWidth = 0;
         if (mLyricsWordIndex != -1) {
-            String lyricsWords[] = lyricsLineInfo.getLyricsWords();
-            int wordsDisInterval[] = lyricsLineInfo.getWordsDisInterval();
+            String[] lyricsWords = lyricsLineInfo.getLyricsWords();
+            int[] wordsDisInterval = lyricsLineInfo.getWordsDisInterval();
             // 当前歌词之前的歌词
             String lyricsBeforeWord = "";
             for (int i = 0; i < mLyricsWordIndex; i++) {
@@ -985,7 +970,7 @@ public class ManyLineLyricsView extends JPanel {
         updateView(mProgress);
     }
 
-    private Toolkit tk = Toolkit.getDefaultToolkit();
+    private final Toolkit tk = Toolkit.getDefaultToolkit();
 
     private Cursor draggedCursor = null;
 
@@ -1214,7 +1199,7 @@ public class ManyLineLyricsView extends JPanel {
      * 
      */
     public interface MetaDownListener {
-        public void MetaDown(MouseEvent e);
+        void MetaDown(MouseEvent e);
     }
 
     public void setExtraLyricsListener(ExtraLyricsListener mExtraLyricsListener) {
@@ -1249,9 +1234,9 @@ public class ManyLineLyricsView extends JPanel {
 
     // 定义一个三角形类
     class Triangle {
-        private Point p1;
-        private Point p2;
-        private Point p3;
+        private final Point p1;
+        private final Point p2;
+        private final Point p3;
 
         private GeneralPath path;
 

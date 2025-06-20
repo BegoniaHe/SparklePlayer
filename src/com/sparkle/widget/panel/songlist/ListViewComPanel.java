@@ -1,7 +1,6 @@
 package com.sparkle.widget.panel.songlist;
 
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  * 歌曲列表内容面板，该面板包含（ListViewComItemPanel）
