@@ -1,0 +1,17 @@
+2025-06-20 15:39:26 <@yuyi2003@ [com.sparkle.util.DataUtil:24 init] - 开始加载初始数据.....>
+2025-06-20 15:39:26 <@yuyi2003@ [com.sparkle.db.BaseDataDB:91 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:26 <@yuyi2003@ [com.sparkle.db.BaseDataDB:192 init] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:26 <@yuyi2003@ [com.sparkle.db.CategoryDB:58 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:26 <@yuyi2003@ [com.sparkle.db.CategoryDB:143 getAllCategory] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:26 <@yuyi2003@ [com.sparkle.db.SongInfoDB:56 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:26 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:26 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.db.CategoryDB:91 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
+2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:69 init] - 播放器服务启动>
+2025-06-20 15:39:30 <@yuyi2003@ [com.sparkle.enterProgram.EnterProgram:58 init] - 启动界面完成>
