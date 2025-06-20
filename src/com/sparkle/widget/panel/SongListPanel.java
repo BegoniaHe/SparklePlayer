@@ -228,7 +228,7 @@ public class SongListPanel extends JPanel implements SparkleObserver {
             } else if (eventIntent.getEventType() == EventIntent.SONGLIST) {
                 refreshListViewComItemPanelUI(eventIntent);
             }
-        } else if (data instanceof SongMessage) {
+        } else if (data instanceof Object) {
             udateListViewComItemPanelUI(data);
         }
     }

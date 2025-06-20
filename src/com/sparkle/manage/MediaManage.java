@@ -749,7 +749,7 @@ public class MediaManage implements SparkleObserver {
     @Override
     public void update(Object source, Object data) {
 
-        if (data instanceof SongMessage) {
+        if (data instanceof Object) {
             SongMessage songMessage = (SongMessage) data;
             if (songMessage.getType() == SongMessage.PLAYMUSIC) {
                 playMusic();

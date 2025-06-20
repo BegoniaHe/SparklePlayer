@@ -887,7 +887,7 @@ public class MainOperatePanel extends JPanel implements SparkleObserver {
      * @param data
      */
     protected void updateUI(Object data) {
-        if (data instanceof SongMessage) {
+        if (data instanceof Object) {
             SongMessage songMessage = (SongMessage) data;
             if (songMessage.getType() == SongMessage.INITMUSIC
                     || songMessage.getType() == SongMessage.SERVICEPLAYMUSIC

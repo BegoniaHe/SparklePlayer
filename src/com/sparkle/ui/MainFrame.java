@@ -257,7 +257,7 @@ public class MainFrame extends JFrame implements SparkleObserver, KeyListener {
                 setVisible(true);
 
             }
-        } else if (data instanceof SongMessage) {
+        } else if (data instanceof Object) {
             SongMessage songMessage = (SongMessage) data;
             if (songMessage.getType() == SongMessage.INITMUSIC) {
                 SongInfo mSongInfo = songMessage.getSongInfo();

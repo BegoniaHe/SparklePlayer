@@ -216,7 +216,7 @@ public class LyricsPanel extends JPanel implements SparkleObserver {
      */
     protected void updateUI(Object data) {
 
-        if (data instanceof SongMessage) {
+        if (data instanceof Object) {
             SongMessage songMessage = (SongMessage) data;
             if (songMessage.getType() == SongMessage.INITMUSIC
                     || songMessage.getType() == SongMessage.SERVICEPLAYINGMUSIC
