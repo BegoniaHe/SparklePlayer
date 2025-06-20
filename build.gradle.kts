@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.sparkle"
-version = "1.0.3"
+version = "1.0.4"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
