@@ -15,3 +15,65 @@
 2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
 2025-06-20 15:39:27 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:69 init] - 播放器服务启动>
 2025-06-20 15:39:30 <@yuyi2003@ [com.sparkle.enterProgram.EnterProgram:58 init] - 启动界面完成>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.util.DataUtil:24 init] - 开始加载初始数据.....>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.BaseDataDB:91 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.BaseDataDB:192 init] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.CategoryDB:58 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.CategoryDB:143 getAllCategory] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.SongInfoDB:56 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.db.CategoryDB:91 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:68 init] - 播放器服务启动>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:373 clearImageCache] - 已删除图片缓存文件: SI-17504267667140003.jpg>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:373 clearImageCache] - 已删除图片缓存文件: SI-17494569063450003.jpg>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:373 clearImageCache] - 已删除图片缓存文件: SI-17494171690150000.jpg>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:373 clearImageCache] - 已删除图片缓存文件: SI-17494552695480003.jpg>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:373 clearImageCache] - 已删除图片缓存文件: SI-17494638634270003.jpg>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:373 clearImageCache] - 已删除图片缓存文件: SI-17494561613250003.jpg>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:373 clearImageCache] - 已删除图片缓存文件: SI-17504274394060003.jpg>
+2025-06-20 15:50:39 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:381 clearImageCache] - 图片缓存清理完成，共删除 7 个文件>
+2025-06-20 15:50:40 <@yuyi2003@ [com.sparkle.enterProgram.EnterProgram:58 init] - 启动界面完成>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.util.DataUtil:24 init] - 开始加载初始数据.....>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.BaseDataDB:91 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.BaseDataDB:192 init] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.CategoryDB:58 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.CategoryDB:143 getAllCategory] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.SongInfoDB:56 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.db.CategoryDB:91 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:68 init] - 播放器服务启动>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:371 clearImageCache] - 已删除图片缓存文件: SI-17504276942810003.jpg>
+2025-06-20 15:54:54 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:379 clearImageCache] - 图片缓存清理完成，共删除 1 个文件>
+2025-06-20 15:54:55 <@yuyi2003@ [com.sparkle.enterProgram.EnterProgram:58 init] - 启动界面完成>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.util.DataUtil:24 init] - 开始加载初始数据.....>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.BaseDataDB:91 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.BaseDataDB:192 init] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.CategoryDB:58 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.CategoryDB:143 getAllCategory] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.SongInfoDB:56 <init>] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.SongInfoDB:123 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.db.CategoryDB:91 add] - java.lang.ClassNotFoundException: org.apache.derby.jdbc.EmbeddedDriver>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.util.DataUtil:27 init] - 初始数据加载完成.....>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:68 init] - 播放器服务启动>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:371 clearImageCache] - 已删除图片缓存文件: SI-17504277681640003.jpg>
+2025-06-20 15:56:08 <@yuyi2003@ [com.sparkle.service.MediaPlayerService:379 clearImageCache] - 图片缓存清理完成，共删除 1 个文件>

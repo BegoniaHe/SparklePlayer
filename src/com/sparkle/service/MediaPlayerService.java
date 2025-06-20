@@ -1,5 +1,6 @@
 package com.sparkle.service;
 
+import com.sparkle.common.Constants;
 import com.sparkle.common.BaseData;
 import com.sparkle.logger.LoggerManage;
 import com.sparkle.manage.MediaManage;
@@ -62,11 +63,10 @@ public class MediaPlayerService implements SparkleObserver {
 
     public MediaPlayerService() {
         ObserverManage.getObserver().addObserver(this);
-    }
-
-    public void init() {
+    }    public void init() {
         logger = LoggerManage.getYuyiLogger();
         logger.info("播放器服务启动");
+        clearImageCache(); // 清理图片缓存
     }
 
     public void close() {
@@ -232,12 +232,11 @@ public class MediaPlayerService implements SparkleObserver {
             ObserverManage.getObserver().setMessage(songMessage);
 
             return;
-        }
-
-        try {
+        }        try {
             if (mediaPlayer == null) {
                 mediaPlayer = new Player();
-                mediaPlayer.addListener(new PlayerListener() {                @Override
+                mediaPlayer.addListener(new PlayerListener() {
+                    @Override
                     public void onEvent(PlayerEvent e) {
                         if (e.getEventCode() == PlayerEventCode.STOPPED) {
                             // 播放结束，播放下一首
@@ -282,22 +281,18 @@ public class MediaPlayerService implements SparkleObserver {
             SongMessage songMessage = new SongMessage();
             songMessage.setType(SongMessage.NEXTMUSIC);
             ObserverManage.getObserver().setMessage(songMessage);
-        }
-
-        if (lrcThread == null) {
-            lrcThread = new Thread(new LrcRunable());
+        }        if (lrcThread == null) {
+            lrcThread = new Thread(new LrcRunnable());
             lrcThread.start();
         }
 
-    }
-
-    /**
-     * 歌词绘画线程，歌词绘画每隔100ms去刷新歌词页面
+    }    /**
+     * 歌词绘制线程，歌词绘制每隔100ms去刷新歌词页面
      * 
      * @author yuyi2003
      * 
      */
-    private class LrcRunable implements Runnable {
+    private class LrcRunnable implements Runnable {
 
         @Override
         public void run() {
@@ -312,7 +307,7 @@ public class MediaPlayerService implements SparkleObserver {
                         // 只有当前正在播放才去刷新页面，如果当前正在快进，则不要刷新页面，免得页面出现闪烁
                         if (songInfo != null && status == MediaManage.PLAYING) {
 
-                            // 由于直接获取当前的进度，在绘画歌词的时候会比较闪烁，所以，我这里采用获取line当前的frame所在的位置，再加上上一次快进的位置，得到当前的位置
+                            // 由于直接获取当前的进度，在绘制歌词的时候会比较闪烁，所以，我这里采用获取line当前的frame所在的位置，再加上上一次快进的位置，得到当前的位置
                             // 由于这种方法，导致了在快进的时候，要重新创建一个播放器和记录快进后的播放进度
                             // 原谅我目前只想到这种方法
                             double currentMS = mediaPlayer.getAudioOutput()
@@ -340,6 +335,53 @@ public class MediaPlayerService implements SparkleObserver {
 
     public SongInfo getSongInfo() {
         return songInfo;
+    }
+
+    /**
+     * 清理图片缓存
+     * 清理 Constants.PATH_ALBUM 目录下的所有歌曲封面图片
+     */
+    private void clearImageCache() {
+        try {
+            // 获取album目录路径
+            String albumDirPath = Constants.PATH_ALBUM;
+            File albumDir = new File(albumDirPath);
+            
+            if (!albumDir.exists() || !albumDir.isDirectory()) {
+                logger.info("图片缓存目录不存在: " + albumDirPath);
+                return;
+            }
+            
+            File[] files = albumDir.listFiles();
+            if (files == null || files.length == 0) {
+                logger.info("图片缓存目录为空: " + albumDirPath);
+                return;
+            }
+            
+            int deletedCount = 0;
+            for (File file : files) {
+                if (file.isFile()) {
+                    String fileName = file.getName().toLowerCase();
+                    if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || 
+                        fileName.endsWith(".png") || fileName.endsWith(".gif") ||
+                        fileName.endsWith(".bmp") || fileName.endsWith(".webp")) {
+                        
+                        if (file.delete()) {
+                            deletedCount++;
+                            logger.info("已删除图片缓存文件: " + file.getName());
+                        } else {
+                            logger.error("删除图片缓存文件失败: " + file.getName());
+                        }
+                    }
+                }
+            }
+            
+            logger.info("图片缓存清理完成，共删除 " + deletedCount + " 个文件");
+            
+        } catch (Exception e) {
+            logger.error("清理图片缓存时发生异常: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 }

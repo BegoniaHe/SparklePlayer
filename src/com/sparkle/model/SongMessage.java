@@ -34,8 +34,6 @@ public class SongMessage {
     public static final int LRCKSCLOADED = (i++); // lrcview ksc歌词下载完成
 
     public static final int KSCTYPEDES = (i++); // 桌面 ksc歌词
-    public static final int DESKSCDOWNLOADED = (i++); // 桌面 ksc歌词下载完成
-    public static final int DESKSCLOADED = (i++); // 桌面 ksc歌词下载完成
 
     public static final int KSCTYPELOCK = (i++); // 锁屏ksc歌词
     public static final int LOCKKSCLOADED = (i++); // 锁屏 ksc歌词下载完成

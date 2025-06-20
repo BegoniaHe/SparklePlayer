@@ -17,7 +17,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- * 歌词处理类 Created by yuyi2003 on 2017/9/11.
+ * 歌词处理类 Created by yuyi2003 on 2025/6/14.
  */
 
 public class LyricsUtil {
@@ -114,9 +114,6 @@ public class LyricsUtil {
                 if (type == SongMessage.KSCTYPELRC) {
 
                     songMessage.setType(SongMessage.LRCKSCLOADED);
-                } else if (type == SongMessage.KSCTYPEDES) {
-
-                    songMessage.setType(SongMessage.DESKSCLOADED);
                 } else if (type == SongMessage.KSCTYPELOCK) {
 
                     songMessage.setType(SongMessage.LOCKKSCLOADED);
@@ -124,7 +121,6 @@ public class LyricsUtil {
 
                 songMessage.setLrcFilePath(lrcFile.getPath());
                 songMessage.setSid(sid);
-                // 通知
                 ObserverManage.getObserver().setMessage(songMessage);
 
                 return null;
