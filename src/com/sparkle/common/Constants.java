@@ -4,12 +4,12 @@ import java.io.File;
 import java.util.Calendar;
 
 public class Constants {
-    /**
-     * ==================================
-     * <p>
-     * 目录数据
-     * </p>
-     * ==================================
+    /*
+      ==================================
+      <p>
+      目录数据
+      </p>
+      ==================================
      */
 
     /**
@@ -56,12 +56,12 @@ public class Constants {
      * db数据库保存到C盘里面
      */
     public final static String PATH_DB = PATH_TEMP + File.separator + "db";
-    /**
-     * ==================================
-     * <p>
-     * 基本数据
-     * </p>
-     * ==================================
+    /*
+      ==================================
+      <p>
+      基本数据
+      </p>
+      ==================================
      */    /**
      * app应用名
      */
@@ -70,8 +70,8 @@ public class Constants {
      * app标题
      */
     public final static String APPTITLE = "Sparkle";
-    /**
-     * app提示语
+    /*
+      app提示语
      */
     // public final static String APPTIPTITLE = "Sparkle";
     // public final static String APPTITLEANDYEAR = "Sparkle" + getYear();

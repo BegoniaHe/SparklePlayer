@@ -31,7 +31,7 @@ class SliderUI extends BasicSliderUI {
         super(b);
     }
 
-    /** */
+    /* */
     /**
      * 绘制指示物
      */
@@ -47,7 +47,7 @@ class SliderUI extends BasicSliderUI {
                 thumbRect.height - 8);
     }
 
-    /** */
+    /* */
     /**
      * 绘制刻度轨迹
      */

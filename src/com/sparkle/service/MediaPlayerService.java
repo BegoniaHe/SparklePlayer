@@ -209,8 +209,7 @@ public class MediaPlayerService implements SparkleObserver {
 
     /**
      * 播放歌曲
-     * 
-     * @param songInfo
+     *
      */
     private void playInfoMusic(SongInfo msongInfo) {
         if (songInfo == null) {

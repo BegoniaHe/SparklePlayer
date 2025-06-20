@@ -481,7 +481,6 @@ public class FloatLyricsView extends JPanel {
     /**
      * 画动感歌词
      * 
-     * @param g2d
      * @param textX
      * @param textY
      * @param text
@@ -577,7 +576,6 @@ public class FloatLyricsView extends JPanel {
     /**
      * 描绘轮廓
      * 
-     * @param canvas
      * @param string
      * @param x
      * @param y
@@ -621,7 +619,6 @@ public class FloatLyricsView extends JPanel {
     /**
      * 获取每行高度
      * 
-     * @param paint
      * @return
      */
     private int getLineHeight(Graphics2D g2d) {
@@ -631,7 +628,6 @@ public class FloatLyricsView extends JPanel {
     /**
      * 获取行歌词高度，用于绘画Y轴
      * 
-     * @param paint
      * @return
      */
     private int getTextHeight(Graphics2D g2d) {
@@ -664,6 +660,7 @@ public class FloatLyricsView extends JPanel {
 
     /**
      * 更新歌词
+     * @param playProgress
      */
     public void updateView(int playProgress) {
         this.mProgress = playProgress;

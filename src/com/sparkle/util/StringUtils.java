@@ -8,7 +8,7 @@ package com.sparkle.util;
  */
 public class StringUtils {
     /**
-     * The empty String <code>""</code>.
+     * The empty String {@code ""}.
      * 
      * @since 2.0
      */
@@ -30,7 +30,7 @@ public class StringUtils {
 
     /**
      * <p>
-     * An array of <code>String</code>s used for padding.
+     * An array of {@code String}s used for padding.
      * </p>
      * 
      * <p>
@@ -47,9 +47,9 @@ public class StringUtils {
 
     /**
      * <p>
-     * <code>StringUtils</code> instances should NOT be constructed in standard
+     * {@code StringUtils} instances should NOT be constructed in standard
      * programming. Instead, the class should be used as
-     * <code>StringUtils.trim(" foo ");</code>.
+     * {@code StringUtils.trim(" foo ");}.
      * </p>
      * 
      * <p>
@@ -83,7 +83,7 @@ public class StringUtils {
      * 
      * @param str
      *            the String to check, may be null
-     * @return <code>true</code> if the String is empty or null
+     * @return {@code true} if the String is empty or null
      */
     public static boolean isEmpty(String str) {
         return str == null || str.length() == 0;
@@ -104,7 +104,7 @@ public class StringUtils {
      * 
      * @param str
      *            the String to check, may be null
-     * @return <code>true</code> if the String is not empty and not null
+     * @return {@code true} if the String is not empty and not null
      */
     public static boolean isNotEmpty(String str) {
         return str != null && str.length() > 0;
@@ -125,16 +125,17 @@ public class StringUtils {
      * 
      * @param str
      *            the String to check, may be null
-     * @return <code>true</code> if the String is null, empty or whitespace
+     * @return {@code true} if the String is null, empty or whitespace
      * @since 2.0
      */
     public static boolean isBlank(String str) {
         int strLen;
-        if (str == null || (strLen = str.length()) == 0) {
+        if (str == null || 0 == (strLen = str.length())) {
             return true;
         }
         for (int i = 0; i < strLen; i++) {
-            if ((!Character.isWhitespace(str.charAt(i)))) {
+            char ch = str.charAt(i);
+            if ((!Character.isWhitespace(ch))) {
                 return false;
             }
         }
@@ -145,7 +146,7 @@ public class StringUtils {
      * <p>
      * Checks if a String is not empty (""), not null and not whitespace only.
      * </p>
-     * 
+     *
      * <pre>
      * StringUtils.isNotBlank(null)      = false
      * StringUtils.isNotBlank("")        = false
@@ -153,20 +154,22 @@ public class StringUtils {
      * StringUtils.isNotBlank("bob")     = true
      * StringUtils.isNotBlank("  bob  ") = true
      * </pre>
-     * 
+     *
      * @param str
      *            the String to check, may be null
-     * @return <code>true</code> if the String is not empty and not null and not
+     * @return {@code true} if the String is not empty and not null and not
      *         whitespace
      * @since 2.0
      */
-    public static boolean isNotBlank(String str) {
+    public static boolean
+    isNotBlank(String str) {
         int strLen;
         if (str == null || (strLen = str.length()) == 0) {
             return false;
         }
         for (int i = 0; i < strLen; i++) {
-            if ((!Character.isWhitespace(str.charAt(i)))) {
+            char ch = str.charAt(i);
+            if ((!Character.isWhitespace(ch))) {
                 return true;
             }
         }
@@ -178,7 +181,7 @@ public class StringUtils {
     /**
      * <p>
      * Removes control characters (char &lt;= 32) from both ends of this String,
-     * handling <code>null</code> by returning an empty String ("").
+     * handling {@code null} by returning an empty String ("").
      * </p>
      * 
      * <pre>
@@ -192,7 +195,7 @@ public class StringUtils {
      * @see java.lang.String#trim()
      * @param str
      *            the String to clean, may be null
-     * @return the trimmed text, never <code>null</code>     * @deprecated Use the clearer named {@link #trimToEmpty(String)}. Method
+     * @return the trimmed text, never {@code null}     * @deprecated Use the clearer named {@link #trimToEmpty(String)}. Method
      *             will be removed in Commons Lang 3.0.
      */
     @Deprecated
@@ -203,16 +206,16 @@ public class StringUtils {
     /**
      * <p>
      * Removes control characters (char &lt;= 32) from both ends of this String,
-     * handling <code>null</code> by returning <code>null</code>.
+     * handling {@code null} by returning {@code null}.
      * </p>
      * 
      * <p>
      * The String is trimmed using {@link String#trim()}. Trim removes start and
-     * end characters &lt;= 32. To strip whitespace use {@link #strip(String)}.
+     * end characters &lt;= 32. To strip whitespace use .
      * </p>
      * 
      * <p>
-     * To trim your choice of characters, use the {@link #strip(String, String)}
+     * To trim your choice of characters, use the
      * methods.
      * </p>
      * 
@@ -226,7 +229,7 @@ public class StringUtils {
      * 
      * @param str
      *            the String to be trimmed, may be null
-     * @return the trimmed string, <code>null</code> if null String input
+     * @return the trimmed string, {@code null} if null String input
      */
     public static String trim(String str) {
         return str == null ? null : str.trim();
@@ -235,13 +238,13 @@ public class StringUtils {
     /**
      * <p>
      * Removes control characters (char &lt;= 32) from both ends of this String
-     * returning <code>null</code> if the String is empty ("") after the trim or
-     * if it is <code>null</code>.
+     * returning {@code null} if the String is empty ("") after the trim or
+     * if it is {@code null}.
      * 
      * <p>
      * The String is trimmed using {@link String#trim()}. Trim removes start and
      * end characters &lt;= 32. To strip whitespace use
-     * {@link #stripToNull(String)}.
+     * .
      * </p>
      * 
      * <pre>
@@ -254,7 +257,7 @@ public class StringUtils {
      * 
      * @param str
      *            the String to be trimmed, may be null
-     * @return the trimmed String, <code>null</code> if only chars &lt;= 32,
+     * @return the trimmed String, {@code null} if only chars &lt;= 32,
      *         empty or null String input
      * @since 2.0
      */
@@ -267,12 +270,12 @@ public class StringUtils {
      * <p>
      * Removes control characters (char &lt;= 32) from both ends of this String
      * returning an empty String ("") if the String is empty ("") after the trim
-     * or if it is <code>null</code>.
+     * or if it is {@code null}.
      * 
      * <p>
      * The String is trimmed using {@link String#trim()}. Trim removes start and
      * end characters &lt;= 32. To strip whitespace use
-     * {@link #stripToEmpty(String)}.
+     * .
      * </p>
      * 
      * <pre>
@@ -285,7 +288,7 @@ public class StringUtils {
      * 
      * @param str
      *            the String to be trimmed, may be null
-     * @return the trimmed String, or an empty String if <code>null</code> input
+     * @return the trimmed String, or an empty String if {@code null} input
      * @since 2.0
      */
     public static String trimToEmpty(String str) {
@@ -299,8 +302,8 @@ public class StringUtils {
      * </p>
      * 
      * <p>
-     * <code>null</code> will return <code>false</code>. An empty String ("")
-     * will return <code>true</code>.
+     * {@code null} will return {@code false}. An empty String ("")
+     * will return {@code true}.
      * </p>
      * 
      * <pre>
@@ -316,7 +319,7 @@ public class StringUtils {
      * 
      * @param str
      *            the String to check, may be null
-     * @return <code>true</code> if only contains digits, and is non-null
+     * @return {@code true} if only contains digits, and is non-null
      */
     public static boolean isNumeric(String str) {
         if (str == null) {
@@ -334,13 +337,13 @@ public class StringUtils {
     /**
      * <p>
      * Checks if the String contains only unicode digits or space (
-     * <code>' '</code>). A decimal point is not a unicode digit and returns
+     * {@code ' '}). A decimal point is not a unicode digit and returns
      * false.
      * </p>
      * 
      * <p>
-     * <code>null</code> will return <code>false</code>. An empty String ("")
-     * will return <code>true</code>.
+     * {@code null} will return {@code false}. An empty String ("")
+     * will return {@code true}.
      * </p>
      * 
      * <pre>
@@ -356,7 +359,7 @@ public class StringUtils {
      * 
      * @param str
      *            the String to check, may be null
-     * @return <code>true</code> if only contains digits or space, and is
+     * @return {@code true} if only contains digits or space, and is
      *         non-null
      */
     public static boolean isNumericSpace(String str) {
@@ -377,18 +380,18 @@ public class StringUtils {
     // -----------------------------------------------------------------------
     /**
      * <p>
-     * Centers a String in a larger String of size <code>size</code> using the
+     * Centers a String in a larger String of size {@code size} using the
      * space character (' ').
      * <p>
      * 
      * <p>
      * If the size is less than the String length, the String is returned. A
-     * <code>null</code> String returns <code>null</code>. A negative size is
+     * {@code null} String returns {@code null}. A negative size is
      * treated as zero.
      * </p>
      * 
      * <p>
-     * Equivalent to <code>center(str, size, " ")</code>.
+     * Equivalent to {@code center(str, size, " ")}.
      * </p>
      * 
      * <pre>
@@ -404,7 +407,7 @@ public class StringUtils {
      *            the String to center, may be null
      * @param size
      *            the int size of new String, negative treated as zero
-     * @return centered String, <code>null</code> if null String input
+     * @return centered String, {@code null} if null String input
      */
     public static String center(String str, int size) {
         return center(str, size, ' ');
@@ -412,13 +415,13 @@ public class StringUtils {
 
     /**
      * <p>
-     * Centers a String in a larger String of size <code>size</code>. Uses a
+     * Centers a String in a larger String of size {@code size}. Uses a
      * supplied character as the value to pad the String with.
      * </p>
      * 
      * <p>
      * If the size is less than the String length, the String is returned. A
-     * <code>null</code> String returns <code>null</code>. A negative size is
+     * {@code null} String returns {@code null}. A negative size is
      * treated as zero.
      * </p>
      * 
@@ -438,7 +441,7 @@ public class StringUtils {
      *            the int size of new String, negative treated as zero
      * @param padChar
      *            the character to pad the new String with
-     * @return centered String, <code>null</code> if null String input
+     * @return centered String, {@code null} if null String input
      * @since 2.0
      */
     public static String center(String str, int size, char padChar) {
@@ -457,13 +460,13 @@ public class StringUtils {
 
     /**
      * <p>
-     * Centers a String in a larger String of size <code>size</code>. Uses a
+     * Centers a String in a larger String of size {@code size}. Uses a
      * supplied String as the value to pad the String with.
      * </p>
      * 
      * <p>
      * If the size is less than the String length, the String is returned. A
-     * <code>null</code> String returns <code>null</code>. A negative size is
+     * {@code null} String returns {@code null}. A negative size is
      * treated as zero.
      * </p>
      * 
@@ -486,9 +489,9 @@ public class StringUtils {
      * @param padStr
      *            the String to pad the new String with, must not be null or
      *            empty
-     * @return centered String, <code>null</code> if null String input
+     * @return centered String, {@code null} if null String input
      * @throws IllegalArgumentException
-     *             if padStr is <code>null</code> or empty
+     *             if padStr is {@code null} or empty
      */
     public static String center(String str, int size, String padStr) {
         if (str == null || size <= 0) {
@@ -524,7 +527,7 @@ public class StringUtils {
      *            character to repeat
      * @return String with repeated character
      * @throws IndexOutOfBoundsException
-     *             if <code>repeat &lt; 0</code>
+     *             if {@code repeat < 0}
      */
     private static String padding(int repeat, char padChar) {
         // be careful of synchronization in this method
@@ -546,7 +549,7 @@ public class StringUtils {
      * </p>
      * 
      * <p>
-     * The String is padded to the size of <code>size</code>.
+     * The String is padded to the size of {@code size}.
      * </p>
      * 
      * <pre>
@@ -563,7 +566,7 @@ public class StringUtils {
      * @param size
      *            the size to pad to
      * @return right padded String or original String if no padding is
-     *         necessary, <code>null</code> if null String input
+     *         necessary, {@code null} if null String input
      */
     public static String rightPad(String str, int size) {
         return rightPad(str, size, ' ');
@@ -575,7 +578,7 @@ public class StringUtils {
      * </p>
      * 
      * <p>
-     * The String is padded to the size of <code>size</code>.
+     * The String is padded to the size of {@code size}.
      * </p>
      * 
      * <pre>
@@ -594,7 +597,7 @@ public class StringUtils {
      * @param padChar
      *            the character to pad with
      * @return right padded String or original String if no padding is
-     *         necessary, <code>null</code> if null String input
+     *         necessary, {@code null} if null String input
      * @since 2.0
      */
     public static String rightPad(String str, int size, char padChar) {
@@ -617,7 +620,7 @@ public class StringUtils {
      * </p>
      * 
      * <p>
-     * The String is padded to the size of <code>size</code>.
+     * The String is padded to the size of {@code size}.
      * </p>
      * 
      * <pre>
@@ -639,7 +642,7 @@ public class StringUtils {
      * @param padStr
      *            the String to pad with, null or empty treated as single space
      * @return right padded String or original String if no padding is
-     *         necessary, <code>null</code> if null String input
+     *         necessary, {@code null} if null String input
      */
     public static String rightPad(String str, int size, String padStr) {
         if (str == null) {
@@ -695,7 +698,7 @@ public class StringUtils {
      * @param size
      *            the size to pad to
      * @return left padded String or original String if no padding is necessary,
-     *         <code>null</code> if null String input
+     *         {@code null} if null String input
      */
     public static String leftPad(String str, int size) {
         return leftPad(str, size, ' ');
@@ -707,7 +710,7 @@ public class StringUtils {
      * </p>
      * 
      * <p>
-     * Pad to a size of <code>size</code>.
+     * Pad to a size of {@code size}.
      * </p>
      * 
      * <pre>
@@ -726,7 +729,7 @@ public class StringUtils {
      * @param padChar
      *            the character to pad with
      * @return left padded String or original String if no padding is necessary,
-     *         <code>null</code> if null String input
+     *         {@code null} if null String input
      * @since 2.0
      */
     public static String leftPad(String str, int size, char padChar) {
@@ -749,7 +752,7 @@ public class StringUtils {
      * </p>
      * 
      * <p>
-     * Pad to a size of <code>size</code>.
+     * Pad to a size of {@code size}.
      * </p>
      * 
      * <pre>
@@ -771,7 +774,7 @@ public class StringUtils {
      * @param padStr
      *            the String to pad with, null or empty treated as single space
      * @return left padded String or original String if no padding is necessary,
-     *         <code>null</code> if null String input
+     *         {@code null} if null String input
      */
     public static String leftPad(String str, int size, String padStr) {
         if (str == null) {
@@ -809,7 +812,7 @@ public class StringUtils {
     /**
      * <p>
      * Returns either the passed in String, or if the String is
-     * <code>null</code>, an empty String ("").
+     * {@code null}, an empty String ("").
      * </p>
      * 
      * <pre>
@@ -818,12 +821,10 @@ public class StringUtils {
      * StringUtils.defaultString("bat") = "bat"
      * </pre>
      * 
-     * @see ObjectUtils#toString(Object)
-     * @see String#valueOf(Object)
      * @param str
      *            the String to check, may be null
      * @return the passed in String, or the empty String if it was
-     *         <code>null</code>
+     *         {@code null}
      */
     public static String defaultString(String str) {
         return str == null ? EMPTY : str;
@@ -832,7 +833,7 @@ public class StringUtils {
     /**
      * <p>
      * Returns either the passed in String, or if the String is
-     * <code>null</code>, the value of <code>defaultStr</code>.
+     * {@code null}, the value of <code>defaultStr</code>.
      * </p>
      * 
      * <pre>
@@ -841,14 +842,12 @@ public class StringUtils {
      * StringUtils.defaultString("bat", "NULL") = "bat"
      * </pre>
      * 
-     * @see ObjectUtils#toString(Object,String)
-     * @see String#valueOf(Object)
      * @param str
      *            the String to check, may be null
      * @param defaultStr
-     *            the default String to return if the input is <code>null</code>
+     *            the default String to return if the input is {@code null}
      *            , may be null
-     * @return the passed in String, or the default if it was <code>null</code>
+     * @return the passed in String, or the default if it was {@code null}
      */
     public static String defaultString(String str, String defaultStr) {
         return str == null ? defaultStr : str;
@@ -857,7 +856,7 @@ public class StringUtils {
     /**
      * <p>
      * Returns either the passed in String, or if the String is empty or
-     * <code>null</code>, the value of <code>defaultStr</code>.
+     * {@code null}, the value of <code>defaultStr</code>.
      * </p>
      * 
      * <pre>
@@ -871,7 +870,7 @@ public class StringUtils {
      *            the String to check, may be null
      * @param defaultStr
      *            the default String to return if the input is empty ("") or
-     *            <code>null</code>, may be null
+     *            {@code null}, may be null
      * @return the passed in String, or the default
      */
     public static String defaultIfEmpty(String str, String defaultStr) {

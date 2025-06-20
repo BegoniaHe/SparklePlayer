@@ -366,17 +366,17 @@ public class ListViewHeadPanel extends JPanel {
                 // @Override
                 // public void run() {
 
-                /**
-                 * 打开默认的路径
+                /*
+                  打开默认的路径
                  */
                 JFileChooser songchooser = new JFileChooser();
-                /**
-                 * 利用方法加入过滤的文件类型,用这种方法可以加入多种文件的类型
-                 * 若只想筛选一种文件类型，可使用setFileFilter()的方法
+                /*
+                  利用方法加入过滤的文件类型,用这种方法可以加入多种文件的类型
+                  若只想筛选一种文件类型，可使用setFileFilter()的方法
                  */
                 songchooser.addChoosableFileFilter(new AudioFilter());
-                /**
-                 * 只能选择文件列表
+                /*
+                  只能选择文件列表
                  */
                 songchooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 songchooser.setMultiSelectionEnabled(true); // 实现多选
@@ -528,7 +528,6 @@ public class ListViewHeadPanel extends JPanel {
     /**
      * 更新歌曲列表数据
      * 
-     * @param i
      * @param playlistname
      * @param files
      */

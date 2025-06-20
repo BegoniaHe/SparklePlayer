@@ -31,7 +31,7 @@ class MSliderUI extends BasicSliderUI {
         super(b);
     }
 
-    /** */
+    /* */
     /**
      * 绘制指示物
      */
@@ -53,7 +53,7 @@ class MSliderUI extends BasicSliderUI {
                 thumbRect.height - 8);
     }
 
-    /** */
+    /* */
     /**
      * 绘制刻度轨迹
      */

@@ -23,6 +23,7 @@ public class EnterProgram {
     /**
      * 程序入口
      * 
+     * @param args
      * @throws UnsupportedLookAndFeelException
      * @throws IllegalAccessException
      * @throws InstantiationException

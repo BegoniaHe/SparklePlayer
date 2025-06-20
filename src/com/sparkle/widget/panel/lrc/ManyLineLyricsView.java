@@ -57,8 +57,8 @@ public class ManyLineLyricsView extends JPanel {
      * 歌词进入渐变透明度的区域高度大小，默认取视图高度的1/4
      */
     private int mShadeHeight = 0;
-    /**
-     * 颜色渐变梯度
+    /*
+      颜色渐变梯度
      */
     // private int mMaxAlphaValue = 255;
     // private int mMinAlphaValue = 50;
@@ -96,8 +96,8 @@ public class ManyLineLyricsView extends JPanel {
      */
     private int mLyricsWordIndex = -1;
 
-    /**
-     * 当前歌词第几个字 已经播放的长度
+    /*
+      当前歌词第几个字 已经播放的长度
      */
     // private float mLineLyricsHLWidth = 0;
     /**
@@ -443,7 +443,6 @@ public class ManyLineLyricsView extends JPanel {
      * 
      * @param g2d
      * @param extraLrcList
-     * @param centreY
      * @return
      */
     private void drawExtraLrcText(Graphics2D g2d,
@@ -527,8 +526,6 @@ public class ManyLineLyricsView extends JPanel {
     /**
      * 画动感歌词
      * 
-     * @param g2d
-     * @param textX
      * @param textY
      * @param text
      * @param lineLyricsHLWidth
@@ -623,7 +620,6 @@ public class ManyLineLyricsView extends JPanel {
     /**
      * 获取每行高度
      * 
-     * @param paint
      * @return
      */
     private int getLineHeight(Graphics2D g2d) {
@@ -633,7 +629,6 @@ public class ManyLineLyricsView extends JPanel {
     /**
      * 获取额外歌词行高度。用于y轴位置计算
      * 
-     * @param paint
      * @return
      */
     public int getExtraLrcLineHeight(Graphics2D g2d) {
@@ -643,7 +638,6 @@ public class ManyLineLyricsView extends JPanel {
     /**
      * 获取行歌词高度，用于绘画Y轴
      * 
-     * @param paint
      * @return
      */
     private int getTextHeight(Graphics2D g2d) {
@@ -799,9 +793,7 @@ public class ManyLineLyricsView extends JPanel {
 
     /**
      * 从旧行滚动到新行
-     * 
-     * @param lyricsLineNum
-     * @param newLyricsLineNum
+     *
      */
     private void smoothScrollTo(int newLyricsLineNum) {
         if (mValueAnimator == null) {
@@ -983,7 +975,7 @@ public class ManyLineLyricsView extends JPanel {
 
     /**
      * 当触摸歌词View时，保存为当前触点的Y轴坐标
-     * 
+     * <p>
      * 滑动的进度
      */
     private float touchY = 0;

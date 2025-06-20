@@ -284,8 +284,7 @@ public class MediaManage implements SparkleObserver {
 
     /**
      * 播放歌曲
-     * 
-     * @param songInfo
+     *
      */
     private void playInfoMusic(SongInfo mSongInfo, boolean isInit) {
 
@@ -520,7 +519,6 @@ public class MediaManage implements SparkleObserver {
 
     /**
      * 
-     * @param playIndex
      * @return
      */
     private int getPlayRandomIndex() {

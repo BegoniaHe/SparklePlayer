@@ -120,7 +120,7 @@ public final class TabVersionDB {
      */
     public TabVersion getTabVersion(final String tabName) {
         try {
-            final TabVersion tabVersion = new TabVersion();
+            final TabVersion tabVersion = TabVersion.createTabVersion();
             final Connection connection = DBUtils.getConnection();
             final String sql = SELECT_FROM_PREFIX + TBL_NAME + " where tabName=?";
 

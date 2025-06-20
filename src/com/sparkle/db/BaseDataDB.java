@@ -7,10 +7,7 @@ import com.sparkle.model.TabVersion;
 import com.sparkle.util.IDGenerate;
 import com.sparkle.util.ResultSetUtils;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,17 +25,17 @@ public class BaseDataDB {
     /**
      * 表名
      */
-    public static String TBL_NAME = "baseDataTbl";
+    private static final String TBL_NAME = "baseDataTbl";
     // 当前版本
     private final int version = 1;
     /**
      * 建表,不支持long型等
      */
-    public static String CREATE_TBL = "CREATE TABLE " + TBL_NAME + " ("
+    private static final String CREATE_TBL = "CREATE TABLE " + TBL_NAME + " ("
             + "id VARCHAR(256),listViewAlpha int,volumeSize int,playModel int,"
             + "playInfoPID VARCHAR(256), playInfoID VARCHAR(256),"
             + "showDesktopLyrics VARCHAR(256),lrcColorIndex int,"
-            + "lrcFontSize int,desktopLrcFontSize int,desktopLrcIndex int)";
+            + "lrcFontSize int)";
 
     private static BaseDataDB _BaseDataDB;
 
@@ -46,6 +43,8 @@ public class BaseDataDB {
         //
         try {
             boolean flag = DBUtils.isTableExist(TBL_NAME);
+            String id1 = IDGenerate
+                    .getId(TabVersion.key);
             if (!flag) {
                 Connection connection = DBUtils.getConnection();
                 connection.setAutoCommit(true);
@@ -53,8 +52,8 @@ public class BaseDataDB {
                 stmt.executeUpdate(CREATE_TBL);
 
                 // 添加表版本表数据
-                TabVersion tabVersion = new TabVersion();
-                tabVersion.setId(IDGenerate.getId(TabVersion.key));
+                TabVersion tabVersion = TabVersion.createTabVersion();
+                tabVersion.setId(id1);
                 tabVersion.setTabName(TBL_NAME);
                 tabVersion.setVersion(version);
                 TabVersionDB.getTabVersionDB().add(tabVersion);
@@ -68,14 +67,13 @@ public class BaseDataDB {
                     // 数据库中保存的表的版本比现在的版本小，则更新表
                     if (tabVersion.getVersion() < version) {
                         // 更新表
-                        if (updateTab()) {
+                        if (isTabUpdated()) {
                             tabVersion.setVersion(version);
                             // 数据库中没有该记录
                             if (tabVersion.getId() == null
-                                    || tabVersion.getTabName() == null) {
-                                tabVersion.setId(IDGenerate
-                                        .getId(TabVersion.key));
-                                tabVersion.setTabName(TBL_NAME);
+                                    || null == tabVersion.getTabName()) {
+                                tabVersion.setId(id1);
+                                tabVersion.setTabName(BaseDataDB.TBL_NAME);
                                 TabVersionDB.getTabVersionDB().add(tabVersion);
                             } else {
                                 // 更新数据库中的版本
@@ -86,7 +84,9 @@ public class BaseDataDB {
                     }
                 }
             }
-        } catch (Exception e) {
+        } catch (final SQLException e) {
+            throw new RuntimeException(e);
+        } catch (final Exception e) {
             e.printStackTrace();
             logger.error(e.toString());
         } finally {
@@ -96,10 +96,10 @@ public class BaseDataDB {
 
     /**
      * 更新表
-     * 
+     *
      * @return
      */
-    private boolean updateTab() {
+    private boolean isTabUpdated() {
         try {
             List<String> valueList = new ArrayList<String>();
             valueList.add("playInfoPID VARCHAR(256)");
@@ -155,7 +155,8 @@ public class BaseDataDB {
     }
 
     /**
-     * 
+     *
+     * @return
      */
     public boolean init() {
         try {
@@ -204,7 +205,7 @@ public class BaseDataDB {
         try {
             Connection connection = DBUtils.getConnection();
             String sql = "insert into " + TBL_NAME
-                    + " values(?,?,?,?,?,?,?,?,?,?,?)";
+                    + " values(?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, id);
@@ -216,8 +217,6 @@ public class BaseDataDB {
             ps.setString(7, String.valueOf(BaseData.showDesktopLyrics));
             ps.setInt(8, BaseData.lrcColorIndex);
             ps.setInt(9, BaseData.lrcFontSize);
-            ps.setInt(10, BaseData.desktopLrcFontSize);
-            ps.setInt(11, BaseData.desktopLrcIndex);
 
             int result = ps.executeUpdate();
             if (result <= 0)

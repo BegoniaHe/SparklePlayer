@@ -45,7 +45,7 @@ public class SongInfoDB {
                 stmt.executeUpdate(CREATE_TBL);
                 
                 // 添加表版本表数据
-                TabVersion tabVersion = new TabVersion();
+                TabVersion tabVersion = TabVersion.createTabVersion();
                 tabVersion.setId(IDGenerate.getId(TabVersion.key));
                 tabVersion.setTabName(TBL_NAME);
                 tabVersion.setVersion(version);

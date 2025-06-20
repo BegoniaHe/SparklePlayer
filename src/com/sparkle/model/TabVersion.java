@@ -6,11 +6,18 @@ package com.sparkle.model;
  * @author yuyi2003
  * 
  */
-public class TabVersion {
+public final class TabVersion {
     public static final String key = "TV-";
     private String id;
     private String tabName;
-    private int version = 0;//默认版本号
+    private int version;//默认版本号
+
+    private TabVersion() {
+    }
+
+    public static TabVersion createTabVersion() {
+        return new TabVersion();
+    }
 
     public String getId() {
         return id;

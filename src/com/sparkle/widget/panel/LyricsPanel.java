@@ -56,10 +56,10 @@ public class LyricsPanel extends JPanel implements SparkleObserver {
      */
     private SongInfo mSongInfo;
 
-    /**
-     * 当前播放歌曲
-     * 
-     * @param desktopLrcDialog
+    /*
+      当前播放歌曲
+
+      @param desktopLrcDialog
      */
     /**
      * 弹出菜单
@@ -251,8 +251,7 @@ public class LyricsPanel extends JPanel implements SparkleObserver {
 
     /**
      * 刷新ui
-     * 
-     * @param mSongInfo
+     *
      */
     protected void refreshUI(SongMessage songMessage) {
         SongInfo songInfo = songMessage.getSongInfo();
