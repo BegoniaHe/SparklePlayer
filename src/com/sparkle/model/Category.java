@@ -23,7 +23,7 @@ public class Category {
     /**
      * 分类的内容
      */
-    private List<SongInfo> songInfos = new ArrayList<SongInfo>();
+    private List<SongInfo> songInfos = new ArrayList<>();
 
     public Category() {
 
@@ -63,9 +63,5 @@ public class Category {
 
     public void setSongInfos(List<SongInfo> songInfos) {
         this.songInfos = songInfos;
-    }
-
-    public int getSongSize() {
-        return songInfos.size();
     }
 }

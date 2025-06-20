@@ -5,7 +5,6 @@ package com.sparkle.observable;
  * 
  * @author yuyi2003
  */
-@SuppressWarnings("deprecation")
 public class ObserverAdapter implements SparkleObserver {
     /**
      * 包装的旧式观察者.

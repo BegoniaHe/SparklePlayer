@@ -48,47 +48,38 @@ public class ValueAnimator {
         tween = Tween.to(tweenParticle, TweenableParticule.XY, duration,
                 Linear.INOUT).target(start, end);
 
-        tween.addCompleteCallback(new TweenCallback() {
-
-            public void tweenEventOccured(Types arg0, Tween arg1) {
-                isFinish = true;
-                if (animationListener != null) {
-                    animationListener.onAnimationEnd(particule.getY());
-                }
+        tween.addCompleteCallback((arg0, arg1) -> {
+            isFinish = true;
+            if (animationListener != null) {
+                animationListener.onAnimationEnd(particule.getY());
             }
         });
 
-        tween.addStartCallback(new TweenCallback() {
-
-            public void tweenEventOccured(Types arg0, Tween arg1) {
-                isFinish = false;
-                if (animationListener != null) {
-                    animationListener.onAnimationStart(particule.getY());
-                }
-                new Thread() {
-
-                    public void run() {
-
-                        while (!isFinish) {
-                            try {
-                                Thread.sleep(50);
-                                if (animatorUpdateListener != null) {
-                                    animatorUpdateListener
-                                            .onAnimationUpdate(particule.getY());
-                                }
-                                if (manager != null
-                                        && manager.getTweenCount() > 0)
-                                    manager.update();
-
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    }
-
-                }.start();
+        tween.addStartCallback((arg0, arg1) -> {
+            isFinish = false;
+            if (animationListener != null) {
+                animationListener.onAnimationStart(particule.getY());
             }
+            new Thread(() -> {
+
+                while (!isFinish) {
+                    try {
+                        Thread.sleep(50);
+                        if (animatorUpdateListener != null) {
+                            animatorUpdateListener
+                                    .onAnimationUpdate(particule.getY());
+                        }
+                        if (manager != null
+                                && manager.getTweenCount() > 0)
+                            manager.update();
+
+                    } catch (InterruptedException e) {
+                        // TODO: 对 'printStackTrace()' 的调用可能应当替换为更可靠的日志
+                        e.printStackTrace();
+                    }
+                }
+
+            }).start();
         });
 
     }
