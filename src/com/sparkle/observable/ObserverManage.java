@@ -63,7 +63,7 @@ public final class ObserverManage extends SparkleObservable {
             // 找到对应的适配器并删除
             final SparkleObserver[] observerArray = getObservers();
             for (final SparkleObserver sparkleObserver : observerArray) {
-                if (sparkleObserver instanceof ObserverAdapter) {
+                if (sparkleObserver instanceof SparkleObserver) {
                     final ObserverAdapter adapter = (ObserverAdapter) sparkleObserver;
                     if (adapter.getLegacyObserver() == observer) {
                         deleteObserver(adapter);
